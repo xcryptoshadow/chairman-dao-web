@@ -34,6 +34,7 @@ const PayMember = () => {
         p={4}
         direction={'row'}
         justify={'center'}
+        mb={10}
       >
         <Flex direction={'column'}>
           <Box
