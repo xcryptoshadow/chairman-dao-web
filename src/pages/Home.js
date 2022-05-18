@@ -39,7 +39,11 @@ const Home = () => {
             <Button
               size="lg"
               width="300px"
-              style={{ color: '#A8151A', backgroundColor: 'white' }}
+              style={{
+                color: '#A8151A',
+                backgroundColor: 'white',
+                borderRadius: 50,
+              }}
               rightIcon={
                 <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
               }
@@ -54,7 +58,7 @@ const Home = () => {
               variant="outline"
               size="lg"
               width="300px"
-              style={{ borderWidth: 4 }}
+              style={{ borderWidth: 4, borderRadius: 50 }}
               rightIcon={
                 <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
               }
@@ -69,7 +73,7 @@ const Home = () => {
               variant="outline"
               size="lg"
               width="300px"
-              style={{ borderWidth: 4 }}
+              style={{ borderWidth: 4, borderRadius: 50 }}
               rightIcon={
                 <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
               }
@@ -84,7 +88,7 @@ const Home = () => {
               variant="outline"
               size="lg"
               width="300px"
-              style={{ borderWidth: 4 }}
+              style={{ borderWidth: 4, borderRadius: 50 }}
               rightIcon={
                 <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
               }
@@ -99,7 +103,7 @@ const Home = () => {
               variant="outline"
               size="lg"
               width="300px"
-              style={{ borderWidth: 4 }}
+              style={{ borderWidth: 4, borderRadius: 50 }}
               rightIcon={
                 <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
               }
@@ -114,7 +118,7 @@ const Home = () => {
               variant="outline"
               size="lg"
               width="300px"
-              style={{ borderWidth: 4 }}
+              style={{ borderWidth: 4, borderRadius: 50 }}
               rightIcon={
                 <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
               }
