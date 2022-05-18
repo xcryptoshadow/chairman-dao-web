@@ -23,6 +23,9 @@ import InviteMember from './pages/InviteMember';
 import PayMember from './pages/PayMember';
 import RaiseMoney from './pages/RaiseMoney';
 import Settings from './pages/Settings';
+import MemberInvited from './pages/MemberInvited';
+import MemberPaid from './pages/MemberPaid';
+import InvestMoney from './pages/InvestMoney';
 
 // components
 import Header from './components/Header';
@@ -41,6 +44,9 @@ function App() {
           <Route path="/pay_member" element={<PayMember />} />
           <Route path="/raise_money" element={<RaiseMoney />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/member_invited" element={<MemberInvited />} />
+          <Route path="/member_paid" element={<MemberPaid />} />
+          <Route path="/invest_money" element={<InvestMoney />} />
         </Routes>
       </BrowserRouter>
 

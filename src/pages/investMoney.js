@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
-const investMoney = () => {
-  return <Fragment>investMoney</Fragment>;
+const InvestMoney = () => {
+  return <Fragment>InvestMoney</Fragment>;
 };
 
-export default investMoney;
+export default InvestMoney;
