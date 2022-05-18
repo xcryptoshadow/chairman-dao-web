@@ -17,6 +17,9 @@ import {
   Image,
   SimpleGrid,
   StackDivider,
+  Container,
+  GridItem,
+  Divider,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
@@ -77,347 +80,218 @@ const Dashboard = () => {
 
   return (
     <Fragment>
-      <Flex
-        bg="#FFFFFF"
-        textAlign="center"
-        className="Content"
-        minHeight={'66vh'}
-        p={4}
-        direction={'row'}
-        justify={'center'}
-        mb={10}
-      >
-        <Flex direction={'column'}>
+      <Box minH="66vh">
+        <Container p={6} mt={20}>
           <Box
-            style={{
-              padding: 20,
-              width: 600,
-              borderColor: 'black',
-              borderWidth: 7,
-              borderRadius: 20,
-              marginTop: 80,
-            }}
+            maxW="xl"
+            borderWidth="8px"
+            borderRadius="20px"
+            borderColor="black"
+            align="center"
+            justify="center"
+            mb={8}
           >
-            <Center>
-              <Box>
+            <Container p={4}>
+              <Box boxSize="120px" mb={4}>
                 <Image
                   borderRadius="full"
-                  boxSize="110px"
                   src="https://bit.ly/dan-abramov"
                   alt="Dan Abramov"
                   style={{ marginTop: -90 }}
                 />
               </Box>
-            </Center>
-            <Box>
-              <Text style={{ fontWeight: '700', fontSize: 23 }}>
-                Cool Commie DAO
-              </Text>
-              <Text
-                style={{ fontWeight: '500', fontSize: 13, color: '#9B9B9B' }}
-              >
-                0x7c88...8075
-              </Text>
-              <Text
-                style={{ fontWeight: '500', fontSize: 13, color: '#9B9B9B' }}
-              >
-                Created May 1st, 2022
-              </Text>
-            </Box>
+
+              <Box>
+                <Text fontSize="2xl" fontWeight="700">
+                  Cool Commie DAO
+                </Text>
+
+                <Text fontSize="md" fontWeight="500" color="#9B9B9B">
+                  0x7c88...8075
+                </Text>
+                <Text fontSize="xs" fontWeight="500" color="#9B9B9B">
+                  Created May 1st, 2022
+                </Text>
+              </Box>
+            </Container>
           </Box>
 
           <Box
-            style={{
-              padding: 20,
-              width: 600,
-              borderColor: 'black',
-              borderWidth: 7,
-              borderRadius: 20,
-              marginTop: 30,
-            }}
+            maxW="xl"
+            borderWidth="8px"
+            borderRadius="20px"
+            borderColor="black"
+            align="center"
+            justify="center"
+            mb={8}
           >
-            <Flex direction={'column'}>
-              <Text style={{ fontWeight: '700', fontSize: 23 }}>
-                Treasury Balance
-              </Text>
+            <Container p={4}>
+              <Box mb={4}>
+                <Text fontSize="2xl" fontWeight="700">
+                  Treasury Balance
+                </Text>
+              </Box>
 
-              <Flex p={4} direction={'column'}>
-                <Box width="100%">
-                  <SimpleGrid columns={2} spacing={10} width="100%">
-                    <Box textAlign="left">
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 15,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Token Symbol
-                      </Text>
-                    </Box>
-                    <Box textAlign="right">
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 15,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Amount
-                      </Text>
-                    </Box>
-                  </SimpleGrid>
-                </Box>
+              <Box mb={4}>
+                <SimpleGrid columns={2} spacing={10} width="100%" mb={3}>
+                  <Box textAlign="left">
+                    <Text fontSize="md" fontWeight="600" color="#9B9B9B">
+                      Token Symbol
+                    </Text>
+                  </Box>
+                  <Box textAlign="right">
+                    <Text fontSize="md" fontWeight="600" color="#9B9B9B">
+                      Amount
+                    </Text>
+                  </Box>
+                </SimpleGrid>
 
-                <Box width="100%" style={{ paddingTop: 10 }}>
-                  <SimpleGrid columns={2} spacing={10} width="100%">
-                    <Box textAlign="left">
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 15,
-                        }}
-                      >
-                        CHR
-                      </Text>
-                    </Box>
-                    <Box textAlign="right">
-                      <Text
-                        style={{
-                          fontWeight: '700',
-                          fontSize: 15,
-                        }}
-                      >
-                        1,000,000.00
-                      </Text>
-                    </Box>
-                  </SimpleGrid>
-                </Box>
-
-                <Box width="100%">
-                  <SimpleGrid columns={2} spacing={10} width="100%">
-                    <Box textAlign="left">
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 15,
-                        }}
-                      >
-                        BTC
-                      </Text>
-                    </Box>
-                    <Box textAlign="right">
-                      <Text
-                        style={{
-                          fontWeight: '700',
-                          fontSize: 15,
-                        }}
-                      >
-                        123.45678
-                      </Text>
-                    </Box>
-                  </SimpleGrid>
-                </Box>
-
-                <Box width="100%">
-                  <SimpleGrid columns={2} spacing={10} width="100%">
-                    <Box textAlign="left">
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 15,
-                        }}
-                      >
-                        ETH
-                      </Text>
-                    </Box>
-                    <Box textAlign="right">
-                      <Text
-                        style={{
-                          fontWeight: '700',
-                          fontSize: 15,
-                        }}
-                      >
-                        12.3456789
-                      </Text>
-                    </Box>
-                  </SimpleGrid>
-                </Box>
-              </Flex>
+                <SimpleGrid columns={2} spacing={10} width="100%">
+                  <Box textAlign="left">
+                    <Text fontSize="md" fontWeight="500">
+                      CHR
+                    </Text>
+                  </Box>
+                  <Box textAlign="right">
+                    <Text fontSize="md" fontWeight="700">
+                      1,000,000.00
+                    </Text>
+                  </Box>
+                </SimpleGrid>
+                <SimpleGrid columns={2} spacing={10} width="100%">
+                  <Box textAlign="left">
+                    <Text fontSize="md" fontWeight="500">
+                      BTC
+                    </Text>
+                  </Box>
+                  <Box textAlign="right">
+                    <Text fontSize="md" fontWeight="700">
+                      123.45678
+                    </Text>
+                  </Box>
+                </SimpleGrid>
+                <SimpleGrid columns={2} spacing={10} width="100%">
+                  <Box textAlign="left">
+                    <Text fontSize="md" fontWeight="500">
+                      ETH
+                    </Text>
+                  </Box>
+                  <Box textAlign="right">
+                    <Text fontSize="md" fontWeight="700">
+                      12.3456789
+                    </Text>
+                  </Box>
+                </SimpleGrid>
+              </Box>
 
               <Box>
-                <Button
-                  style={{
-                    backgroundColor: 'black',
-                    color: 'white',
-                    width: '300px',
-                  }}
-                >
+                <Button borderRadius="full" bg="black" color="white" w="50%">
                   Expand
                 </Button>
               </Box>
-            </Flex>
+            </Container>
           </Box>
 
           <Box
-            style={{
-              padding: 20,
-              width: 600,
-              borderColor: 'black',
-              borderWidth: 7,
-              borderRadius: 20,
-              marginTop: 30,
-            }}
+            maxW="xl"
+            borderWidth="8px"
+            borderRadius="20px"
+            borderColor="black"
+            align="center"
+            justify="center"
+            mb={8}
           >
-            <Flex direction={'column'}>
-              <Text style={{ fontWeight: '700', fontSize: 23 }}>Ownership</Text>
+            <Container p={4}>
+              <Box mb={4}>
+                <Text fontSize="2xl" fontWeight="700">
+                  Ownership
+                </Text>
+              </Box>
 
-              <Flex
-                direction={'column'}
-                align="center"
-                justify="center"
-                style={{ marginTop: 30 }}
-              >
-                <Flex style={{ width: '300px' }}>
+              <Box mb={4}>
+                <Box w="70%">
                   <Doughnut data={data} />
-                </Flex>
-              </Flex>
-
-              <Flex p={4} direction={'column'}>
-                <Box width="100%">
-                  <SimpleGrid columns={2} spacing={10} width="100%">
-                    <Box textAlign="left">
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 15,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Email
-                      </Text>
-                    </Box>
-                    <Box textAlign="right">
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 15,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Percentage
-                      </Text>
-                    </Box>
-                  </SimpleGrid>
                 </Box>
+              </Box>
 
-                <Box width="100%" style={{ paddingTop: 10 }}>
-                  <SimpleGrid columns={2} spacing={10} width="100%">
-                    <Box textAlign="left">
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 15,
-                        }}
-                      >
-                        user1@gmail.com
-                      </Text>
-                    </Box>
-                    <Box textAlign="right">
-                      <Text
-                        style={{
-                          fontWeight: '700',
-                          fontSize: 15,
-                        }}
-                      >
-                        34.56%
-                      </Text>
-                    </Box>
-                  </SimpleGrid>
-                </Box>
+              <Box mb={4}>
+                <SimpleGrid columns={2} spacing={10} width="100%" mb={3}>
+                  <Box textAlign="left">
+                    <Text fontSize="md" fontWeight="600" color="#9B9B9B">
+                      Email
+                    </Text>
+                  </Box>
+                  <Box textAlign="right">
+                    <Text fontSize="md" fontWeight="600" color="#9B9B9B">
+                      Percentage
+                    </Text>
+                  </Box>
+                </SimpleGrid>
 
-                <Box width="100%">
-                  <SimpleGrid columns={2} spacing={10} width="100%">
-                    <Box textAlign="left">
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 15,
-                        }}
-                      >
-                        user2@gmail.com
-                      </Text>
-                    </Box>
-                    <Box textAlign="right">
-                      <Text
-                        style={{
-                          fontWeight: '700',
-                          fontSize: 15,
-                        }}
-                      >
-                        24.23%
-                      </Text>
-                    </Box>
-                  </SimpleGrid>
-                </Box>
-
-                <Box width="100%">
-                  <SimpleGrid columns={2} spacing={10} width="100%">
-                    <Box textAlign="left">
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 15,
-                        }}
-                      >
-                        user3@gmail.com
-                      </Text>
-                    </Box>
-                    <Box textAlign="right">
-                      <Text
-                        style={{
-                          fontWeight: '700',
-                          fontSize: 15,
-                        }}
-                      >
-                        9.78%
-                      </Text>
-                    </Box>
-                  </SimpleGrid>
-                </Box>
-              </Flex>
+                <SimpleGrid columns={2} spacing={10} width="100%">
+                  <Box textAlign="left">
+                    <Text fontSize="md" fontWeight="500">
+                      user1@gmail.com
+                    </Text>
+                  </Box>
+                  <Box textAlign="right">
+                    <Text fontSize="md" fontWeight="700">
+                      34.56%
+                    </Text>
+                  </Box>
+                </SimpleGrid>
+                <SimpleGrid columns={2} spacing={10} width="100%">
+                  <Box textAlign="left">
+                    <Text fontSize="md" fontWeight="500">
+                      user2@gmail.com
+                    </Text>
+                  </Box>
+                  <Box textAlign="right">
+                    <Text fontSize="md" fontWeight="700">
+                      24.23%
+                    </Text>
+                  </Box>
+                </SimpleGrid>
+                <SimpleGrid columns={2} spacing={10} width="100%">
+                  <Box textAlign="left">
+                    <Text fontSize="md" fontWeight="500">
+                      user3@gmail.com
+                    </Text>
+                  </Box>
+                  <Box textAlign="right">
+                    <Text fontSize="md" fontWeight="700">
+                      9.78%
+                    </Text>
+                  </Box>
+                </SimpleGrid>
+              </Box>
 
               <Box>
-                <Button
-                  style={{
-                    backgroundColor: 'black',
-                    color: 'white',
-                    width: '300px',
-                  }}
-                >
+                <Button borderRadius="full" bg="black" color="white" w="50%">
                   Expand
                 </Button>
               </Box>
-            </Flex>
+            </Container>
           </Box>
 
           <Box
-            style={{
-              padding: 20,
-              width: 600,
-              borderColor: 'black',
-              borderWidth: 7,
-              borderRadius: 20,
-              marginTop: 30,
-            }}
+            maxW="xl"
+            borderWidth="8px"
+            borderRadius="20px"
+            borderColor="black"
+            align="center"
+            justify="center"
+            mb={8}
           >
-            <Flex direction={'column'}>
-              <Text style={{ fontWeight: '700', fontSize: 23 }}>
-                Token Info
-              </Text>
+            <Container p={4}>
+              <Box mb={4}>
+                <Text fontSize="2xl" fontWeight="700">
+                  Token Info
+                </Text>
+              </Box>
 
-              <Box>
-                <Flex px={4} pt={4}>
+              <Box mb={4}>
+                <Flex direction="row" align="center" justify="left">
                   <Text
                     style={{
                       fontWeight: '500',
@@ -438,7 +312,7 @@ const Dashboard = () => {
                   </Text>
                 </Flex>
 
-                <Flex px={4} pt={2}>
+                <Flex direction="row" align="center" justify="left">
                   <Text
                     style={{
                       fontWeight: '500',
@@ -459,7 +333,7 @@ const Dashboard = () => {
                   </Text>
                 </Flex>
 
-                <Flex px={4} pt={2}>
+                <Flex direction="row" align="center" justify="left">
                   <Text
                     style={{
                       fontWeight: '500',
@@ -480,7 +354,7 @@ const Dashboard = () => {
                   </Text>
                 </Flex>
 
-                <Flex px={4} pt={2}>
+                <Flex direction="row" align="center" justify="left">
                   <Text
                     style={{
                       fontWeight: '500',
@@ -501,7 +375,7 @@ const Dashboard = () => {
                   </Text>
                 </Flex>
 
-                <Flex px={4} pt={2}>
+                <Flex direction="row" align="center" justify="left">
                   <Text
                     style={{
                       fontWeight: '500',
@@ -522,74 +396,58 @@ const Dashboard = () => {
                   </Text>
                 </Flex>
               </Box>
-            </Flex>
+
+              <Box>
+                <Button borderRadius="full" bg="black" color="white" w="50%">
+                  Expand
+                </Button>
+              </Box>
+            </Container>
           </Box>
 
           <Box
-            style={{
-              padding: 20,
-              width: 600,
-              borderColor: 'black',
-              borderWidth: 7,
-              borderRadius: 20,
-              marginTop: 30,
-            }}
+            maxW="xl"
+            borderWidth="8px"
+            borderRadius="20px"
+            borderColor="black"
+            align="center"
+            justify="center"
           >
-            <Flex direction={'column'}>
-              <Text style={{ fontWeight: '700', fontSize: 23 }}>
-                Event Info
-              </Text>
+            <Container p={4}>
+              <Box mb={4}>
+                <Text fontSize="2xl" fontWeight="700">
+                  Event Info
+                </Text>
+              </Box>
 
-              <Flex direction={'column'} align="center" justify="center" mt={4}>
+              <Divider mb={4} style={{ borderColor: 'black' }} />
+
+              <Box style={{ overflowY: 'scroll', maxHeight: '550px' }}>
                 <Box
-                  style={{
-                    padding: 10,
-                    width: 500,
-                    borderColor: '#C4C4C4',
-                    borderWidth: 4,
-                    borderRadius: 20,
-                  }}
+                  p={4}
+                  borderColor="#C4C4C4"
+                  borderWidth="4px"
+                  borderRadius="20px"
+                  mb={4}
                 >
                   <VStack spacing={2} align="stretch" p={4}>
-                    <Box style={{ textAlign: 'left' }}>
-                      <Text style={{ fontWeight: '700', fontSize: 15 }}>
+                    <Box textAlign="left">
+                      <Text fontSize="md" fontWeight="700">
                         user5@gmail.com is a new member!
                       </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 11,
-                          color: '#9D9D9D',
-                        }}
-                      >
+                      <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
                         user5@gmail.com has become a new member of the Cool
                         Commie DAO
                       </Text>
                     </Box>
-                    <Box style={{ textAlign: 'left' }}>
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 12,
-                          color: '#A8151A',
-                        }}
-                      >
-                        Details{' '}
-                        <ChevronRightIcon
-                          w={5}
-                          h={5}
-                          style={{ marginLeft: 3 }}
-                        />
+                    <Box textAlign="left">
+                      <Text fontSize="sm" fontWeight="600" color="#A8151A">
+                        Details
+                        <ChevronRightIcon w={5} h={5} ml={2} />
                       </Text>
                     </Box>
                     <Box>
-                      <Text
-                        style={{
-                          fontWeight: '400',
-                          fontSize: 10,
-                          color: '#9D9D9D',
-                        }}
-                      >
+                      <Text fontSize="xs" fontWeight="400" color="#9D9D9D">
                         Created At: May 12th, 2022
                       </Text>
                     </Box>
@@ -597,55 +455,30 @@ const Dashboard = () => {
                 </Box>
 
                 <Box
-                  style={{
-                    padding: 10,
-                    width: 500,
-                    borderColor: '#C4C4C4',
-                    borderWidth: 4,
-                    borderRadius: 20,
-                    marginTop: 10,
-                  }}
+                  p={4}
+                  borderColor="#C4C4C4"
+                  borderWidth="4px"
+                  borderRadius="20px"
+                  mb={4}
                 >
                   <VStack spacing={2} align="stretch" p={4}>
-                    <Box style={{ textAlign: 'left' }}>
-                      <Text style={{ fontWeight: '700', fontSize: 15 }}>
+                    <Box textAlign="left">
+                      <Text fontSize="md" fontWeight="700">
                         user5@gmail.com is a new member!
                       </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 11,
-                          color: '#9D9D9D',
-                        }}
-                      >
+                      <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
                         user5@gmail.com has become a new member of the Cool
                         Commie DAO
                       </Text>
                     </Box>
-                    <Box style={{ textAlign: 'left' }}>
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 12,
-                          color: '#A8151A',
-                        }}
-                      >
-                        Details{' '}
-                        <ChevronRightIcon
-                          w={5}
-                          h={5}
-                          style={{ marginLeft: 3 }}
-                        />
+                    <Box textAlign="left">
+                      <Text fontSize="sm" fontWeight="600" color="#A8151A">
+                        Details
+                        <ChevronRightIcon w={5} h={5} ml={2} />
                       </Text>
                     </Box>
                     <Box>
-                      <Text
-                        style={{
-                          fontWeight: '400',
-                          fontSize: 10,
-                          color: '#9D9D9D',
-                        }}
-                      >
+                      <Text fontSize="xs" fontWeight="400" color="#9D9D9D">
                         Created At: May 12th, 2022
                       </Text>
                     </Box>
@@ -653,55 +486,30 @@ const Dashboard = () => {
                 </Box>
 
                 <Box
-                  style={{
-                    padding: 10,
-                    width: 500,
-                    borderColor: '#C4C4C4',
-                    borderWidth: 4,
-                    borderRadius: 20,
-                    marginTop: 10,
-                  }}
+                  p={4}
+                  borderColor="#C4C4C4"
+                  borderWidth="4px"
+                  borderRadius="20px"
+                  mb={4}
                 >
                   <VStack spacing={2} align="stretch" p={4}>
-                    <Box style={{ textAlign: 'left' }}>
-                      <Text style={{ fontWeight: '700', fontSize: 15 }}>
+                    <Box textAlign="left">
+                      <Text fontSize="md" fontWeight="700">
                         user5@gmail.com is a new member!
                       </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 11,
-                          color: '#9D9D9D',
-                        }}
-                      >
+                      <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
                         user5@gmail.com has become a new member of the Cool
                         Commie DAO
                       </Text>
                     </Box>
-                    <Box style={{ textAlign: 'left' }}>
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 12,
-                          color: '#A8151A',
-                        }}
-                      >
-                        Details{' '}
-                        <ChevronRightIcon
-                          w={5}
-                          h={5}
-                          style={{ marginLeft: 3 }}
-                        />
+                    <Box textAlign="left">
+                      <Text fontSize="sm" fontWeight="600" color="#A8151A">
+                        Details
+                        <ChevronRightIcon w={5} h={5} ml={2} />
                       </Text>
                     </Box>
                     <Box>
-                      <Text
-                        style={{
-                          fontWeight: '400',
-                          fontSize: 10,
-                          color: '#9D9D9D',
-                        }}
-                      >
+                      <Text fontSize="xs" fontWeight="400" color="#9D9D9D">
                         Created At: May 12th, 2022
                       </Text>
                     </Box>
@@ -709,55 +517,30 @@ const Dashboard = () => {
                 </Box>
 
                 <Box
-                  style={{
-                    padding: 10,
-                    width: 500,
-                    borderColor: '#C4C4C4',
-                    borderWidth: 4,
-                    borderRadius: 20,
-                    marginTop: 10,
-                  }}
+                  p={4}
+                  borderColor="#C4C4C4"
+                  borderWidth="4px"
+                  borderRadius="20px"
+                  mb={4}
                 >
                   <VStack spacing={2} align="stretch" p={4}>
-                    <Box style={{ textAlign: 'left' }}>
-                      <Text style={{ fontWeight: '700', fontSize: 15 }}>
+                    <Box textAlign="left">
+                      <Text fontSize="md" fontWeight="700">
                         user5@gmail.com is a new member!
                       </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 11,
-                          color: '#9D9D9D',
-                        }}
-                      >
+                      <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
                         user5@gmail.com has become a new member of the Cool
                         Commie DAO
                       </Text>
                     </Box>
-                    <Box style={{ textAlign: 'left' }}>
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 12,
-                          color: '#A8151A',
-                        }}
-                      >
-                        Details{' '}
-                        <ChevronRightIcon
-                          w={5}
-                          h={5}
-                          style={{ marginLeft: 3 }}
-                        />
+                    <Box textAlign="left">
+                      <Text fontSize="sm" fontWeight="600" color="#A8151A">
+                        Details
+                        <ChevronRightIcon w={5} h={5} ml={2} />
                       </Text>
                     </Box>
                     <Box>
-                      <Text
-                        style={{
-                          fontWeight: '400',
-                          fontSize: 10,
-                          color: '#9D9D9D',
-                        }}
-                      >
+                      <Text fontSize="xs" fontWeight="400" color="#9D9D9D">
                         Created At: May 12th, 2022
                       </Text>
                     </Box>
@@ -765,65 +548,133 @@ const Dashboard = () => {
                 </Box>
 
                 <Box
-                  style={{
-                    padding: 10,
-                    width: 500,
-                    borderColor: '#C4C4C4',
-                    borderWidth: 4,
-                    borderRadius: 20,
-                    marginTop: 10,
-                  }}
+                  p={4}
+                  borderColor="#C4C4C4"
+                  borderWidth="4px"
+                  borderRadius="20px"
+                  mb={4}
                 >
                   <VStack spacing={2} align="stretch" p={4}>
-                    <Box style={{ textAlign: 'left' }}>
-                      <Text style={{ fontWeight: '700', fontSize: 15 }}>
+                    <Box textAlign="left">
+                      <Text fontSize="md" fontWeight="700">
                         user5@gmail.com is a new member!
                       </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 11,
-                          color: '#9D9D9D',
-                        }}
-                      >
+                      <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
                         user5@gmail.com has become a new member of the Cool
                         Commie DAO
                       </Text>
                     </Box>
-                    <Box style={{ textAlign: 'left' }}>
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 12,
-                          color: '#A8151A',
-                        }}
-                      >
-                        Details{' '}
-                        <ChevronRightIcon
-                          w={5}
-                          h={5}
-                          style={{ marginLeft: 3 }}
-                        />
+                    <Box textAlign="left">
+                      <Text fontSize="sm" fontWeight="600" color="#A8151A">
+                        Details
+                        <ChevronRightIcon w={5} h={5} ml={2} />
                       </Text>
                     </Box>
                     <Box>
-                      <Text
-                        style={{
-                          fontWeight: '400',
-                          fontSize: 10,
-                          color: '#9D9D9D',
-                        }}
-                      >
+                      <Text fontSize="xs" fontWeight="400" color="#9D9D9D">
                         Created At: May 12th, 2022
                       </Text>
                     </Box>
                   </VStack>
                 </Box>
-              </Flex>
-            </Flex>
+
+                <Box
+                  p={4}
+                  borderColor="#C4C4C4"
+                  borderWidth="4px"
+                  borderRadius="20px"
+                  mb={4}
+                >
+                  <VStack spacing={2} align="stretch" p={4}>
+                    <Box textAlign="left">
+                      <Text fontSize="md" fontWeight="700">
+                        user5@gmail.com is a new member!
+                      </Text>
+                      <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
+                        user5@gmail.com has become a new member of the Cool
+                        Commie DAO
+                      </Text>
+                    </Box>
+                    <Box textAlign="left">
+                      <Text fontSize="sm" fontWeight="600" color="#A8151A">
+                        Details
+                        <ChevronRightIcon w={5} h={5} ml={2} />
+                      </Text>
+                    </Box>
+                    <Box>
+                      <Text fontSize="xs" fontWeight="400" color="#9D9D9D">
+                        Created At: May 12th, 2022
+                      </Text>
+                    </Box>
+                  </VStack>
+                </Box>
+
+                <Box
+                  p={4}
+                  borderColor="#C4C4C4"
+                  borderWidth="4px"
+                  borderRadius="20px"
+                  mb={4}
+                >
+                  <VStack spacing={2} align="stretch" p={4}>
+                    <Box textAlign="left">
+                      <Text fontSize="md" fontWeight="700">
+                        user5@gmail.com is a new member!
+                      </Text>
+                      <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
+                        user5@gmail.com has become a new member of the Cool
+                        Commie DAO
+                      </Text>
+                    </Box>
+                    <Box textAlign="left">
+                      <Text fontSize="sm" fontWeight="600" color="#A8151A">
+                        Details
+                        <ChevronRightIcon w={5} h={5} ml={2} />
+                      </Text>
+                    </Box>
+                    <Box>
+                      <Text fontSize="xs" fontWeight="400" color="#9D9D9D">
+                        Created At: May 12th, 2022
+                      </Text>
+                    </Box>
+                  </VStack>
+                </Box>
+
+                <Box
+                  p={4}
+                  borderColor="#C4C4C4"
+                  borderWidth="4px"
+                  borderRadius="20px"
+                  mb={4}
+                >
+                  <VStack spacing={2} align="stretch" p={4}>
+                    <Box textAlign="left">
+                      <Text fontSize="md" fontWeight="700">
+                        user5@gmail.com is a new member!
+                      </Text>
+                      <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
+                        user5@gmail.com has become a new member of the Cool
+                        Commie DAO
+                      </Text>
+                    </Box>
+                    <Box textAlign="left">
+                      <Text fontSize="sm" fontWeight="600" color="#A8151A">
+                        Details
+                        <ChevronRightIcon w={5} h={5} ml={2} />
+                      </Text>
+                    </Box>
+                    <Box>
+                      <Text fontSize="xs" fontWeight="400" color="#9D9D9D">
+                        Created At: May 12th, 2022
+                      </Text>
+                    </Box>
+                  </VStack>
+                </Box>
+              </Box>
+            </Container>
           </Box>
-        </Flex>
-      </Flex>
+        </Container>
+      </Box>
     </Fragment>
   );
 };

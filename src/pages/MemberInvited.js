@@ -1,95 +1,53 @@
 import React, { Fragment } from 'react';
 
 // chakra ui
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Center,
-  Link,
-  VStack,
-  Code,
-  theme,
-  Button,
-  Flex,
-  Spacer,
-  Image,
-  SimpleGrid,
-  StackDivider,
-  Grid,
-  GridItem,
-  Input,
-  Select,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  Divider,
-  InputLeftElement,
-} from '@chakra-ui/react';
+import { Box, Text, Button, Image, Container } from '@chakra-ui/react';
 
 const MemberInvited = () => {
   return (
     <Fragment>
-      <Flex
-        bg="#FFFFFF"
-        textAlign="center"
-        className="Content"
-        minHeight={'66vh'}
-        p={4}
-        direction={'row'}
-        justify={'center'}
-        mb={10}
-      >
-        <Flex direction={'column'}>
+      <Box minH="66vh">
+        <Container p={6}>
           <Box
-            style={{
-              padding: 20,
-              width: 600,
-              borderColor: 'black',
-              borderWidth: 7,
-              borderRadius: 20,
-              marginTop: 30,
-            }}
+            maxW="xl"
+            borderWidth="8px"
+            borderRadius="20px"
+            borderColor="black"
+            align="center"
+            justify="center"
           >
-            <Flex direction={'column'}>
-              <Text style={{ fontWeight: '700', fontSize: 23 }}>
-                You’ve been invited!
-              </Text>
+            <Container p={4}>
+              <Box mb={4}>
+                <Text fontSize="2xl" style={{ fontWeight: '700' }}>
+                  You’ve been invited!
+                </Text>
+              </Box>
 
-              <Flex
-                direction={'row'}
-                align={'center'}
-                justify={'center'}
-                mt={4}
-              >
-                <Image
-                  src="https://wallpapercave.com/wp/wp233762.jpg"
-                  alt="Dan Abramov"
-                  style={{ borderRadius: 20 }}
-                  w={'70%'}
-                />
-              </Flex>
+              <Box>
+                <Box boxSize="90%">
+                  <Image
+                    src="https://wallpapercave.com/wp/wp233762.jpg"
+                    alt="Hot Commie"
+                    borderRadius="20px"
+                  />
+                </Box>
+              </Box>
 
-              <Text mt={2} style={{ fontWeight: '600', fontSize: 19 }}>
-                Cool Commies DAO
-              </Text>
+              <Box mb={4}>
+                <Text fontSize="lg" style={{ fontWeight: '600' }}>
+                  Cool Commies DAO
+                </Text>
+              </Box>
 
-              <Box mt={4}>
-                <Button
-                  borderRadius="full"
-                  style={{
-                    backgroundColor: 'black',
-                    color: 'white',
-                    width: '100%',
-                  }}
-                >
+              <Box>
+                <Button borderRadius="full" bg="black" color="white" w="100%">
                   Claim invite with Fortmatic
                 </Button>
               </Box>
-            </Flex>
+            </Container>
           </Box>
-        </Flex>
-      </Flex>
+        </Container>
+      </Box>
     </Fragment>
   );
 };

@@ -2,250 +2,116 @@ import React, { Fragment } from 'react';
 
 // chakra ui
 import {
-  ChakraProvider,
   Box,
   Text,
-  Center,
-  Link,
-  VStack,
-  Code,
-  theme,
   Button,
-  Flex,
-  Spacer,
   Image,
-  SimpleGrid,
-  StackDivider,
   Grid,
   GridItem,
-  Input,
-  Select,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  Divider,
-  InputLeftElement,
-  Checkbox,
+  Container,
 } from '@chakra-ui/react';
 
 const InvestMoney = () => {
   return (
     <Fragment>
-      <Flex
-        bg="#FFFFFF"
-        textAlign="center"
-        className="Content"
-        minHeight={'66vh'}
-        p={4}
-        direction={'row'}
-        justify={'center'}
-        mb={10}
-      >
-        <Flex direction={'column'}>
+      <Box minH="66vh">
+        <Container p={6}>
           <Box
-            style={{
-              padding: 20,
-              width: 600,
-              borderColor: 'black',
-              borderWidth: 7,
-              borderRadius: 20,
-              marginTop: 30,
-            }}
+            maxW="xl"
+            borderWidth="8px"
+            borderRadius="20px"
+            borderColor="black"
+            align="center"
+            justify="center"
           >
-            <Flex direction={'column'}>
-              <Text style={{ fontWeight: '500', fontSize: 23 }}>
-                You’ve been invited to invest in the <br />
-                <span style={{ fontWeight: '700' }}>Cool Commie DAO</span>
-              </Text>
+            <Container p={4}>
+              <Box mb={4}>
+                <Text fontSize="2xl" fontWeight="500">
+                  You’ve been invited to invest in the
+                </Text>
+                <Text fontSize="2xl" fontWeight="700">
+                  Cool Commie DAO
+                </Text>
+              </Box>
 
-              <Flex
-                direction={'row'}
-                align={'center'}
-                justify={'center'}
-                mt={4}
-              >
-                <Image
-                  src="https://wallpapercave.com/wp/wp233762.jpg"
-                  alt="Dan Abramov"
-                  style={{ borderRadius: 20 }}
-                  w={'70%'}
-                />
-              </Flex>
+              <Box mb={4}>
+                <Box boxSize="90%">
+                  <Image
+                    src="https://wallpapercave.com/wp/wp233762.jpg"
+                    alt="Hot Commie"
+                    borderRadius="20px"
+                  />
+                </Box>
+              </Box>
 
-              <Box mt={4}>
+              <Box mb={8}>
                 <Grid templateColumns="repeat(5, 1fr)" gap={6} mt={7}>
                   <GridItem
                     colSpan={2}
+                    textAlign="left"
                     style={{
-                      textAlign: 'left',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'left',
                     }}
                   >
-                    <Text
-                      style={{
-                        color: '#9D9D9D',
-                        fontWeight: '600',
-                        fontSize: 20,
-                      }}
-                    >
+                    <Text color="#9D9D9D" fontWeight="600" fontSize="xl">
                       You will invest:
-                    </Text>
-                  </GridItem>
-                  <GridItem colSpan={3} style={{ textAlign: 'right' }}>
-                    <Text
-                      style={{
-                        color: '#A8151A',
-                        fontWeight: '700',
-                        fontSize: 25,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'right',
-                      }}
-                    >
-                      $ 25,000.00
-                    </Text>
-                  </GridItem>
-                </Grid>
-
-                <Grid templateColumns="repeat(5, 1fr)" gap={6} mt={2}>
-                  <GridItem
-                    colSpan={2}
-                    style={{
-                      textAlign: 'left',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'left',
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: '#9D9D9D',
-                        fontWeight: '600',
-                        fontSize: 20,
-                      }}
-                    >
-                      You will receive:
                     </Text>
                   </GridItem>
                   <GridItem
                     colSpan={3}
+                    textAlign="right"
                     style={{
-                      textAlign: 'right',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'right',
                     }}
                   >
-                    <Text
-                      style={{
-                        color: '#A8151A',
-                        fontWeight: '700',
-                        fontSize: 25,
-                      }}
-                    >
+                    <Text color="#A8151A" fontWeight="700" fontSize="2xl">
+                      $ 25,000.00
+                    </Text>
+                  </GridItem>
+                </Grid>
+                <Grid templateColumns="repeat(5, 1fr)" gap={6} mt={7}>
+                  <GridItem
+                    colSpan={2}
+                    textAlign="left"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'left',
+                    }}
+                  >
+                    <Text color="#9D9D9D" fontWeight="600" fontSize="xl">
+                      You will receive:
+                    </Text>
+                  </GridItem>
+                  <GridItem
+                    colSpan={3}
+                    textAlign="right"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'right',
+                    }}
+                  >
+                    <Text color="#A8151A" fontWeight="700" fontSize="2xl">
                       CHD 100.00
                     </Text>
                   </GridItem>
                 </Grid>
               </Box>
 
-              <Box mt={2}>
-                <Grid templateColumns="repeat(5, 1fr)" gap={6} mt={7}>
-                  <GridItem
-                    colSpan={4}
-                    style={{
-                      textAlign: 'left',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'left',
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: '#9D9D9D',
-                        fontWeight: '600',
-                        fontSize: 20,
-                      }}
-                    >
-                      I am an accredited investor:
-                    </Text>
-                  </GridItem>
-                  <GridItem colSpan={1} style={{ textAlign: 'right' }}>
-                    <Text
-                      style={{
-                        color: '#A8151A',
-                        fontWeight: '700',
-                        fontSize: 25,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'right',
-                      }}
-                    >
-                      <Checkbox size="lg" defaultChecked></Checkbox>
-                    </Text>
-                  </GridItem>
-                </Grid>
-
-                <Grid templateColumns="repeat(5, 1fr)" gap={6} mt={2}>
-                  <GridItem
-                    colSpan={4}
-                    style={{
-                      textAlign: 'left',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'left',
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: '#9D9D9D',
-                        fontWeight: '600',
-                        fontSize: 20,
-                      }}
-                    >
-                      Captcha:
-                    </Text>
-                  </GridItem>
-                  <GridItem
-                    colSpan={1}
-                    style={{
-                      textAlign: 'right',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'right',
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: '#A8151A',
-                        fontWeight: '700',
-                        fontSize: 25,
-                      }}
-                    >
-                      <Checkbox size="lg" defaultChecked></Checkbox>
-                    </Text>
-                  </GridItem>
-                </Grid>
-              </Box>
-
-              <Box mt={8}>
-                <Button
-                  borderRadius="full"
-                  style={{
-                    backgroundColor: 'black',
-                    color: 'white',
-                    width: '100%',
-                  }}
-                >
-                  Proceed with investment
+              <Box>
+                <Button borderRadius="full" bg="black" color="white" w="100%">
+                  View Wallet
                 </Button>
               </Box>
-            </Flex>
+            </Container>
           </Box>
-        </Flex>
-      </Flex>
+        </Container>
+      </Box>
     </Fragment>
   );
 };
