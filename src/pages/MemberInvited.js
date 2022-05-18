@@ -53,7 +53,7 @@ const MemberInvited = () => {
           >
             <Flex direction={'column'}>
               <Text style={{ fontWeight: '700', fontSize: 23 }}>
-                You just got PAID!
+                You’ve been invited!
               </Text>
 
               <Flex
@@ -74,20 +74,6 @@ const MemberInvited = () => {
                 Cool Commies DAO
               </Text>
 
-              <Flex
-                mt={2}
-                align={'center'}
-                justify={'center'}
-                style={{ color: '#A8151A' }}
-              >
-                <Text style={{ fontWeight: '700', fontSize: 45 }}>300</Text>
-                <Text
-                  style={{ fontWeight: '500', fontSize: 20, marginLeft: 10 }}
-                >
-                  CHR
-                </Text>
-              </Flex>
-
               <Box mt={4}>
                 <Button
                   borderRadius="full"
@@ -97,7 +83,7 @@ const MemberInvited = () => {
                     width: '100%',
                   }}
                 >
-                  View Wallet
+                  Claim invite with Fortmatic
                 </Button>
               </Box>
             </Flex>
