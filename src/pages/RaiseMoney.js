@@ -25,289 +25,281 @@ import {
   InputRightAddon,
   Divider,
   InputLeftElement,
+  Container,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
 const RaiseMoney = () => {
   return (
     <Fragment>
-      <Flex
-        bg="#FFFFFF"
-        textAlign="center"
-        className="Content"
-        minHeight={'66vh'}
-        p={4}
-        direction={'row'}
-        justify={'center'}
-        mb={10}
-      >
-        <Flex direction={'column'}>
+      <Box minH="66vh">
+        <Container p={6} mb={10}>
           <Box
-            style={{
-              padding: 20,
-              width: 600,
-              borderColor: 'black',
-              borderWidth: 7,
-              borderRadius: 20,
-              marginTop: 30,
-            }}
+            maxW="xl"
+            borderWidth="8px"
+            borderRadius="20px"
+            borderColor="black"
+            align="center"
+            justify="center"
           >
-            <Flex direction={'column'}>
-              <Text style={{ fontWeight: '700', fontSize: 23 }}>
-                Raise Money From Users
-              </Text>
+            <Container p={4}>
+              <Box mb={4}>
+                <Text fontSize="2xl" style={{ fontWeight: '700' }}>
+                  Raise Money From Users
+                </Text>
+              </Box>
 
-              <Flex p={4} direction={'column'}>
+              <Box>
+                <Box mb={4} textAlign="left">
+                  <Text fontSize="md" fontWeight="600" color="#9B9B9B">
+                    Sell token at:
+                  </Text>
+                </Box>
                 <Box>
-                  <Box style={{ textAlign: 'left' }}>
-                    <Text
-                      style={{
-                        fontWeight: '600',
-                        fontSize: 15,
-                        color: '#9B9B9B',
-                      }}
-                    >
-                      Sell token at:
-                    </Text>
-                  </Box>
+                  <InputGroup size="lg">
+                    <Input
+                      variant="filled"
+                      placeholder="$1,000,000.00"
+                      borderColor="black"
+                      borderWidth="2px"
+                      style={{ borderRadius: 7 }}
+                    />
+                    <InputRightAddon
+                      children={<span style={{ fontWeight: 500 }}>CAP</span>}
+                      borderColor="white"
+                      bg="white"
+                    />
+                  </InputGroup>
 
-                  <Box>
-                    <InputGroup size="lg" mt={4}>
-                      <Input
-                        variant="filled"
-                        placeholder="$1,000,000.00"
-                        style={{
-                          borderColor: 'black',
-                          borderRadius: 7,
-                          borderWidth: 2,
-                        }}
-                      />
-                      <InputRightAddon
-                        children={<span style={{ fontWeight: 500 }}>CAP</span>}
-                        style={{
-                          borderColor: 'white',
-                          borderRadius: 7,
-                          borderWidth: 3,
-                          backgroundColor: 'white',
-                        }}
-                      />
-                    </InputGroup>
-
-                    <Text mt={2} style={{ fontWeight: 500 }}>
+                  <Box my={1}>
+                    <Text fontWeight="500" fontSize="md">
                       or
                     </Text>
-
-                    <InputGroup size="lg" mt={2}>
-                      <Input
-                        variant="filled"
-                        placeholder="25.00%"
-                        style={{
-                          borderColor: 'black',
-                          borderRadius: 7,
-                          borderWidth: 3,
-                        }}
-                      />
-                      <InputRightAddon
-                        children={
-                          <span style={{ fontWeight: 500 }}>DISCOUNT</span>
-                        }
-                        style={{
-                          borderColor: 'white',
-                          borderRadius: 7,
-                          borderWidth: 2,
-                          backgroundColor: 'white',
-                        }}
-                      />
-                    </InputGroup>
                   </Box>
+
+                  <InputGroup size="lg">
+                    <Input
+                      variant="filled"
+                      placeholder="25.00%"
+                      borderColor="black"
+                      borderRadius="7px"
+                      borderWidth="2px"
+                      style={{ borderRadius: 7 }}
+                    />
+                    <InputRightAddon
+                      children={
+                        <span style={{ fontWeight: 500 }}>DISCOUNT</span>
+                      }
+                      borderColor="white"
+                      bg="white"
+                    />
+                  </InputGroup>
                 </Box>
+              </Box>
 
-                <Divider my={6} />
+              <Divider my={6} />
 
-                <Box>
-                  <Grid templateColumns="repeat(5, 1fr)" gap={1}>
-                    <GridItem colSpan={2}>
-                      <Button
-                        size="lg"
-                        w={'100%'}
-                        style={{ backgroundColor: 'black', color: 'white' }}
-                      >
-                        <Text m={4}>
+              <Box>
+                <Grid templateColumns="repeat(7, 1fr)" gap={6} mb={5}>
+                  <GridItem colSpan={3}>
+                    <Box>
+                      <Button size="lg" w={'100%'} bg="black" color="white">
+                        <Text fontSize="sm" fontWeight="700">
                           Use default <br /> deal memo
                         </Text>
                       </Button>
-                    </GridItem>
-                    <GridItem colSpan={1}>
-                      <Text mt={3} style={{ fontWeight: 500 }}>
+                    </Box>
+                  </GridItem>
+                  <GridItem colSpan={1}>
+                    <Flex
+                      w="100%"
+                      h="100%"
+                      direction="row"
+                      align="center"
+                      justify="center"
+                    >
+                      <Text fontSize="md" fontWeight="600">
                         or
                       </Text>
-                    </GridItem>
-                    <GridItem colSpan={2}>
+                    </Flex>
+                  </GridItem>
+                  <GridItem colSpan={3}>
+                    <Box>
                       <Button
                         size="lg"
                         variant="outline"
-                        w={'100%'}
-                        style={{ borderColor: 'black', borderWidth: 2 }}
+                        w="100%"
+                        borderColor="black"
+                        borderWidth="2px"
                       >
-                        Create custom <br /> deal memo
+                        <Text fontSize="sm" fontWeight="700">
+                          Create custom <br /> deal memo
+                        </Text>
                       </Button>
-                    </GridItem>
-                  </Grid>
-                </Box>
+                    </Box>
+                  </GridItem>
+                </Grid>
+              </Box>
 
-                <Divider my={6} />
+              <Divider my={6} />
 
-                <Box>
-                  <Grid
-                    templateColumns="repeat(3, 1fr)"
-                    gap={6}
-                    style={{
-                      textAlign: 'left',
-                    }}
-                  >
-                    <GridItem colSpan={1}>
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 15,
-                          color: '#9B9B9B',
-                        }}
-                      >
+              <Box mb={8}>
+                <Grid templateColumns="repeat(2, 1fr)" gap={6} mb={5}>
+                  <GridItem colSpan={1}>
+                    <Box textAlign="left">
+                      <Text fontSize="md" fontWeight="600" color="#9B9B9B">
                         Profile
                       </Text>
-                    </GridItem>
-                    <GridItem colSpan={2}>
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 15,
-                          color: '#9B9B9B',
-                          textAlign: 'right',
-                        }}
-                      >
+                    </Box>
+                  </GridItem>
+                  <GridItem colSpan={1}>
+                    <Box textAlign="right">
+                      <Text fontSize="md" fontWeight="600" color="#9B9B9B">
                         Amount
                       </Text>
-                    </GridItem>
-                  </Grid>
-                </Box>
+                    </Box>
+                  </GridItem>
+                </Grid>
 
-                <Box mt={6}>
-                  <Grid
-                    templateColumns="repeat(3, 1fr)"
-                    gap={6}
-                    style={{
-                      textAlign: 'left',
-                    }}
-                  >
-                    <GridItem colSpan={1}>
-                      <Image
-                        boxSize="80px"
-                        borderRadius="full"
-                        objectFit="cover"
-                        src="https://bit.ly/dan-abramov"
-                        alt="Dan Abramov"
-                      />
-                    </GridItem>
-                    <GridItem colSpan={2}>
-                      <InputGroup size={'lg'} mt={4}>
-                        <InputLeftElement
-                          pointerEvents="none"
-                          color="gray.300"
-                          fontSize="1.2em"
-                          children="$"
-                        />
-                        <Input
-                          placeholder="Amount"
-                          style={{ borderColor: 'black', borderWidth: 3 }}
-                        />
-                      </InputGroup>
-                    </GridItem>
-                    <GridItem colSpan={3}>
-                      <Button
-                        w={'100%'}
-                        style={{
-                          backgroundColor: 'red',
-                          color: 'white',
-                          fontSize: 13,
-                        }}
-                      >
-                        Delete
+                <Box>
+                  <Box mb={4}>
+                    <Grid templateColumns="repeat(5, 1fr)" gap={6} mb={3}>
+                      <GridItem colSpan={2}>
+                        <Flex
+                          textAlign="left"
+                          direction="row"
+                          align="center"
+                          justify="left"
+                          w="100%"
+                          h="100%"
+                        >
+                          <Box boxSize="80px">
+                            <Image
+                              borderRadius="full"
+                              src="https://bit.ly/dan-abramov"
+                              alt="Dan Abramov"
+                            />
+                          </Box>
+                        </Flex>
+                      </GridItem>
+                      <GridItem colSpan={3}>
+                        <Flex
+                          textAlign="right"
+                          direction="column"
+                          align="right"
+                          justify="center"
+                          w="100%"
+                          h="100%"
+                        >
+                          <InputGroup size="lg" mt={4}>
+                            <InputLeftElement
+                              pointerEvents="none"
+                              color="gray.300"
+                              fontSize="1.2em"
+                              children="$"
+                            />
+                            <Input
+                              placeholder="Amount"
+                              borderColor="black"
+                              borderWidth="2px"
+                            />
+                          </InputGroup>
+                        </Flex>
+                      </GridItem>
+                    </Grid>
+
+                    <Box>
+                      <Button w="100%" bg="red" color="white" size="xs">
+                        <Text fontSize="sm" fontWeight="500">
+                          Delete
+                        </Text>
                       </Button>
-                    </GridItem>
-                  </Grid>
-                </Box>
+                    </Box>
+                  </Box>
 
-                <Box mt={10}>
-                  <Grid
-                    templateColumns="repeat(3, 1fr)"
-                    gap={6}
-                    style={{
-                      textAlign: 'left',
-                    }}
-                  >
-                    <GridItem colSpan={1}>
-                      <Image
-                        boxSize="80px"
-                        borderRadius="full"
-                        objectFit="cover"
-                        src="https://bit.ly/dan-abramov"
-                        alt="Dan Abramov"
-                      />
-                    </GridItem>
-                    <GridItem colSpan={2}>
-                      <InputGroup size={'lg'} mt={4}>
-                        <InputLeftElement
-                          pointerEvents="none"
-                          color="gray.300"
-                          fontSize="1.2em"
-                          children="$"
-                        />
-                        <Input
-                          placeholder="Amount"
-                          style={{ borderColor: 'black', borderWidth: 3 }}
-                        />
-                      </InputGroup>
-                    </GridItem>
-                    <GridItem colSpan={3}>
-                      <Button
-                        w={'100%'}
-                        style={{
-                          backgroundColor: 'red',
-                          color: 'white',
-                          fontSize: 13,
-                        }}
-                      >
-                        Delete
+                  <Box mb={4}>
+                    <Grid templateColumns="repeat(5, 1fr)" gap={6} mb={3}>
+                      <GridItem colSpan={2}>
+                        <Flex
+                          textAlign="left"
+                          direction="row"
+                          align="center"
+                          justify="left"
+                          w="100%"
+                          h="100%"
+                        >
+                          <Box boxSize="80px">
+                            <Image
+                              borderRadius="full"
+                              src="https://bit.ly/dan-abramov"
+                              alt="Dan Abramov"
+                            />
+                          </Box>
+                        </Flex>
+                      </GridItem>
+                      <GridItem colSpan={3}>
+                        <Flex
+                          textAlign="left"
+                          direction="column"
+                          align="left"
+                          justify="center"
+                          w="100%"
+                          h="100%"
+                        >
+                          <InputGroup size="lg" mt={4}>
+                            <InputLeftElement
+                              pointerEvents="none"
+                              color="gray.300"
+                              fontSize="1.2em"
+                              children="$"
+                            />
+                            <Input
+                              placeholder="Amount"
+                              borderColor="black"
+                              borderWidth="2px"
+                            />
+                          </InputGroup>
+                        </Flex>
+                      </GridItem>
+                    </Grid>
+
+                    <Box>
+                      <Button w="100%" bg="red" color="white" size="xs">
+                        <Text fontSize="sm" fontWeight="500">
+                          Delete
+                        </Text>
                       </Button>
-                    </GridItem>
-                  </Grid>
+                    </Box>
+                  </Box>
                 </Box>
+              </Box>
 
-                <Box mt={10}>
-                  <Input
-                    placeholder="Add User"
-                    size="lg"
-                    style={{ borderColor: 'black', borderWidth: 3 }}
-                  />
-                </Box>
-              </Flex>
+              <Box mb={8}>
+                <Input
+                  placeholder="Add User"
+                  size="lg"
+                  borderColor="black"
+                  borderWidth={3}
+                />
+              </Box>
 
-              <Box mt={10}>
+              <Box>
                 <Button
+                  size="lg"
                   borderRadius="full"
-                  style={{
-                    backgroundColor: 'black',
-                    color: 'white',
-                    width: '100%',
-                  }}
+                  bg="black"
+                  color="white"
+                  w="100%"
                 >
-                  Sell (x%) of DAO to these Users for (Y ETH)
+                  <Text fontSize="md" fontWeight="600">
+                    Sell (x%) of DAO to these Users for (Y ETH)
+                  </Text>
                 </Button>
               </Box>
-            </Flex>
+            </Container>
           </Box>
-        </Flex>
-      </Flex>
+        </Container>
+      </Box>
     </Fragment>
   );
 };

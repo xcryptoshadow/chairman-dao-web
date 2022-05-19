@@ -7,7 +7,7 @@ const MemberPaid = () => {
   return (
     <Fragment>
       <Box minH="66vh">
-        <Container p={6}>
+        <Container p={6} mb={10}>
           <Box
             maxW="xl"
             borderWidth="8px"

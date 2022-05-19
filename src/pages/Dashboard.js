@@ -2,23 +2,14 @@ import React, { Fragment } from 'react';
 
 // chakra ui
 import {
-  ChakraProvider,
   Box,
   Text,
-  Center,
-  Link,
   VStack,
-  Code,
-  Grid,
-  theme,
   Button,
   Flex,
-  Spacer,
   Image,
   SimpleGrid,
-  StackDivider,
   Container,
-  GridItem,
   Divider,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
@@ -81,7 +72,7 @@ const Dashboard = () => {
   return (
     <Fragment>
       <Box minH="66vh">
-        <Container p={6} mt={20}>
+        <Container p={6} mt={20} mb={10}>
           <Box
             maxW="xl"
             borderWidth="8px"

@@ -19,237 +19,177 @@ import {
   Grid,
   GridItem,
   Input,
+  Container,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
 const InviteMember = () => {
   return (
     <Fragment>
-      <Flex
-        bg="#FFFFFF"
-        textAlign="center"
-        className="Content"
-        minHeight={'66vh'}
-        p={4}
-        direction={'row'}
-        justify={'center'}
-        mb={10}
-      >
-        <Flex direction={'column'}>
+      <Box minH="66vh">
+        <Container p={6} mb={10}>
           <Box
-            style={{
-              padding: 20,
-              width: 600,
-              borderColor: 'black',
-              borderWidth: 7,
-              borderRadius: 20,
-              marginTop: 30,
-            }}
+            maxW="xl"
+            borderWidth="8px"
+            borderRadius="20px"
+            borderColor="black"
+            align="center"
+            justify="center"
           >
-            <Flex direction={'column'}>
-              <Text style={{ fontWeight: '700', fontSize: 23 }}>
-                Invite Users
-              </Text>
+            <Container p={4}>
+              <Box mb={4}>
+                <Text fontSize="2xl" style={{ fontWeight: '700' }}>
+                  Invite Users
+                </Text>
+              </Box>
 
-              <Flex p={4} direction={'column'}>
+              <Box mb={4}>
+                <Grid templateColumns="repeat(5, 1fr)" gap={6} mb={5}>
+                  <GridItem colSpan={2}>
+                    <Box textAlign="left">
+                      <Text fontSize="md" fontWeight="600" color="#9B9B9B">
+                        Token Symbol
+                      </Text>
+                    </Box>
+                  </GridItem>
+                  <GridItem colSpan={3}>
+                    <Box textAlign="left">
+                      <Text fontSize="md" fontWeight="600" color="#9B9B9B">
+                        Amount
+                      </Text>
+                    </Box>
+                  </GridItem>
+                </Grid>
+
                 <Box>
-                  <Grid
-                    templateColumns="repeat(3, 1fr)"
-                    gap={6}
-                    style={{
-                      textAlign: 'left',
-                    }}
-                  >
-                    <GridItem colSpan={1}>
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 15,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Profile
-                      </Text>
-                    </GridItem>
-                    <GridItem colSpan={2}>
-                      <Text
-                        style={{
-                          fontWeight: '600',
-                          fontSize: 15,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Info
-                      </Text>
-                    </GridItem>
-                  </Grid>
-                </Box>
+                  <Box mb={4}>
+                    <Grid templateColumns="repeat(5, 1fr)" gap={6} mb={3}>
+                      <GridItem colSpan={2}>
+                        <Flex
+                          textAlign="left"
+                          direction="row"
+                          align="center"
+                          justify="left"
+                          w="100%"
+                          h="100%"
+                        >
+                          <Box boxSize="80px">
+                            <Image
+                              borderRadius="full"
+                              src="https://bit.ly/dan-abramov"
+                              alt="Dan Abramov"
+                            />
+                          </Box>
+                        </Flex>
+                      </GridItem>
+                      <GridItem colSpan={3}>
+                        <Flex
+                          textAlign="left"
+                          direction="column"
+                          align="left"
+                          justify="center"
+                          w="100%"
+                          h="100%"
+                        >
+                          <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
+                            Account Name:
+                          </Text>
+                          <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
+                            Account Description:
+                          </Text>
+                          <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
+                            Account Details:
+                          </Text>
+                          <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
+                            Account Stuff:
+                          </Text>
+                        </Flex>
+                      </GridItem>
+                    </Grid>
 
-                <Box mt={6}>
-                  <Grid
-                    templateColumns="repeat(3, 1fr)"
-                    gap={6}
-                    style={{
-                      textAlign: 'left',
-                    }}
-                  >
-                    <GridItem colSpan={1}>
-                      <Image
-                        boxSize="80px"
-                        borderRadius="full"
-                        objectFit="cover"
-                        src="https://bit.ly/dan-abramov"
-                        alt="Dan Abramov"
-                      />
-                    </GridItem>
-                    <GridItem colSpan={2}>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 13,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Account Name:
-                      </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 13,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Account Description:
-                      </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 13,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Account:
-                      </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 13,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Account:
-                      </Text>
-                    </GridItem>
-                    <GridItem colSpan={3}>
-                      <Button
-                        w={'100%'}
-                        style={{
-                          backgroundColor: 'red',
-                          color: 'white',
-                          fontSize: 13,
-                        }}
-                      >
-                        Delete
+                    <Box>
+                      <Button w="100%" bg="red" color="white" size="xs">
+                        <Text fontSize="sm" fontWeight="500">
+                          Delete
+                        </Text>
                       </Button>
-                    </GridItem>
-                  </Grid>
-                </Box>
+                    </Box>
+                  </Box>
 
-                <Box mt={10}>
-                  <Grid
-                    templateColumns="repeat(3, 1fr)"
-                    gap={6}
-                    style={{
-                      textAlign: 'left',
-                    }}
-                  >
-                    <GridItem colSpan={1}>
-                      <Image
-                        boxSize="80px"
-                        borderRadius="full"
-                        objectFit="cover"
-                        src="https://bit.ly/dan-abramov"
-                        alt="Dan Abramov"
-                      />
-                    </GridItem>
-                    <GridItem colSpan={2}>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 13,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Account Name:
-                      </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 13,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Account Description:
-                      </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 13,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Account:
-                      </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          fontSize: 13,
-                          color: '#9B9B9B',
-                        }}
-                      >
-                        Account:
-                      </Text>
-                    </GridItem>
-                    <GridItem colSpan={3}>
-                      <Button
-                        w={'100%'}
-                        style={{
-                          backgroundColor: 'red',
-                          color: 'white',
-                          fontSize: 13,
-                        }}
-                      >
-                        Delete
+                  <Box mb={4}>
+                    <Grid templateColumns="repeat(5, 1fr)" gap={6} mb={3}>
+                      <GridItem colSpan={2}>
+                        <Flex
+                          textAlign="left"
+                          direction="row"
+                          align="center"
+                          justify="left"
+                          w="100%"
+                          h="100%"
+                        >
+                          <Box boxSize="80px">
+                            <Image
+                              borderRadius="full"
+                              src="https://bit.ly/dan-abramov"
+                              alt="Dan Abramov"
+                            />
+                          </Box>
+                        </Flex>
+                      </GridItem>
+                      <GridItem colSpan={3}>
+                        <Flex
+                          textAlign="left"
+                          direction="column"
+                          align="left"
+                          justify="center"
+                          w="100%"
+                          h="100%"
+                        >
+                          <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
+                            Account Name:
+                          </Text>
+                          <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
+                            Account Description:
+                          </Text>
+                          <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
+                            Account Details:
+                          </Text>
+                          <Text fontSize="sm" fontWeight="500" color="#9B9B9B">
+                            Account Stuff:
+                          </Text>
+                        </Flex>
+                      </GridItem>
+                    </Grid>
+
+                    <Box>
+                      <Button w="100%" bg="red" color="white" size="xs">
+                        <Text fontSize="sm" fontWeight="500">
+                          Delete
+                        </Text>
                       </Button>
-                    </GridItem>
-                  </Grid>
+                    </Box>
+                  </Box>
                 </Box>
+              </Box>
 
-                <Box mt={10}>
-                  <Input
-                    placeholder="Add User"
-                    size="lg"
-                    style={{ borderColor: 'black', borderWidth: 3 }}
-                  />
-                </Box>
-              </Flex>
+              <Box mb={8}>
+                <Input
+                  placeholder="Add User"
+                  size="lg"
+                  borderColor="black"
+                  borderWidth={3}
+                />
+              </Box>
 
-              <Box mt={10}>
-                <Button
-                  borderRadius="full"
-                  style={{
-                    backgroundColor: 'black',
-                    color: 'white',
-                    width: '100%',
-                  }}
-                >
+              <Box>
+                <Button borderRadius="full" bg="black" color="white" w="100%">
                   Send invite to (2) users
                 </Button>
               </Box>
-            </Flex>
+            </Container>
           </Box>
-        </Flex>
-      </Flex>
+        </Container>
+      </Box>
     </Fragment>
   );
 };
