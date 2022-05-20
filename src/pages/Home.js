@@ -5,128 +5,119 @@ import {
   ChakraProvider,
   Box,
   Text,
+  Center,
   Link,
   VStack,
   Code,
-  Grid,
   theme,
   Button,
+  Flex,
+  Spacer,
+  Image,
+  SimpleGrid,
+  StackDivider,
+  Grid,
+  GridItem,
+  Input,
+  Container,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
 const Home = () => {
   return (
     <Fragment>
-      <Box
-        bg="#A8151A"
-        textAlign="center"
-        className="Content"
-        minHeight={'66vh'}
-        p={4}
-        style={{ color: 'white' }}
-      >
-        <Box style={{ marginBottom: 30 }}>
-          <Text style={{ fontWeight: '700', fontSize: 29 }}>
-            WELCOME COMRADE!
-          </Text>
-          <Text style={{ fontWeight: '500', fontSize: 18 }}>
-            Look like you’re new here
-          </Text>
-        </Box>
-
-        <Box>
-          <Box style={{ marginBottom: 60 }}>
-            <Button
-              size="lg"
-              width="300px"
-              style={{
-                color: '#A8151A',
-                backgroundColor: 'white',
-                borderRadius: 50,
-              }}
-              rightIcon={
-                <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
-              }
-            >
-              <Text style={{ fontWeight: '700' }}>DISCORD</Text>
-            </Button>
+      <Box minH="66vh" bg="#A8151A" color="white">
+        <Container p={6} pt={20} pb={40}>
+          <Box align="center" justify="center" mb={8}>
+            <Text style={{ fontWeight: '700', fontSize: 29 }}>
+              WELCOME COMRADE!
+            </Text>
+            <Text style={{ fontWeight: '500', fontSize: 18 }}>
+              Look like you’re new here
+            </Text>
           </Box>
 
-          <Box style={{ marginBottom: 20 }}>
-            <Button
-              colorScheme="#A8151A"
-              variant="outline"
-              size="lg"
-              width="300px"
-              style={{ borderWidth: 4, borderRadius: 50 }}
-              rightIcon={
-                <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
-              }
-            >
-              <Text style={{ fontWeight: '700' }}>DASHBOARD</Text>
-            </Button>
-          </Box>
+          <Box align="center" justify="center" mb={8}>
+            <Box style={{ marginBottom: 60 }}>
+              <Button
+                size="lg"
+                width="300px"
+                color="#A8151A"
+                bg="white"
+                borderRadius="50px"
+                rightIcon={<ChevronRightIcon w={8} h={8} ml={6} />}
+              >
+                <Text fontWeight="700">DISCORD</Text>
+              </Button>
+            </Box>
 
-          <Box style={{ marginBottom: 20 }}>
-            <Button
-              colorScheme="#A8151A"
-              variant="outline"
-              size="lg"
-              width="300px"
-              style={{ borderWidth: 4, borderRadius: 50 }}
-              rightIcon={
-                <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
-              }
-            >
-              <Text style={{ fontWeight: '700' }}>INVITE MEMBER</Text>
-            </Button>
+            <Box style={{ marginBottom: 20 }}>
+              <Button
+                colorScheme="#A8151A"
+                variant="outline"
+                size="lg"
+                width="300px"
+                borderWidth="4px"
+                borderRadius="50px"
+                rightIcon={<ChevronRightIcon w={8} h={8} ml={6} />}
+              >
+                <Text fontWeight="700">DASHBOARD</Text>
+              </Button>
+            </Box>
+            <Box style={{ marginBottom: 20 }}>
+              <Button
+                colorScheme="#A8151A"
+                variant="outline"
+                size="lg"
+                width="300px"
+                borderWidth="4px"
+                borderRadius="50px"
+                rightIcon={<ChevronRightIcon w={8} h={8} ml={6} />}
+              >
+                <Text fontWeight="700">INVITE MEMBER</Text>
+              </Button>
+            </Box>
+            <Box style={{ marginBottom: 20 }}>
+              <Button
+                colorScheme="#A8151A"
+                variant="outline"
+                size="lg"
+                width="300px"
+                borderWidth="4px"
+                borderRadius="50px"
+                rightIcon={<ChevronRightIcon w={8} h={8} ml={6} />}
+              >
+                <Text fontWeight="700">PAY MEMBER</Text>
+              </Button>
+            </Box>
+            <Box style={{ marginBottom: 20 }}>
+              <Button
+                colorScheme="#A8151A"
+                variant="outline"
+                size="lg"
+                width="300px"
+                borderWidth="4px"
+                borderRadius="50px"
+                rightIcon={<ChevronRightIcon w={8} h={8} ml={6} />}
+              >
+                <Text fontWeight="700">RAISE MONEY</Text>
+              </Button>
+            </Box>
+            <Box style={{ marginBottom: 20 }}>
+              <Button
+                colorScheme="#A8151A"
+                variant="outline"
+                size="lg"
+                width="300px"
+                borderWidth="4px"
+                borderRadius="50px"
+                rightIcon={<ChevronRightIcon w={8} h={8} ml={6} />}
+              >
+                <Text fontWeight="700">SETTINGS</Text>
+              </Button>
+            </Box>
           </Box>
-
-          <Box style={{ marginBottom: 20 }}>
-            <Button
-              colorScheme="#A8151A"
-              variant="outline"
-              size="lg"
-              width="300px"
-              style={{ borderWidth: 4, borderRadius: 50 }}
-              rightIcon={
-                <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
-              }
-            >
-              <Text style={{ fontWeight: '700' }}>PAY MEMBER</Text>
-            </Button>
-          </Box>
-
-          <Box style={{ marginBottom: 20 }}>
-            <Button
-              colorScheme="#A8151A"
-              variant="outline"
-              size="lg"
-              width="300px"
-              style={{ borderWidth: 4, borderRadius: 50 }}
-              rightIcon={
-                <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
-              }
-            >
-              <Text style={{ fontWeight: '700' }}>RAISE MONEY</Text>
-            </Button>
-          </Box>
-
-          <Box style={{ marginBottom: 20 }}>
-            <Button
-              colorScheme="#A8151A"
-              variant="outline"
-              size="lg"
-              width="300px"
-              style={{ borderWidth: 4, borderRadius: 50 }}
-              rightIcon={
-                <ChevronRightIcon w={8} h={8} style={{ marginLeft: 10 }} />
-              }
-            >
-              <Text style={{ fontWeight: '700' }}>SETTINGS</Text>
-            </Button>
-          </Box>
-        </Box>
+        </Container>
       </Box>
     </Fragment>
   );
