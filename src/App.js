@@ -26,6 +26,7 @@ import Settings from './pages/Settings';
 import MemberInvited from './pages/MemberInvited';
 import MemberPaid from './pages/MemberPaid';
 import InvestMoney from './pages/InvestMoney';
+import CreateDao from './pages/CreateDao';
 
 // components
 import Header from './components/Header';
@@ -47,6 +48,7 @@ function App() {
           <Route path="/member_invited" element={<MemberInvited />} />
           <Route path="/member_paid" element={<MemberPaid />} />
           <Route path="/invest_money" element={<InvestMoney />} />
+          <Route path="/create_dao" element={<CreateDao />} />
         </Routes>
       </BrowserRouter>
 

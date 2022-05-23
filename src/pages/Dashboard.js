@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 // chakra ui
 import {
@@ -46,27 +46,6 @@ const Dashboard = () => {
         borderWidth: 1,
       },
     ],
-  };
-
-  const options = {
-    plugins: {
-      title: {
-        display: true,
-        text: 'Doughnut Chart',
-        color: 'blue',
-        font: {
-          size: 34,
-        },
-        padding: {
-          top: 30,
-          bottom: 30,
-        },
-        responsive: true,
-        animation: {
-          animateScale: true,
-        },
-      },
-    },
   };
 
   return (
