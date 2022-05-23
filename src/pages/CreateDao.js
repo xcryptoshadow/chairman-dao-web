@@ -27,10 +27,7 @@ const CreateDAO = () => {
             <Container p={4}>
               <Box mb={4}>
                 <Text fontSize="2xl" fontWeight="500">
-                  You’ve been invited to invest in the
-                </Text>
-                <Text fontSize="2xl" fontWeight="700">
-                  Cool Commie DAO
+                  Create A New DAO
                 </Text>
               </Box>
 
