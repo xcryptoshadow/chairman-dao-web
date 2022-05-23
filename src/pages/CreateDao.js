@@ -60,7 +60,7 @@ const CreateDAO = () => {
   const validateDiscordId = value => {
     let error;
     if (!value) {
-      error = 'Creator Discord ID is required';
+      error = 'Guild Discord ID is required';
     }
     return error;
   };
@@ -70,7 +70,7 @@ const CreateDAO = () => {
       setLoading(true);
       console.log('VALUES: ', values);
       const response = await axios.post(
-        `http://localhost:3000/v1/dao/createDaoPending/?daoName=${values.daoName}&tokenSymbol=${values.tokenSymbol}&creatorAllocation=${values.tokenAllocation}&userID=${values.discordId}`
+        `http://localhost:3000/v1/dao/createDaoPending/?daoName=${values.daoName}&tokenSymbol=${values.tokenSymbol}&creatorAllocation=${values.tokenAllocation}&guildID=${values.discordId}`
       );
       setLoading(false);
       setDaoSetup(true);
@@ -238,7 +238,7 @@ const CreateDAO = () => {
                                     mb={4}
                                   >
                                     <FormLabel htmlFor="discordId">
-                                      Creator Discord ID
+                                      Guild Discord ID
                                     </FormLabel>
                                     <Input
                                       {...field}
