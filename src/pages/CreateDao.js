@@ -23,6 +23,11 @@ import {
   Stack,
   Select,
   Spinner,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
 } from '@chakra-ui/react';
 import { SmallCloseIcon } from '@chakra-ui/icons';
 
@@ -45,15 +50,17 @@ const CreateDAO = () => {
     let error;
     if (!value) {
       error = 'Token Symbol is required';
+    } else if (value.length > 4) {
+      error = 'Token Symbol must be 4 characters or less';
     }
     return error;
   };
 
   const validateTokenAllocation = value => {
     let error;
-    if (!value) {
-      error = 'Creator Token Allocation is required';
-    }
+    // if (!value) {
+    //   error = 'Creator Token Allocation is required';
+    // }
     return error;
   };
 
@@ -67,10 +74,14 @@ const CreateDAO = () => {
 
   const submitDaoCreation = async (values, actions) => {
     try {
-      setLoading(true);
       console.log('VALUES: ', values);
+      setLoading(true);
       const response = await axios.post(
-        `http://localhost:3000/v1/dao/createDaoPending/?daoName=${values.daoName}&tokenSymbol=${values.tokenSymbol}&creatorAllocation=${values.tokenAllocation}&guildID=${values.discordId}`
+        `http://localhost:3000/v1/dao/createDaoPending/?daoName=${
+          values.daoName
+        }&tokenSymbol=${values.tokenSymbol.toUpperCase()}&creatorAllocation=${
+          values.tokenAllocation
+        }&guildID=${values.discordId}`
       );
       setLoading(false);
       setDaoSetup(true);
@@ -198,7 +209,7 @@ const CreateDAO = () => {
                                 )}
                               </Field>
 
-                              <Field
+                              {/* <Field
                                 name="tokenAllocation"
                                 validate={validateTokenAllocation}
                               >
@@ -223,7 +234,26 @@ const CreateDAO = () => {
                                     </FormErrorMessage>
                                   </FormControl>
                                 )}
-                              </Field>
+                              </Field> */}
+
+                              <FormControl mb={4}>
+                                <FormLabel htmlFor="tokenAllocation">
+                                  Creator Token Allocation
+                                </FormLabel>
+                                <NumberInput
+                                  min={0}
+                                  max={100}
+                                  onChange={v => {
+                                    props.setFieldValue('tokenAllocation', v);
+                                  }}
+                                >
+                                  <NumberInputField id="tokenAllocation" />
+                                  <NumberInputStepper>
+                                    <NumberIncrementStepper />
+                                    <NumberDecrementStepper />
+                                  </NumberInputStepper>
+                                </NumberInput>
+                              </FormControl>
 
                               <Field
                                 name="discordId"
