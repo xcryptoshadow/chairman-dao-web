@@ -24,13 +24,14 @@ function Profile(props) {
       alignItems='center'
       direction='column'>
       <Image
-        src='https://i.ibb.co/xmP2pS6/Profile.png'
+        src='https://media.istockphoto.com/vectors/worker-holding-a-flag-industry-poster-vector-id480370080?k=20&m=480370080&s=612x612&w=0&h=PquLZIdfVAhJrCpslBQdlvnAVSvyz9zPBhGgbn6CWdc='
         maxW='100%'
+        maxH='50%'
         borderRadius='20px'
       />
       <Flex flexDirection='column' mb='30px'>
         <Image
-          src='https://i.ibb.co/B3gYTYs/Profile-Image.png'
+          src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDrt5laSmJ8vL0VNZpLrGa1qWS99JHp3SJPQ&usqp=CAU'
           border='5px solid red'
           mx='auto'
           borderColor={boxBg}
