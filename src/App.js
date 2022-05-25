@@ -25,7 +25,7 @@ import RaiseMoney from './pages/RaiseMoney';
 import Settings from './pages/Settings';
 import MemberInvited from './pages/MemberInvited';
 import MemberPaid from './pages/MemberPaid';
-import InvestMoney from './pages/InvestMoney';
+import InvestMoney from './pages/investMoney';
 import CreateDao from './pages/CreateDao';
 
 // components
@@ -41,7 +41,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/invite_member" element={<InviteMember />} />
+          <Route path="/invite" element={<InviteMember />} />
           <Route path="/pay_member" element={<PayMember />} />
           <Route path="/raise_money" element={<RaiseMoney />} />
           <Route path="/settings" element={<Settings />} />
