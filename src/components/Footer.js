@@ -13,6 +13,7 @@ const Footer = () => {
         p={4}
         h="27vh"
         style={{ color: 'white' }}
+        width="100%"
       >
         <Box textAlign="center">
           <Text className="Logo" style={{ fontSize: 19, paddingTop: 4 }}>

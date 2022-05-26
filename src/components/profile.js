@@ -4,6 +4,12 @@ import React from "react";
 // Chakra imports
 import { Flex, Image, Text, useColorModeValue } from "@chakra-ui/react";
 
+var usersToInvite = [];
+
+function selectBox(){
+
+}
+
 function Profile(props) {
 
   const { variant, ...rest } = props
@@ -14,13 +20,10 @@ function Profile(props) {
 
   return (
     <Flex
-      borderRadius='20px'
-      borderColor="black"
       bg={boxBg}
-      p='20px'
-      h='345px'
-      _hover={{ bg: 'yellow.400', borderColor: 'red.500' }}
-      w={{ base: "315px", md: "345px" }}
+      p='10px'
+      h='340px'
+      w={{ base: "295px", md: "325px" }}
       alignItems='center'
       direction='column'>
       <Image
