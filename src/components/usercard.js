@@ -7,10 +7,11 @@ import {
   Box,
   useStyleConfig,
   LinkBox,
-  LinkOverlay
+  LinkOverlay,
+  useControllableProp, 
+  useControllableState
   
 } from '@chakra-ui/react';
-
 
 import Profile from './profile';
 
@@ -23,6 +24,9 @@ function Card(props) {
     return <Box __css={styles} {...rest} />
   }
 
+function clicked(name){
+    alert("Clicked on " + name);
+}  
 
 function Usercard(props){
     return(
@@ -39,8 +43,12 @@ function Usercard(props){
                 justify="center"
                 _hover={{ borderColor: 'red.500' }}
                 >
-                <LinkOverlay href='javascript:alert("clicked!")'>
-                <Profile/>
+                <LinkOverlay onClick={() => clicked(props.username) }>
+                <Profile
+                    username={props.username}
+                    avatarURL={props.avatarURL}
+                    backgroundURL={props.backgroundURL}
+                    />
                 </LinkOverlay>  
               </Card>
             </LinkBox>

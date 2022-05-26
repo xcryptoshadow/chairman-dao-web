@@ -18,6 +18,8 @@ function Profile(props) {
   let mainText = useColorModeValue("gray.800", "white");
   let secondaryText = useColorModeValue("gray.400", "gray.400");
 
+var inviteTextHandle = props.cardID + '_' + 'InviteText';
+
   return (
     <Flex
       bg={boxBg}
@@ -27,14 +29,14 @@ function Profile(props) {
       alignItems='center'
       direction='column'>
       <Image
-        src='https://media.istockphoto.com/vectors/worker-holding-a-flag-industry-poster-vector-id480370080?k=20&m=480370080&s=612x612&w=0&h=PquLZIdfVAhJrCpslBQdlvnAVSvyz9zPBhGgbn6CWdc='
+        src={props.backgroundURL}
         maxW='100%'
         maxH='50%'
         borderRadius='20px'
       />
       <Flex flexDirection='column' mb='30px'>
         <Image
-          src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDrt5laSmJ8vL0VNZpLrGa1qWS99JHp3SJPQ&usqp=CAU'
+          src={props.avatarURL}
           border='5px solid red'
           mx='auto'
           borderColor={boxBg}
@@ -48,9 +50,10 @@ function Profile(props) {
           color={mainText}
           textAlign='center'
           fontSize='xl'>
-          Adela Parkson
+          {props.username}
         </Text>
         <Text
+          id={inviteTextHandle}
           color={secondaryText}
           textAlign='center'
           fontSize='sm'
