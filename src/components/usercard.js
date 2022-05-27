@@ -30,6 +30,19 @@ function Card(props) {
     return <Box __css={styles} {...rest} />
   }
 
+  function submitAction(myContext) {
+
+    if(myContext.usersToInvite.length == 0){
+      alert("Choose at least 1 user to invite first...");
+      return;
+    }
+    else{
+      var alertStr =  "inviting " + JSON.stringify(myContext.usersToInvite) + " to DAO...";
+      alert(alertStr);
+    }
+    
+  
+  }
 
 //TODO - find a cleaner way to do this with Chakra 
 function updateSubmitButton(myContext){
@@ -48,9 +61,12 @@ function updateSubmitButton(myContext){
 
     if(usersSelected){
         document.getElementById(SUBMIT_ID).disabled = false;
+        document.getElementById(SUBMIT_ID).isLoading = true;
+        document.getElementById(SUBMIT_ID).onclick = function () { submitAction(myContext); };
     }
     else{
         document.getElementById(SUBMIT_ID).disabled = true;
+        document.getElementById(SUBMIT_ID).isLoading = false;
     }
 }
 

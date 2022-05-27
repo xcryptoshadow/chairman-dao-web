@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import Usercard from '../components/usercard';
+import { findAllByDisplayValue } from '@testing-library/react';
 
 //TODO - migrate to a global constants file
 const ID_STR = 'usercard_'; 
@@ -63,6 +64,19 @@ var testData = [
 ];
 
 
+function submitAction(myContext) {
+
+  if(myContext.usersToInvite.length == 0){
+    alert("Choose at least 1 user to invite first...");
+    return;
+  }
+  else{
+    var alertStr =  "inviting " + JSON.stringify(myContext.usersToInvite) + " to DAO...";
+    alert(alertStr);
+  }
+  
+
+}
 
 
 var toInviteArr = [];
@@ -73,6 +87,8 @@ const InviteMember = () => {
   var toSet = [];
   //create object data
   var outputArr = [];
+
+  const myContext = useContext(AppContext);
   
   //create a usercard object for each piece of testdata
   for(var i = 0; i < testData.length; i++){
@@ -113,12 +129,15 @@ const InviteMember = () => {
                 </Box>
 
                 <Box>
-                  <Button id={SUBMIT_ID} borderRadius="full" 
+                  <Button id={SUBMIT_ID} 
+                    borderRadius="full" 
                     bg={'red.600'}
                     _hover={{ bg: 'red.800' }} 
                     color="white" 
                     w="100%" 
-                    disabled="true"
+                    isLoading
+                    loadingText='Invite Users to DAO...'
+                    onClick={() => submitAction(myContext) }
                     >
                     Choose users to invite
                   </Button>
