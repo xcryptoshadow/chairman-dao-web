@@ -21,16 +21,10 @@ import Profile from './profile';
 
 const SUBMIT_ID = 'sendInvites'; //TODO -- MIGRATE THESE CONSTANTS INTO GLOBAL CONSTANTS.JS FILE
 
-function Card(props) {
-    const { variant, ...rest } = props
-  
-    const styles = useStyleConfig('Card', { variant })
-  
-    // Pass the computed styles into the `__css` prop
-    return <Box __css={styles} {...rest} />
-  }
 
-  function submitAction(myContext) {
+
+//TODO - Define Submit Function HERE...
+function submitAction(myContext) {
 
     if(myContext.usersToInvite.length == 0){
       alert("Choose at least 1 user to invite first...");
@@ -42,8 +36,24 @@ function Card(props) {
     }
     
   
-  }
+}
 
+
+
+
+
+
+
+function Card(props) {
+    const { variant, ...rest } = props
+  
+    const styles = useStyleConfig('Card', { variant })
+  
+    // Pass the computed styles into the `__css` prop
+    return <Box __css={styles} {...rest} />
+}
+
+  
 //TODO - find a cleaner way to do this with Chakra 
 function updateSubmitButton(myContext){
     var htmlStr = 'Choose users to invite';

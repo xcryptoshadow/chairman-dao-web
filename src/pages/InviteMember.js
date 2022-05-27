@@ -64,21 +64,6 @@ var testData = [
 ];
 
 
-function submitAction(myContext) {
-
-  if(myContext.usersToInvite.length == 0){
-    alert("Choose at least 1 user to invite first...");
-    return;
-  }
-  else{
-    var alertStr =  "inviting " + JSON.stringify(myContext.usersToInvite) + " to DAO...";
-    alert(alertStr);
-  }
-  
-
-}
-
-
 var toInviteArr = [];
 
 const InviteMember = () => {
@@ -136,8 +121,7 @@ const InviteMember = () => {
                     color="white" 
                     w="100%" 
                     isLoading
-                    loadingText='Invite Users to DAO...'
-                    onClick={() => submitAction(myContext) }
+                    loadingText='Choose Users to Invite...'
                     >
                     Choose users to invite
                   </Button>
