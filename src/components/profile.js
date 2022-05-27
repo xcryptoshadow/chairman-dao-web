@@ -4,11 +4,6 @@ import React from "react";
 // Chakra imports
 import { Flex, Image, Text, useColorModeValue } from "@chakra-ui/react";
 
-var usersToInvite = [];
-
-function selectBox(){
-
-}
 
 function Profile(props) {
 
@@ -18,7 +13,7 @@ function Profile(props) {
   let mainText = useColorModeValue("gray.800", "white");
   let secondaryText = useColorModeValue("gray.400", "gray.400");
 
-  var textHandle = 'name_' + props.cardID;
+  
 
 
   return (
@@ -49,7 +44,7 @@ function Profile(props) {
         />
         <Text
           fontWeight='600'
-          id={textHandle}
+          id={props.textID}
           color={mainText}
           textAlign='center'
           fontSize='xl'>

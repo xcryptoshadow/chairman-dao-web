@@ -17,9 +17,11 @@ import {
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import Usercard from '../components/usercard';
 
+//TODO - migrate to a global constants file
 const ID_STR = 'usercard_'; 
 const DIALOG_STR = 'dialog_';
 const SUBMIT_ID = 'sendInvites';
+const TEXT_STR = 'name_';
 
 var testData = [
   {username: 'jahan khanna',
@@ -76,10 +78,12 @@ const InviteMember = () => {
   for(var i = 0; i < testData.length; i++){
     var cardID = ID_STR + i;
     var dialogID = DIALOG_STR + i;
+    var textHandle = TEXT_STR + i;
 
     outputArr.push(<Usercard
       cardID={cardID}
       dialogID={dialogID}
+      textID={textHandle}
       username={testData[i].username}
       avatarURL={testData[i].avatarURL}
       backgroundURL={testData[i].backgroundURL}

@@ -11,6 +11,7 @@ import {
   useStyleConfig,
   LinkBox,
   LinkOverlay,
+  useColorModeValue,
   useControllableProp, 
   useControllableState
   
@@ -29,6 +30,8 @@ function Card(props) {
     return <Box __css={styles} {...rest} />
   }
 
+
+//TODO - find a cleaner way to do this with Chakra 
 function updateSubmitButton(myContext){
     var htmlStr = 'Choose users to invite';
     var usersSelected = false;
@@ -51,13 +54,37 @@ function updateSubmitButton(myContext){
     }
 }
 
-function updateCardUX(props, myContext){
+//TODO - find a cleaner way to do this with Chakra themes, this is gross but works...
+function updateCardUX(props, doUnselectAction){
+
+    //update inner card text
+    var updateStr = 'Inviting to DAO...';
+
+    if(doUnselectAction){
+        updateStr = 'Click to invite';
+    }
+    document.getElementById(props.dialogID).innerHTML = updateStr;
+
+    //update name text color
+    var colorStr = '#E53E3E'; //red 500
+
+    if(doUnselectAction){
+        colorStr = '#424242'; //black
+    }
+    document.getElementById(props.textID).style.color = colorStr; 
+
+
+    //update border color
+    var colorStr = '#ECC94B' //yellow 400
+    if(doUnselectAction){
+        colorStr = '#1a202c'; //gray 800
+    }
+    document.getElementById(props.cardID).style.borderColor = colorStr; 
 
 }
 
 function clicked(props, myContext){
-    var alertStr = "User not selected, adding - " + props.username;
-
+    
     var toSearch = myContext.usersToInvite;
     var selected = false;
 
@@ -66,8 +93,6 @@ function clicked(props, myContext){
         if(toSearch[i].userID == props.userID){
             selected = true;
             //user is already selected - unselect user
-            alertStr = "User already selected, removing user - " + props.username;
-
             toSearch.splice(i,1);
             myContext.usersToInvite = toSearch;
             break;
@@ -77,15 +102,15 @@ function clicked(props, myContext){
         myContext.usersToInvite.push(props);
     }
     
-    console.log(myContext.usersToInvite);
     updateSubmitButton(myContext);
+    updateCardUX(props, selected);
 
-    alert(alertStr);
 }  
 
 function Usercard(props){
     const myContext = useContext(AppContext);
 
+    
     return(
 
         <LinkBox
@@ -109,6 +134,7 @@ function Usercard(props){
                     backgroundURL={props.backgroundURL}
                     cardID={props.cardID}
                     dialogID={props.dialogID}
+                    textID={props.textID}
                     />
                 </LinkOverlay>  
               </Card>
