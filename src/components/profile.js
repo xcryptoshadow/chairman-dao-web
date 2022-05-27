@@ -18,11 +18,13 @@ function Profile(props) {
   let mainText = useColorModeValue("gray.800", "white");
   let secondaryText = useColorModeValue("gray.400", "gray.400");
 
-var inviteTextHandle = props.cardID + '_' + 'InviteText';
+  var textHandle = 'name_' + props.cardID;
+
 
   return (
     <Flex
       bg={boxBg}
+      
       p='10px'
       h='340px'
       w={{ base: "295px", md: "325px" }}
@@ -34,7 +36,7 @@ var inviteTextHandle = props.cardID + '_' + 'InviteText';
         maxH='50%'
         borderRadius='20px'
       />
-      <Flex flexDirection='column' mb='30px'>
+      <Flex flexDirection='column' mb='20px'>
         <Image
           src={props.avatarURL}
           border='5px solid red'
@@ -47,17 +49,19 @@ var inviteTextHandle = props.cardID + '_' + 'InviteText';
         />
         <Text
           fontWeight='600'
+          id={textHandle}
           color={mainText}
           textAlign='center'
           fontSize='xl'>
           {props.username}
         </Text>
         <Text
-          id={inviteTextHandle}
+          id={props.dialogID}
           color={secondaryText}
           textAlign='center'
           fontSize='sm'
-          fontWeight='500'>
+          fontWeight='500'
+          >
           Click to Invite
         </Text>
       </Flex>

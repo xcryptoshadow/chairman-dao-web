@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AppContext from './components/appContext';
 
 // chakra ui
 import {
@@ -32,8 +33,29 @@ import CreateDao from './pages/CreateDao';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+
+
 function App() {
+
+
+
+  //define all global state variables here
+  const [usersToInvite, setUsersToInvite] = useState([]);
+
+  const updateUsersToInvite = (inviteArr) => {
+    setUsersToInvite(inviteArr);
+  };
+
+  /* Global state variables - DO NOT REMOVE */
+  const userSettings = {
+    usersToInvite:[],
+    updateUsersToInvite
+  };
+  /* END Global Variables */
+
+
   return (
+    <AppContext.Provider value={userSettings}>
     <ChakraProvider theme={theme}>
       <Header />
 
@@ -54,7 +76,12 @@ function App() {
 
       <Footer />
     </ChakraProvider>
+    </AppContext.Provider>
   );
+
+
+
+  
 }
 
 export default App;
