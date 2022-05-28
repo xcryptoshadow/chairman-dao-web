@@ -42,8 +42,6 @@ function submitAction(myContext) {
 
 
 
-
-
 function Card(props) {
     const { variant, ...rest } = props
   

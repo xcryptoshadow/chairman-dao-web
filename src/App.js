@@ -65,7 +65,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/invite" element={<InviteMember />} />
           <Route path="/pay_member" element={<PayMember />} />
-          <Route path="/raise_money" element={<RaiseMoney />} />
+          <Route path="/raise" element={<RaiseMoney />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/member_invited" element={<MemberInvited />} />
           <Route path="/member_paid" element={<MemberPaid />} />
