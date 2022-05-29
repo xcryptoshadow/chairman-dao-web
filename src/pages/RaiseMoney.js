@@ -1,4 +1,7 @@
 import React, { Fragment } from 'react';
+import { useContext } from 'react';
+import AppContext from '../components/appContext';
+
 
 // chakra ui
 import {
@@ -26,15 +29,88 @@ import {
   Divider,
   InputLeftElement,
   Container,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  FormLabel,
+  useDisclosure
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
 import Imageupload from '../components/imageupload';
 
+const MODALTITLE = 'ModalTitle';
+const URLINPUTID = 'URLInput';
+
+function changeURL(myContext, value){
+  myContext.NFTUrl = value;
+}
+
+function changeImage(myContext){
+  //if(!myContext.NFTUrl){
+  //    return;
+  //}
+  
+  
+  //var alertStr = `Changing ${props.tier} NFT image to ${myContext.NFTUrl}`;
+  
+  //Modal.closeModal();
+
+  myContext.onClose();
+}
+
+
 const RaiseMoney = () => {
+
+  const myContext = useContext(AppContext);
+  
+
   return (
     <Fragment>
       
+
+      
+      <Modal isOpen={myContext.isOpen} onClose={myContext.onClose}>
+            <ModalOverlay />
+            <ModalContent>
+            <ModalHeader
+                id={MODALTITLE}
+                >
+                    Change NFT Image
+            </ModalHeader>
+            <ModalCloseButton />
+            <form>
+                <ModalBody>
+                    
+                    <FormControl id={URLINPUTID} mt={4}>
+                    <FormLabel>Input Image URL</FormLabel>
+                        <Input 
+                            
+                            size='lg'
+                            placeholder='https://mysite.com/image.png'
+                            onChange={event => changeURL(myContext,event.currentTarget.value)} 
+                        />
+                    </FormControl>
+                </ModalBody>
+
+                <ModalFooter>
+                    <Button colorScheme='red' 
+                        mr={3} 
+                        onClick={myContext.onClose}
+                    >
+                    Change Image
+                    </Button>
+                    <Button variant='ghost' onClick={myContext.onClose}>Cancel</Button>
+                </ModalFooter>
+            </form>
+            </ModalContent>
+            </Modal>
+
           <Box
             borderWidth="8px"
             borderRadius="20px"
@@ -84,6 +160,7 @@ const RaiseMoney = () => {
                   color='blue.200'
                   titleColor='blue.500'
                   NFTNum="3"
+
                   />
                 <Imageupload
                   imgURL='https://bestanimations.com/media/diamonds/300032029lips-jewerly-animated-gif.gif'
@@ -123,6 +200,7 @@ const RaiseMoney = () => {
 
                
           </Box>
+          
     </Fragment>
   );
 };

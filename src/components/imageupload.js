@@ -4,6 +4,7 @@ import React, { Fragment, useState } from 'react';
 
 import { useContext } from 'react';
 import AppContext from './appContext';
+import { ModalProvider, useModal } from './modalContext';
 
 import {
     Flex,
@@ -24,7 +25,22 @@ import {
     Circle,
     Checkbox,
     Badge,
-    LinkOverlay
+    LinkOverlay,
+    useDisclosure,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    Button,
+    InputGroup,
+    InputLeftAddon,
+    Input,
+    FormControl,
+    FormLabel
+    
   } from '@chakra-ui/react';
 
 import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
@@ -32,36 +48,6 @@ import { FiCamera } from 'react-icons/fi';
   
 const IMAGE =
     'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';
-
-    
-
-function Rating({ rating, numReviews }) {
-    return (
-        <Box d="flex" alignItems="center">
-        {Array(5)
-            .fill('')
-            .map((_, i) => {
-            const roundedRating = Math.round(rating * 2) / 2;
-            if (roundedRating - i >= 1) {
-                return (
-                <BsStarFill
-                    key={i}
-                    style={{ marginLeft: '1' }}
-                    color={i < rating ? 'teal.500' : 'gray.300'}
-                />
-                );
-            }
-            if (roundedRating - i === 0.5) {
-                return <BsStarHalf key={i} style={{ marginLeft: '1' }} />;
-            }
-            return <BsStar key={i} style={{ marginLeft: '1' }} />;
-            })}
-        <Box as="span" ml="2" color="gray.600" fontSize="sm">
-            {numReviews} review{numReviews > 1 && 's'}
-        </Box>
-        </Box>
-    );
-    }
 
 const data = {
     isNew: true,
@@ -74,9 +60,13 @@ const data = {
 };
 
 function clicked(props, myContext){
-    var alertStr = "clicked on " + props.tier;
-    alert(alertStr);
+    
+    myContext.setTierToChange(props.tier);
+    myContext.onOpen();
+
+    
 }
+
 
 
 const Imageupload = (props) =>{
@@ -88,10 +78,9 @@ const Imageupload = (props) =>{
     const priceText = `$${props.price}`;
     const mintText = `(x${props.quantityMinted})`;
 
-    const hrefStr = `javascript:clicked(${props.NFTNum})`;
-
     return (
       <Center py={12}>
+
         <Box
           role={'group'}
           p={6}

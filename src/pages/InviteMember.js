@@ -75,6 +75,7 @@ const InviteMember = () => {
 
   const myContext = useContext(AppContext);
   
+  
   //create a usercard object for each piece of testdata
   for(var i = 0; i < testData.length; i++){
     var cardID = ID_STR + i;

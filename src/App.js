@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AppContext from './components/appContext';
+import { ModalProvider } from './components/modalContext';
 
 // chakra ui
 import {
@@ -14,6 +15,7 @@ import {
   Grid,
   theme,
   Button,
+  useDisclosure
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
@@ -41,21 +43,35 @@ function App() {
 
   //define all global state variables here
   const [usersToInvite, setUsersToInvite] = useState([]);
+  const [NFTURL, setNFTUrl] = useState('');
+  const [tierToChange, setTierToChange] = useState(-1);
+
+  const { isOpen, onOpen, onClose} = useDisclosure();
 
   const updateUsersToInvite = (inviteArr) => {
     setUsersToInvite(inviteArr);
   };
 
   /* Global state variables - DO NOT REMOVE */
-  const userSettings = {
+  var userSettings = {
     usersToInvite:[],
-    updateUsersToInvite
+    updateUsersToInvite,
+    NFTUrl: '',
+    setNFTUrl,
+    tierToChange: -1,
+    setTierToChange,
+    isOpen, 
+    onOpen, 
+    onClose
   };
   /* END Global Variables */
 
 
   return (
     <AppContext.Provider value={userSettings}>
+
+    
+
     <ChakraProvider theme={theme}>
       <Header />
 
@@ -76,6 +92,8 @@ function App() {
 
       <Footer />
     </ChakraProvider>
+
+
     </AppContext.Provider>
   );
 
