@@ -23,6 +23,7 @@ const ID_STR = 'usercard_';
 const DIALOG_STR = 'dialog_';
 const SUBMIT_ID = 'sendInvites';
 const TEXT_STR = 'name_';
+const CIRCLE_STR = 'circle_';
 
 var testData = [
   {username: 'jahan khanna',
@@ -33,7 +34,7 @@ var testData = [
   },
   {username: 'jahan khanna 2',
    avatarURL: 'https://c8.alamy.com/comp/2D9WYW6/worlds-leaders-vector-illustration-of-xi-jinping-leader-of-china-general-secretary-of-the-chinese-communist-party-ccp-2020-side-profile-2D9WYW6.jpg',
-   backgroundURL: 'https://c.tenor.com/lAx5BcehzoAAAAAC/marxism-communist.gif',
+   backgroundURL: 'https://cdn.wallpapersafari.com/70/27/WteaF8.gif',
    userID: 1,
    guildID: 2,
   },
@@ -81,9 +82,11 @@ const InviteMember = () => {
     var cardID = ID_STR + i;
     var dialogID = DIALOG_STR + i;
     var textHandle = TEXT_STR + i;
+    var circleID = CIRCLE_STR + i;
 
     outputArr.push(<Usercard
       cardID={cardID}
+      circleID={circleID}
       dialogID={dialogID}
       textID={textHandle}
       username={testData[i].username}
@@ -129,8 +132,8 @@ const InviteMember = () => {
                 </Box>
 
               <SimpleGrid 
-                minChildWidth='286px' 
-                spacing='20px'
+                minChildWidth='296px' 
+                spacing='40px'
                 width="95%"
                 align="center"
                 justify="center"

@@ -82,7 +82,7 @@ function updateSubmitButton(myContext){
 function updateCardUX(props, doUnselectAction){
 
     //update inner card text
-    var updateStr = '🚀 Inviting to DAO... 🚀';
+    var updateStr = 'Inviting to DAO...';
 
     if(doUnselectAction){
         updateStr = 'Click to invite';
@@ -96,6 +96,7 @@ function updateCardUX(props, doUnselectAction){
         colorStr = '#424242'; //black
     }
     document.getElementById(props.textID).style.color = colorStr; 
+
 
     //update border color
     var colorStr = '#ECC94B' //yellow 400
@@ -130,7 +131,7 @@ function clicked(props, myContext){
 
 }  
 
-function Usercard(props){
+function Usercard_old(props){
     const myContext = useContext(AppContext);
 
     
@@ -139,8 +140,15 @@ function Usercard(props){
         <LinkBox
             w={{ base: "326px", md: "356px" }}
         >
-              <Box
-                
+              <Card
+                borderWidth="8px"
+                borderRadius="20px"
+                boxShadow="dark-lg"
+                borderColor="black"
+                w={{ base: "326px", md: "356px" }}
+                align="center"
+                justify="center"
+                _hover={{ borderColor: 'red.500' }}
                 id={props.cardID}
                 >
                 <LinkOverlay onClick={() => clicked(props, myContext) }>
@@ -149,12 +157,11 @@ function Usercard(props){
                     avatarURL={props.avatarURL}
                     backgroundURL={props.backgroundURL}
                     cardID={props.cardID}
-                    circleID={props.circleID}
                     dialogID={props.dialogID}
                     textID={props.textID}
                     />
                 </LinkOverlay>  
-              </Box>
+              </Card>
             </LinkBox>
 
     );
@@ -162,4 +169,4 @@ function Usercard(props){
 
 
 
-export default Usercard;  
+export default Usercard_old;

@@ -2,7 +2,7 @@
 
 import React from "react";
 // Chakra imports
-import { Flex, Image, Text, useColorModeValue } from "@chakra-ui/react";
+import { Flex, Image, Text, useColorModeValue, Box, Circle, Center } from "@chakra-ui/react";
 
 
 function Profile(props) {
@@ -17,21 +17,60 @@ function Profile(props) {
 
 
   return (
+    <Center py={12}>
     <Flex
+
+      role={'group'}
+      p={6}
+      maxW={'330px'}
+      w={'full'}
+      bg={useColorModeValue('white', 'gray.800')}
+      boxShadow={'2xl'}
+      rounded={'lg'}
+      pos={'relative'}
+      zIndex={1}
       bg={boxBg}
-      
-      p='10px'
-      h='340px'
-      w={{ base: "295px", md: "325px" }}
       alignItems='center'
       direction='column'>
-      <Image
-        src={props.backgroundURL}
-        maxW='100%'
-        maxH='50%'
-        borderRadius='20px'
-      />
+      
+      <Box
+            rounded={'lg'}
+            mt={-12}
+            pos={'relative'}
+            height={'213px'}
+            _after={{
+              transition: 'all .3s ease',
+              content: '""',
+              w: 'full',
+              h: 'full',
+              pos: 'absolute',
+              top: 5,
+              left: 0,
+              backgroundImage: `url(${props.backgroundURL})`,
+              filter: 'blur(15px)',
+              zIndex: -1,
+            }}
+            _groupHover={{
+              _after: {
+                filter: 'blur(15px)',
+              },
+            }}>
+            
+            <Image
+              rounded={'lg'}
+              height={230}
+              width={282}
+              objectFit={'cover'}
+              src={props.backgroundURL}
+            />
+
+        </Box>
+
+
       <Flex flexDirection='column' mb='20px'>
+
+
+
         <Image
           src={props.avatarURL}
           border='5px solid red'
@@ -41,6 +80,7 @@ function Profile(props) {
           height='68px'
           mt='-38px'
           borderRadius='50%'
+          zIndex='100'
         />
         <Text
           fontWeight='600'
@@ -99,6 +139,8 @@ function Profile(props) {
         </Flex>
       </Flex>
     </Flex>
+
+    </Center> 
   );
 }
 
