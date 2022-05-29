@@ -60,10 +60,12 @@ const data = {
 };
 
 function clicked(props, myContext){
-    
-    myContext.setTierToChange(props.tier);
+
+    document.getElementById('tierToChange').value = props.tier;
+    console.log(`Setting tier ${props.tier} up`);
     myContext.onOpen();
 
+    console.log(`Object - ${document.getElementById('tierToChange').value}`);
     
 }
 

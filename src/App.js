@@ -53,7 +53,7 @@ function App() {
   };
 
   /* Global state variables - DO NOT REMOVE */
-  var userSettings = {
+  const userSettings = {
     usersToInvite:[],
     updateUsersToInvite,
     NFTUrl: '',
