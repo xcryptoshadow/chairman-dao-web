@@ -1,4 +1,4 @@
-// @src/components/imageupload.js
+// @src/components/createNFT.js
 
 import React, { Fragment, useState } from 'react';
 
