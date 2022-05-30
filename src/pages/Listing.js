@@ -110,7 +110,7 @@ const Listing = () => {
       quantityMinted: '10',
       quantityRemaining: '4',
       color: 'yellow.500',
-      titleColor: 'yellow.600',
+      titleColor: 'yellow.700',
       description: loremStr,
       buyURL: buyURL
     }
