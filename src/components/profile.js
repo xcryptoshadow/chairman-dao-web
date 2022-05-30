@@ -29,7 +29,6 @@ function Profile(props) {
       rounded={'lg'}
       pos={'relative'}
       zIndex={1}
-      bg={boxBg}
       alignItems='center'
       direction='column'>
       

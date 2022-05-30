@@ -4,7 +4,6 @@ import React, { Fragment, useState } from 'react';
 
 import { useContext } from 'react';
 import AppContext from './appContext';
-import { ModalProvider, useModal } from './modalContext';
 
 import {
     Flex,
@@ -59,29 +58,89 @@ const data = {
     numReviews: 34,
 };
 
-function clicked(props, myContext){
+const MODALTITLE = 'ModalTitle';
+const URLINPUTID = 'URLInput';
+const IMAGEID = 'Image';
+const BACKGROUNDID = 'Background';
 
-    document.getElementById('tierToChange').value = props.tier;
+function clicked(props, myContext, onOpen){
+
     console.log(`Setting tier ${props.tier} up`);
-    myContext.onOpen();
+    onOpen();
 
-    console.log(`Object - ${document.getElementById('tierToChange').value}`);
     
 }
 
+function changeURL(myContext, value){
+    myContext.NFTUrl = value;
+  }
 
 
 const Imageupload = (props) =>{
 
     const myContext = useContext(AppContext);
 
+    const { isOpen, onOpen, onClose} = useDisclosure();
+
     const eText = `Edit ${props.tier} Tier Perks Here ✏`;
     const titleText = `${props.title}`;
     const priceText = `$${props.price}`;
     const mintText = `(x${props.quantityMinted})`;
 
+    const modalTitle = MODALTITLE + "_" + props.tier;
+    const urlID = URLINPUTID + "_" + props.tier;
+
+    const imgID = IMAGEID + "_" + props.tier;
+    const backgroundID = BACKGROUNDID + "_" + props.tier;
+
     return (
       <Center py={12}>
+        <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+            <ModalHeader
+                id={modalTitle}
+                >
+                    Change {props.tier} NFT Image
+            </ModalHeader>
+            <ModalCloseButton />
+            <form>
+                <ModalBody>
+                    
+                    <FormControl id={urlID} mt={4}>
+                    <FormLabel>Input Image URL</FormLabel>
+                        <Input 
+                            
+                            size='lg'
+                            placeholder='https://mysite.com/image.png'
+                            onChange={event => changeURL(myContext,event.currentTarget.value)} 
+                        />
+                        
+                    </FormControl>
+                </ModalBody>
+
+                <ModalFooter>
+                    <Button colorScheme='red' 
+                        mr={3} 
+                        onClick={() => {
+                            onClose();
+                            document.getElementById(imgID).src = myContext.NFTUrl;
+                            
+                            //TODO: figure out how to change :after background-image
+                            //may need rearchitecting...
+
+                          }
+                        }
+                    >
+                    Change Image
+                    </Button>
+                    <Button variant='ghost' onClick={onClose}>Cancel</Button>
+                </ModalFooter>
+            </form>
+            </ModalContent>
+        </Modal>
+
+
 
         <Box
           role={'group'}
@@ -94,6 +153,7 @@ const Imageupload = (props) =>{
           pos={'relative'}
           zIndex={1}>
           <Box
+            id={backgroundID}
             rounded={'lg'}
             mt={-12}
             pos={'relative'}
@@ -123,6 +183,7 @@ const Imageupload = (props) =>{
                 bg={props.color}
             />
             <Image
+              id={imgID}
               rounded={'lg'}
               height={230}
               width={282}
@@ -152,7 +213,7 @@ const Imageupload = (props) =>{
                     color={'gray.800'}
                     fontSize={'1.2em'}>
                     
-                    <chakra.a onClick={() => clicked(props, myContext) }
+                    <chakra.a onClick={() => clicked(props, myContext, onOpen) }
                     
                     display={'flex'}>
                         <Icon as={FiCamera} 

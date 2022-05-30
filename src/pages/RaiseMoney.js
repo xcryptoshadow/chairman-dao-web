@@ -47,15 +47,6 @@ import Imageupload from '../components/imageupload';
 const MODALTITLE = 'ModalTitle';
 const URLINPUTID = 'URLInput';
 
-function changeURL(myContext, value){
-  myContext.NFTUrl = value;
-}
-
-function changeTierToChange(myContext, value){
-  alert("worked");
-  myContext.TierToChange = value;
-}
-
 function changeImage(myContext){
   //if(!myContext.NFTUrl){
   //    return;
@@ -73,58 +64,9 @@ function changeImage(myContext){
 const RaiseMoney = () => {
 
   const myContext = useContext(AppContext);
-  
 
   return (
     <Fragment>
-      <input type="hidden" 
-        id="tierToChange" 
-        name="tierToChange" 
-        value="3487"
-        onChange={event => changeTierToChange(myContext,event.currentTarget.value)}/>
-
-      <Modal isOpen={myContext.isOpen} onClose={myContext.onClose}>
-            <ModalOverlay />
-            <ModalContent>
-            <ModalHeader
-                id={MODALTITLE}
-                >
-                    Change NFT Image
-            </ModalHeader>
-            <ModalCloseButton />
-            <form>
-                <ModalBody>
-                    
-                    <FormControl id={URLINPUTID} mt={4}>
-                    <FormLabel>Input Image URL</FormLabel>
-                        <Input 
-                            
-                            size='lg'
-                            placeholder='https://mysite.com/image.png'
-                            onChange={event => changeURL(myContext,event.currentTarget.value)} 
-                        />
-                        
-                    </FormControl>
-                </ModalBody>
-
-                <ModalFooter>
-                    <Button colorScheme='red' 
-                        mr={3} 
-                        onClick={() => {
-                            myContext.onClose();
-                            var alertStr = `Tier ${myContext.tierToChange} to change to ${myContext.NFTUrl}`;
-                            alert(alertStr);
-                          }
-                        }
-                    >
-                    Change Image
-                    </Button>
-                    <Button variant='ghost' onClick={myContext.onClose}>Cancel</Button>
-                </ModalFooter>
-            </form>
-            </ModalContent>
-            </Modal>
-
           <Box
             borderWidth="8px"
             borderRadius="20px"

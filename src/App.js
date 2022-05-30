@@ -46,8 +46,6 @@ function App() {
   const [NFTURL, setNFTUrl] = useState('');
   const [tierToChange, setTierToChange] = useState(-1);
 
-  const { isOpen, onOpen, onClose} = useDisclosure();
-
   const updateUsersToInvite = (inviteArr) => {
     setUsersToInvite(inviteArr);
   };
@@ -59,10 +57,7 @@ function App() {
     NFTUrl: '',
     setNFTUrl,
     tierToChange: -1,
-    setTierToChange,
-    isOpen, 
-    onOpen, 
-    onClose
+    setTierToChange
   };
   /* END Global Variables */
 
