@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { useMoralisFile } from 'react-moralis';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
@@ -45,10 +46,13 @@ const FormDao = () => {
   const decoded = jwtDecode(payload);
   console.log('Decoded: ', decoded);
 
-  const daoName = decoded.daoName + '_DAO';
+  const daoName = decoded.daoName;
   const daoImage = decoded.daoImage;
   const userName = decoded.userName;
   const userImage = decoded.userImage;
+  const redirectUrl = decoded.redirectUrl;
+
+  console.log('redirectUrl: ', redirectUrl);
 
   const validateUserName = value => {
     let error;
@@ -80,6 +84,8 @@ const FormDao = () => {
         guildID: decoded.guildID,
         channelID: decoded.channelID,
         daoName: daoName,
+        daoImage: daoImage,
+        membershipImage: daoImage,
         tokenSymbol: values.tokenSymbol.toUpperCase(),
         creatorAllocation: values.creatorAllocation,
       };
@@ -129,7 +135,7 @@ const FormDao = () => {
                       color="white"
                       w="100%"
                       onClick={() => {
-                        window.location.assign('https://discord.com/');
+                        window.location.assign(redirectUrl);
                       }}
                     >
                       Start creating the DAO
