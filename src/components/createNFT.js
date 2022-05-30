@@ -64,13 +64,6 @@ const IMAGEID = 'Image_';
 const BACKGROUNDID = 'Background_';
 const FORMID = 'Form_';
 
-function clicked(props, myContext, onOpen){
-
-    console.log(`Setting tier ${props.tier} up`);
-    onOpen();
-
-    
-}
 
 function changeURL(myContext, value){
     myContext.NFTUrl = value;
@@ -106,7 +99,7 @@ const CreateNFT = (props) =>{
                     Change {props.tier} NFT Image
             </ModalHeader>
             <ModalCloseButton />
-            <form id={formHandle}>
+            <form>
                 <ModalBody>
                     
                     <FormControl id={urlHandle} mt={4}>
@@ -194,8 +187,11 @@ const CreateNFT = (props) =>{
             />
 
           </Box>
-          
+          <form id={formHandle}>
           <Stack pt={10} align={'center'}>
+            
+
+          
             <Stack direction={'row'} align={'center'}> 
             <Editable
                 color={props.titleColor} 
@@ -215,7 +211,7 @@ const CreateNFT = (props) =>{
                     color={'gray.800'}
                     fontSize={'1.2em'}>
                     
-                    <chakra.a onClick={() => clicked(props, myContext, onOpen) }
+                    <chakra.a onClick={() => onOpen() }
                     
                     display={'flex'}>
                         <Icon as={FiCamera} 
@@ -252,8 +248,8 @@ const CreateNFT = (props) =>{
                 <EditableInput />
             </Editable>
             </Stack>
-
           </Stack>
+          </form>
         </Box>
       </Center>
     );

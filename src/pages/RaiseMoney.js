@@ -60,8 +60,6 @@ function onSubmit(tiersToSubmit){
 
 const RaiseMoney = () => {
 
-  const myContext = useContext(AppContext);
-
   const testData = [
     {
       imgURL: 'https://i.gifer.com/87ke.gif',
