@@ -58,10 +58,11 @@ const data = {
     numReviews: 34,
 };
 
-const MODALTITLE = 'ModalTitle';
-const URLINPUTID = 'URLInput';
-const IMAGEID = 'Image';
-const BACKGROUNDID = 'Background';
+const MODALTITLE = 'ModalTitle_';
+const URLINPUTID = 'URLInput_';
+const IMAGEID = 'Image_';
+const BACKGROUNDID = 'Background_';
+const FORMID = 'Form_';
 
 function clicked(props, myContext, onOpen){
 
@@ -76,7 +77,7 @@ function changeURL(myContext, value){
   }
 
 
-const Imageupload = (props) =>{
+const CreateNFT = (props) =>{
 
     const myContext = useContext(AppContext);
 
@@ -87,11 +88,12 @@ const Imageupload = (props) =>{
     const priceText = `$${props.price}`;
     const mintText = `(x${props.quantityMinted})`;
 
-    const modalTitle = MODALTITLE + "_" + props.tier;
-    const urlID = URLINPUTID + "_" + props.tier;
+    const modalTitle = MODALTITLE + props.tier;
+    const urlHandle = URLINPUTID + props.tier;
 
-    const imgID = IMAGEID + "_" + props.tier;
-    const backgroundID = BACKGROUNDID + "_" + props.tier;
+    const imgHandle = IMAGEID + props.tier;
+    const backgroundHandle = BACKGROUNDID + props.tier;
+    const formHandle = FORMID + props.tier;
 
     return (
       <Center py={12}>
@@ -104,10 +106,10 @@ const Imageupload = (props) =>{
                     Change {props.tier} NFT Image
             </ModalHeader>
             <ModalCloseButton />
-            <form>
+            <form id={formHandle}>
                 <ModalBody>
                     
-                    <FormControl id={urlID} mt={4}>
+                    <FormControl id={urlHandle} mt={4}>
                     <FormLabel>Input Image URL</FormLabel>
                         <Input 
                             
@@ -124,7 +126,7 @@ const Imageupload = (props) =>{
                         mr={3} 
                         onClick={() => {
                             onClose();
-                            document.getElementById(imgID).src = myContext.NFTUrl;
+                            document.getElementById(imgHandle).src = myContext.NFTUrl;
                             
                             //TODO: figure out how to change :after background-image
                             //may need rearchitecting...
@@ -153,7 +155,7 @@ const Imageupload = (props) =>{
           pos={'relative'}
           zIndex={1}>
           <Box
-            id={backgroundID}
+            id={backgroundHandle}
             rounded={'lg'}
             mt={-12}
             pos={'relative'}
@@ -183,7 +185,7 @@ const Imageupload = (props) =>{
                 bg={props.color}
             />
             <Image
-              id={imgID}
+              id={imgHandle}
               rounded={'lg'}
               height={230}
               width={282}
@@ -257,4 +259,4 @@ const Imageupload = (props) =>{
     );
   }
 
-  export default Imageupload;  
+  export default CreateNFT;  
