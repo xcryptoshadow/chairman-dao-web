@@ -49,11 +49,12 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/invite_member" element={<InviteMember />} />
             <Route path="/pay_member" element={<PayMember />} />
-            <Route path="/raise_money" element={<RaiseMoney />} />
+            <Route path="/raise" element={<RaiseMoney />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/member_invited" element={<MemberInvited />} />
             <Route path="/member_paid" element={<MemberPaid />} />
             <Route path="/invest_money" element={<InvestMoney />} />
+            <Route path="/listing" element={<Listing />} />
             <Route path="/create_dao/:payload" element={<FormDao />} />
           </Routes>
         </BrowserRouter>
