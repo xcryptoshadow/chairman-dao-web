@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^14.2.0",
     "axios": "^0.27.2",
     "chart.js": "^3.7.1",
+    "discord.js": "^13.7.0",
     "formik": "^2.2.9",
     "framer-motion": "^6.3.3",
     "react": "^18.1.0",
@@ -22,6 +23,7 @@
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-spinners": "^0.12.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
