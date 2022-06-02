@@ -29,6 +29,7 @@ import MemberPaid from './pages/MemberPaid';
 import InvestMoney from './pages/InvestMoney';
 import CreateDao from './pages/CreateDao';
 import FormDao from './pages/FormDao';
+import Listing from './pages/Listing';
 
 // components
 import Header from './components/Header';
@@ -49,12 +50,12 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/invite_member" element={<InviteMember />} />
             <Route path="/pay_member" element={<PayMember />} />
-            <Route path="/raise" element={<RaiseMoney />} />
+            <Route path="/raise/:payload" element={<RaiseMoney />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/member_invited" element={<MemberInvited />} />
             <Route path="/member_paid" element={<MemberPaid />} />
             <Route path="/invest_money" element={<InvestMoney />} />
-            <Route path="/listing" element={<Listing />} />
+            <Route path="/listing/:payload" element={<Listing />} />
             <Route path="/create_dao/:payload" element={<FormDao />} />
           </Routes>
         </BrowserRouter>
