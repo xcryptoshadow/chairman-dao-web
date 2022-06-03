@@ -70,19 +70,56 @@ function changeURL(myContext, value) {
 const CreateNFT = props => {
   const myContext = useContext(AppContext);
 
+  const handleNftDataChange = (value, keyChanged) => {
+    if (keyChanged === 'price') {
+      let oldPrice = parseFloat(props.nftData.price);
+      let newPrice = parseFloat(value);
+
+      let newNftData = props.nftData;
+      newNftData[keyChanged] = value;
+      props.setNftData(newNftData);
+
+      let moneyChange =
+        (newPrice - oldPrice) * parseFloat(props.nftData.quantityMinted);
+      console.log('money', props.money);
+      console.log('moneyChange', moneyChange);
+      console.log(
+        'NEWCHAGE',
+        parseFloat(props.money) + parseFloat(moneyChange)
+      );
+      props.setMoney(parseFloat(props.money) + parseFloat(moneyChange));
+    } else if (keyChanged === 'quantityMinted') {
+      let oldQuantity = parseFloat(props.nftData.quantityMinted);
+      let newQuantity = parseFloat(value);
+
+      let newNftData = props.nftData;
+      newNftData[keyChanged] = value;
+      props.setNftData(newNftData);
+
+      let moneyChange =
+        (newQuantity - oldQuantity) * parseFloat(props.nftData.price);
+      console.log('money', props.money);
+      console.log('moneyChange', moneyChange);
+      console.log(
+        'NEWCHAGE',
+        parseFloat(props.money) + parseFloat(moneyChange)
+      );
+      props.setMoney(parseFloat(props.money) + parseFloat(moneyChange));
+    } else {
+      let newNftData = props.nftData;
+      newNftData[keyChanged] = value;
+      props.setNftData(newNftData);
+    }
+  };
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const eText = `Edit ${props.tier} Tier Perks Here ✏`;
-  const titleText = `${props.title}`;
-  const priceText = `$${props.price}`;
-  const mintText = `(x${props.quantityMinted})`;
+  const modalTitle = MODALTITLE + props.nftData.tier;
+  const urlHandle = URLINPUTID + props.nftData.tier;
 
-  const modalTitle = MODALTITLE + props.tier;
-  const urlHandle = URLINPUTID + props.tier;
-
-  const imgHandle = IMAGEID + props.tier;
-  const backgroundHandle = BACKGROUNDID + props.tier;
-  const formHandle = FORMID + props.tier;
+  const imgHandle = IMAGEID + props.nftData.tier;
+  const backgroundHandle = BACKGROUNDID + props.nftData.tier;
+  const formHandle = FORMID + props.nftData.tier;
 
   return (
     <Center py={12}>
@@ -90,7 +127,7 @@ const CreateNFT = props => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader id={modalTitle}>
-            Change {props.tier} NFT Image
+            Change {props.nftData.tier} NFT Image
           </ModalHeader>
           <ModalCloseButton />
           <form>
@@ -154,7 +191,7 @@ const CreateNFT = props => {
             pos: 'absolute',
             top: 5,
             left: 0,
-            backgroundImage: `url(${props.imgURL})`,
+            backgroundImage: `url(${props.nftData.imgURL})`,
             filter: 'blur(15px)',
             zIndex: -1,
           }}
@@ -169,7 +206,7 @@ const CreateNFT = props => {
             position="absolute"
             top={2}
             right={2}
-            bg={props.color}
+            bg={props.nftData.color}
           />
           <Image
             id={imgHandle}
@@ -177,20 +214,21 @@ const CreateNFT = props => {
             height={230}
             width={282}
             objectFit={'cover'}
-            src={props.imgURL}
+            src={props.nftData.imgURL}
           />
         </Box>
         <form id={formHandle}>
           <Stack pt={10} align={'center'}>
             <Stack direction={'row'} align={'center'}>
               <Editable
-                color={props.titleColor}
+                color={props.nftData.titleColor}
                 fontSize={'2xl'}
                 fontFamily={'body'}
                 fontWeight="semibold"
                 as="h4"
                 textTransform={'uppercase'}
-                defaultValue={titleText}
+                defaultValue={props.nftData.title}
+                onChange={nextValue => handleNftDataChange(nextValue, 'title')}
               >
                 <EditablePreview />
                 <EditableTextarea />
@@ -211,7 +249,10 @@ const CreateNFT = props => {
               color={'gray.500'}
               fontSize={'sm'}
               textTransform={'uppercase'}
-              defaultValue={eText}
+              defaultValue={props.nftData.description}
+              onChange={nextValue =>
+                handleNftDataChange(nextValue, 'description')
+              }
             >
               <EditablePreview />
               <EditableTextarea />
@@ -222,12 +263,19 @@ const CreateNFT = props => {
                 fontSize={'xl'}
                 fontWeight={1200}
                 textTransform={'uppercase'}
-                defaultValue={priceText}
+                value={props.nftData.price}
+                onChange={nextValue => handleNftDataChange(nextValue, 'price')}
               >
                 <EditablePreview />
                 <EditableInput />
               </Editable>
-              <Editable color={'gray.600'} defaultValue={mintText}>
+              <Editable
+                color={'gray.600'}
+                defaultValue={props.nftData.quantityMinted}
+                onChange={nextValue =>
+                  handleNftDataChange(nextValue, 'quantityMinted')
+                }
+              >
                 <EditablePreview />
                 <EditableInput />
               </Editable>

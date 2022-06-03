@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MoralisProvider } from 'react-moralis';
+import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
 
 // chakra ui
 import {
@@ -37,32 +38,34 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <ChakraProvider theme={theme}>
-      <MoralisProvider
-        serverUrl="https://jvvsie0bvlbh.usemoralis.com:2053/server"
-        appId="QmJ4dj0JW01SHmtNAbrV6FlXO1KjW3XSkXJbgtQp"
-      >
-        <Header />
+    <ThirdwebProvider desiredChainId={ChainId.Rinkeby}>
+      <ChakraProvider theme={theme}>
+        <MoralisProvider
+          serverUrl="https://jvvsie0bvlbh.usemoralis.com:2053/server"
+          appId="QmJ4dj0JW01SHmtNAbrV6FlXO1KjW3XSkXJbgtQp"
+        >
+          <Header />
 
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/invite_member" element={<InviteMember />} />
-            <Route path="/pay_member" element={<PayMember />} />
-            <Route path="/raise/:payload" element={<RaiseMoney />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/member_invited" element={<MemberInvited />} />
-            <Route path="/member_paid" element={<MemberPaid />} />
-            <Route path="/invest_money" element={<InvestMoney />} />
-            <Route path="/listing/:payload" element={<Listing />} />
-            <Route path="/create_dao/:payload" element={<FormDao />} />
-          </Routes>
-        </BrowserRouter>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/invite_member" element={<InviteMember />} />
+              <Route path="/pay_member" element={<PayMember />} />
+              <Route path="/raise/:payload" element={<RaiseMoney />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/member_invited" element={<MemberInvited />} />
+              <Route path="/member_paid" element={<MemberPaid />} />
+              <Route path="/invest_money" element={<InvestMoney />} />
+              <Route path="/listing/:payload" element={<Listing />} />
+              <Route path="/create_dao/:payload" element={<FormDao />} />
+            </Routes>
+          </BrowserRouter>
 
-        <Footer />
-      </MoralisProvider>
-    </ChakraProvider>
+          <Footer />
+        </MoralisProvider>
+      </ChakraProvider>
+    </ThirdwebProvider>
   );
 }
 

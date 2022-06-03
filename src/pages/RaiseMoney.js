@@ -42,6 +42,9 @@ import {
   FormLabel,
   useDisclosure,
   Spinner,
+  Editable,
+  EditablePreview,
+  EditableTextarea,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
@@ -60,13 +63,17 @@ const RaiseMoney = () => {
   const daoName = decoded.daoName;
   const guildID = decoded.guildID;
 
+  const [money, setMoney] = useState('1000000');
+  const [percent, setPercent] = useState('10');
+
   const [loading, setLoading] = useState(false);
   const [goldData, setGoldData] = useState({
     imgURL: 'https://data.whicdn.com/images/132813216/original.gif',
     tier: 'Gold',
     title: `${daoName} Gold NFTs`,
-    price: '10,000.00',
-    quantityMinted: '10',
+    description: `Edit Gold Tier Perks Here ✏`,
+    price: 25000,
+    quantityMinted: 10,
     color: 'yellow.300',
     titleColor: 'yellow.500',
   });
@@ -75,8 +82,9 @@ const RaiseMoney = () => {
       'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80',
     tier: 'Silver',
     title: `${daoName} Silver NFTs`,
-    price: '500.00',
-    quantityMinted: '200',
+    description: `Edit Silver Tier Perks Here ✏`,
+    price: 2500,
+    quantityMinted: 100,
     color: 'gray.300',
     titleColor: 'gray.600',
   });
@@ -85,68 +93,26 @@ const RaiseMoney = () => {
       'https://bestanimations.com/media/diamonds/300032029lips-jewerly-animated-gif.gif',
     tier: 'Bronze',
     title: `${daoName} Bronze NFT Name`,
-    price: '100.00',
-    quantityMinted: '1000',
+    description: `Edit Bronze Tier Perks Here ✏`,
+    price: 250,
+    quantityMinted: 1000,
     color: 'orange.600',
     titleColor: 'orange.600',
   });
-
-  useEffect(() => {}, []);
-
-  const testData = [
-    {
-      imgURL:
-        'https://bestanimations.com/media/diamonds/300032029lips-jewerly-animated-gif.gif',
-      tier: 'Bronze',
-      title: 'Bronze NFT Name',
-      price: '100.00',
-      quantityMinted: '1000',
-      color: 'orange.600',
-      titleColor: 'orange.600',
-    },
-    {
-      imgURL:
-        'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80',
-      tier: 'Silver',
-      title: 'Silver NFT Name',
-      price: '500.00',
-      quantityMinted: '200',
-      color: 'gray.300',
-      titleColor: 'gray.600',
-    },
-    {
-      imgURL: 'https://data.whicdn.com/images/132813216/original.gif',
-      tier: 'Gold',
-      title: 'Gold NFT Name',
-      price: '10,000.00',
-      quantityMinted: '10',
-      color: 'yellow.300',
-      titleColor: 'yellow.500',
-    },
-  ];
-
-  var outputArr = [];
-  var tiersToSubmit = [];
-
-  for (var i = 0; i < testData.length; i++) {
-    outputArr.push(
-      <CreateNFT
-        imgURL={testData[i].imgURL}
-        tier={testData[i].tier}
-        title={testData[i].title}
-        price={testData[i].price}
-        quantityMinted={testData[i].quantityMinted}
-        color={testData[i].color}
-        titleColor={testData[i].titleColor}
-      />
-    );
-
-    tiersToSubmit.push(testData[i].tier);
-  }
+  const [sapphireData, setSapphireData] = useState({
+    imgURL: 'https://i.gifer.com/87ke.gif',
+    tier: 'Sapphire',
+    title: `${daoName} Sapphire NFT Name`,
+    description: `Edit Sapphire Tier Perks Here ✏`,
+    price: 25,
+    quantityMinted: 10000,
+    color: 'blue.200',
+    titleColor: 'blue.500',
+  });
 
   const myContext = useContext(AppContext);
 
-  const onSubmit = async (myContext, tiersToSubmit) => {
+  const onSubmit = async () => {
     //collect form data
 
     const secret = 'secret';
@@ -156,20 +122,30 @@ const RaiseMoney = () => {
       goldNft: {
         imgURL: goldData.imgURL,
         title: goldData.title,
+        description: goldData.description,
         price: goldData.price,
         quantityMinted: goldData.quantityMinted,
       },
       silverNft: {
         imgURL: silverData.imgURL,
         title: silverData.title,
+        description: silverData.description,
         price: silverData.price,
         quantityMinted: silverData.quantityMinted,
       },
       bronzeNft: {
         imgURL: bronzeData.imgURL,
         title: bronzeData.title,
+        description: bronzeData.description,
         price: bronzeData.price,
         quantityMinted: bronzeData.quantityMinted,
+      },
+      sapphireNft: {
+        imgURL: sapphireData.imgURL,
+        title: sapphireData.title,
+        description: sapphireData.description,
+        price: sapphireData.price,
+        quantityMinted: sapphireData.quantityMinted,
       },
     };
 
@@ -187,23 +163,69 @@ const RaiseMoney = () => {
     setLoading(false);
 
     navigate(`/listing/${guildID}`);
-    // console.log('CONSOLE', response.data);
   };
+
+  const handleNftDataChange = (value, keyChanged) => {
+    if (keyChanged === 'money') {
+      let oldMoney = parseFloat(money);
+      let newMoney = parseFloat(value);
+
+      setMoney(value);
+
+      let goldMoneyChange =
+        ((newMoney - oldMoney) * 0.25) / goldData.quantityMinted;
+      let newGoldData = goldData;
+      newGoldData['price'] =
+        parseFloat(goldData.price) + parseFloat(goldMoneyChange);
+      setGoldData(newGoldData);
+
+      let silverMoneyChange =
+        ((newMoney - oldMoney) * 0.25) / silverData.quantityMinted;
+      let newSilverData = silverData;
+      newSilverData['price'] =
+        parseFloat(silverData.price) + parseFloat(silverMoneyChange);
+      setSilverData(newSilverData);
+
+      let bronzeMoneyChange =
+        ((newMoney - oldMoney) * 0.25) / bronzeData.quantityMinted;
+      let newBronzeData = bronzeData;
+      newBronzeData['price'] =
+        parseFloat(bronzeData.price) + parseFloat(bronzeMoneyChange);
+      setBronzeData(newBronzeData);
+
+      let sapphireMoneyChange =
+        ((newMoney - oldMoney) * 0.25) / sapphireData.quantityMinted;
+      let newSapphireData = sapphireData;
+      newSapphireData['price'] =
+        parseFloat(sapphireData.price) + parseFloat(sapphireMoneyChange);
+      setSapphireData(newSapphireData);
+    }
+  };
+
+  // (money % percent) * 100 = (goldPrice * goldSupply) + (silverPrice * silverSupply) + (bronzePrice * bronzeSupply) + (sapphirePrice * sapphireSupply)
 
   return (
     <Fragment>
       {loading ? (
         <Fragment>
-          <Box p={4} height={'66vh'}>
-            <Center>
-              <div>
-                <Spinner />
-              </div>
-            </Center>
-            <Center>
-              <div>Creating your NFTs.....</div>
-            </Center>
-          </Box>
+          <Flex
+            flexDirection="column"
+            justifyContent={'center'}
+            alignItems={'center'}
+            minH="66vh"
+          >
+            <Box boxSize="sm" mb={4}>
+              <Image
+                src="https://64.media.tumblr.com/018cf1102da66a2193a42139d6634902/bc411e95d4f33a33-75/s500x750/ffab89441ae9ad97a14da309dd30fd6f3eb5a2ae.gif"
+                alt="wait"
+                borderRadius="20px"
+              />
+            </Box>
+            <Box>
+              <Spinner size="xl" />
+            </Box>
+            <Box>Creating your NFTs...</Box>
+          </Flex>
         </Fragment>
       ) : (
         <Fragment>
@@ -232,11 +254,72 @@ const RaiseMoney = () => {
                   color="white"
                   w="100%"
                   onClick={() => {
-                    onSubmit(myContext, tiersToSubmit);
+                    onSubmit();
                   }}
                 >
                   Publish these NFTs to blockchain
                 </Button>
+              </Box>
+
+              <Box>
+                {/* <Editable
+                  color={props.titleColor}
+                  fontSize={'2xl'}
+                  fontFamily={'body'}
+                  fontWeight="semibold"
+                  as="h4"
+                  textTransform={'uppercase'}
+                  defaultValue={titleText}
+                >
+                  <EditablePreview />
+                  <EditableTextarea />
+                </Editable> */}
+                <Box
+                  boxShadow="2xl"
+                  p="6"
+                  borderRadius="5"
+                  bg="white"
+                  w="100%"
+                  align="center"
+                  justify="center"
+                  direction="column"
+                >
+                  <span>Raise $</span>
+                  <span>
+                    <Editable
+                      // color={props.titleColor}
+                      fontSize={'2xl'}
+                      fontFamily={'body'}
+                      fontWeight="semibold"
+                      as="h4"
+                      textTransform={'uppercase'}
+                      value={money}
+                      onChange={nextValue =>
+                        handleNftDataChange(nextValue, 'money')
+                      }
+                    >
+                      <EditablePreview />
+                      <EditableTextarea />
+                    </Editable>
+                  </span>
+                  <span> for </span>
+                  <span>
+                    <Editable
+                      // color={props.titleColor}
+                      fontSize={'2xl'}
+                      fontFamily={'body'}
+                      fontWeight="semibold"
+                      as="h4"
+                      textTransform={'uppercase'}
+                      defaultValue={percent}
+                      onChange={nextValue => setPercent(nextValue)}
+                    >
+                      <EditablePreview />
+                      <EditableTextarea />
+                    </Editable>
+                  </span>
+                  <span>% of the DAO's governance tokens</span>
+                </Box>
               </Box>
 
               <SimpleGrid
@@ -255,6 +338,10 @@ const RaiseMoney = () => {
                   quantityMinted={goldData.quantityMinted}
                   color={goldData.color}
                   titleColor={goldData.titleColor}
+                  nftData={goldData}
+                  setNftData={setGoldData}
+                  money={money}
+                  setMoney={setMoney}
                 />
                 <CreateNFT
                   imgURL={silverData.imgURL}
@@ -264,6 +351,10 @@ const RaiseMoney = () => {
                   quantityMinted={silverData.quantityMinted}
                   color={silverData.color}
                   titleColor={silverData.titleColor}
+                  nftData={silverData}
+                  setNftData={setSilverData}
+                  money={money}
+                  setMoney={setMoney}
                 />
                 <CreateNFT
                   imgURL={bronzeData.imgURL}
@@ -273,6 +364,23 @@ const RaiseMoney = () => {
                   quantityMinted={bronzeData.quantityMinted}
                   color={bronzeData.color}
                   titleColor={bronzeData.titleColor}
+                  nftData={bronzeData}
+                  setNftData={setBronzeData}
+                  money={money}
+                  setMoney={setMoney}
+                />
+                <CreateNFT
+                  imgURL={sapphireData.imgURL}
+                  tier={sapphireData.tier}
+                  title={sapphireData.title}
+                  price={sapphireData.price}
+                  quantityMinted={sapphireData.quantityMinted}
+                  color={sapphireData.color}
+                  titleColor={sapphireData.titleColor}
+                  nftData={sapphireData}
+                  setNftData={setSapphireData}
+                  money={money}
+                  setMoney={setMoney}
                 />
               </SimpleGrid>
             </VStack>
