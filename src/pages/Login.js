@@ -13,6 +13,11 @@ import {
   SimpleGrid,
   VStack,
   Stack,
+  Heading,
+  Wrap,
+  WrapItem,
+  Avatar,
+  Center,
   PinInputDescendantsProvider,
   
 } from '@chakra-ui/react';
@@ -23,8 +28,12 @@ import { findAllByDisplayValue } from '@testing-library/react';
 
 const Login = () => {
 
-    const discordOAuthURL = 'https://discord.com/api/oauth2/authorize?client_id=961849988667834420&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Ffriends&response_type=code&scope=identify%20email%20connections%20relationships.read%20guilds%20guilds.members.read';
-
+    const DAOName = 'Chad DAO';
+    const inviterName = 'APsycho#3455';
+    const inviteGeneratorID = 10920;
+    const guildID = 23892;
+    const avatarURL = 'https://media3.giphy.com/media/DLm2IJPuLnMTS/200.gif?cid=82a1493bsnu4nnft3c7zin9nisok7z70dnjn2hwaq4tj3l84&rid=200.gif&ct=g';
+    
     return(
 
     <Fragment>
@@ -37,9 +46,40 @@ const Login = () => {
         p={4}
         m={2}
         >
-            <VStack width="100%" space={4}>
+            <Center>
+                <Wrap>
+                    <WrapItem>
+                    <Avatar size='xl' 
+                        name={inviterName} 
+                        src={avatarURL} />{' '}
+                    </WrapItem>
+                </Wrap>
+            </Center>
+            
+            <Heading
+                p={4}
+                fontWeight={600}
+                fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+                lineHeight={'110%'}>
+                {inviterName} has invited you to join {' '}
+            </Heading>
+            <Heading
+                fontWeight={600}
+                fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+                lineHeight={'110%'}
+            >
+                <Text as={'span'} color={'red.800'}>
+                    {DAOName}
+                </Text>
+            </Heading>
+            
+
+            <VStack width="100%" p={4} space={4}>
                 <Stack>
-                    <DiscordLogin />
+                    <DiscordLogin 
+                        inviteGeneratorID={inviteGeneratorID}
+                        guildID={guildID}
+                    />
                 </Stack>
             </VStack>
         </Box>

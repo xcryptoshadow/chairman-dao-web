@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^14.2.0",
     "axios": "^0.27.2",
+    "buffer": "^6.0.3",
     "chart.js": "^3.7.1",
     "discord.js": "^13.7.0",
     "formik": "^2.2.9",

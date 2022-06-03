@@ -3,6 +3,12 @@ import { useContext, useEffect } from 'react';
 import AppContext from '../components/appContext';
 import { useSearchParams } from "react-router-dom";
 import axios from 'axios';
+import { Buffer } from "buffer";
+
+
+
+
+
 
 
 // chakra ui
@@ -28,25 +34,27 @@ const discordClientID = '961849988667834420';
 const discordClientSecret = 'o4FgeH_ju7weYINVQNu9M2BGL8nCeX3p';
 const discordRedirectURI = 'http://localhost:3000/friends';
 
-function discordLogin(url){
-  document.location = url;
-}
-
 var bearerToken = '';
 
 const Friends = () => {
 
-  const [data, setData] = useState({loading: true, guilds:[]});
+  //create data state object to retrieve Discord API Information
+  const [data, setData] = useState({loading: true, userObj:{}});
 
+  //acquire GET URL Payload from OAuth Redirect
   const [searchParams, setSearchParams] = useSearchParams();
   let codeObj = searchParams.get("code");
+  let contextData = searchParams.get('state');
 
+
+  //decode state variable from oauth
+  let buff = Buffer.from(contextData, 'base64');  
+  let text = buff.toString('ascii');
+  var stateObj = JSON.parse(text);
+
+  console.log(`state variable is ${JSON.stringify(stateObj)}`);
 
   var tokenType = 'Bearer';
-
-  //const fragment = new URLSearchParams(window.location.hash.slice(1));
-	//const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-
 
   var retStr = `Code: ${codeObj}`;
   
@@ -54,12 +62,9 @@ const Friends = () => {
   useEffect(() => {
 
       async function fetchData(){
-         //exchange code for access token
-         var tokenURL = 'https://discord.com/api/oauth2/token';
+        //exchange OAuth Code for Short TTL access token
+        var tokenURL = 'https://discord.com/api/oauth2/token';
 
-         var guildURL = 'https://discord.com/api/users/@me/guilds';
- 
- 
         var payload = new URLSearchParams();
         payload.append("client_id", discordClientID);
         payload.append("client_secret", discordClientSecret);
@@ -73,58 +78,26 @@ const Friends = () => {
           }
         }
 
+        //assign OAuth Token
         const tokenResponse = await axios.post(tokenURL, payload, tokenOptions);
-  
         bearerToken = tokenResponse.data.access_token;
  
-        var guildOptions = {
+        //now that we have an OAuth Token, get User Graph Info
+        var userURL = 'https://discord.com/api/users/@me';
+        var reqOptions = {
           headers:{
             'authorization': `Bearer ${bearerToken}`
           }
         }
 
-        const responseObj = await axios.get(guildURL, guildOptions);
-        var guildResponse = responseObj.data;
+        const responseObj = await axios.get(userURL, reqOptions);
 
- 
-        var guildArr = [];
-        for(var i = 0; i < guildResponse.length; i++){
+        //assign response data
+        var discordResponse = responseObj.data;
+        console.log(discordResponse);
 
-          //fetch guild info
-          //var guildURL = `https://discord.com/api/users/@me/guilds/${guildResponse[i].id}`;
-          //var guildOptions = {
-          //  headers:{
-          //    'authorization': `Bearer ${bearerToken}`
-          //  }
-          //}
-          
-          //const guildDetailObj = await axios.get(guildURL, guildOptions);
-          //console.log(guildDetailObj);
-
-          var cardID = 'card_' + i;
-          var dialogID = 'dialog_' + i;
-          var textHandle = 'text_' + i;
-          var circleID = 'circle_' + i;
-          var bannerURL = 'https://media.istockphoto.com/vectors/worker-holding-a-flag-industry-poster-vector-id480370080?k=20&m=480370080&s=612x612&w=0&h=PquLZIdfVAhJrCpslBQdlvnAVSvyz9zPBhGgbn6CWdc=';
-
-          var avatarURL = `https://cdn.discordapp.com/icons/${guildResponse[i].id}/${guildResponse[i].icon}.png`;
-
-          guildArr.push(<Usercard 
-            username={guildResponse[i].name}
-            avatarURL={avatarURL}
-            backgroundURL={avatarURL}
-            cardID={cardID}
-            circleID={circleID}
-            dialogID={dialogID}
-            textID={textHandle}
-
-          />);
-        }
-        
-        console.log(guildArr);
-        
-        //draw cards
-        setData({loading: false, guilds:guildArr});
+        //draw page
+        setData({loading: false, userObj:discordResponse});
 
       }
 
@@ -153,17 +126,11 @@ const Friends = () => {
 
               <Box mb={4}>
                   <Text fontSize="2xl" style={{ fontWeight: '700' }}>
-                    Choose guild to invite from
+                    Join DAO
                   </Text>
                 </Box>
 
 
-              
-              
-                
-                  {
-
-                  }
                   {data.loading ? <Stack direction={'row'}><FetchInterstitial /></Stack>: 
                   
                     <SimpleGrid 
@@ -173,7 +140,8 @@ const Friends = () => {
                       align="center"
                       justify="center"
                     >
-                      {data.guilds}
+                      {JSON.stringify(stateObj)}
+                      {JSON.stringify(data.userObj)}
                     </SimpleGrid>
                   }
                   
