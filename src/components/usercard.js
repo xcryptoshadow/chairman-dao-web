@@ -13,7 +13,10 @@ import {
   LinkOverlay,
   useColorModeValue,
   useControllableProp, 
-  useControllableState
+  useControllableState,
+  Text,
+  Stack,
+  Button,
   
 } from '@chakra-ui/react';
 
@@ -130,6 +133,8 @@ function clicked(props, myContext){
 
 }  
 
+
+
 function Usercard(props){
     const myContext = useContext(AppContext);
 
@@ -140,20 +145,27 @@ function Usercard(props){
             w={{ base: "326px", md: "356px" }}
         >
               <Box
-                
                 id={props.cardID}
                 >
-                <LinkOverlay onClick={() => clicked(props, myContext) }>
-                <Profile
-                    username={props.username}
-                    avatarURL={props.avatarURL}
-                    backgroundURL={props.backgroundURL}
-                    cardID={props.cardID}
-                    circleID={props.circleID}
-                    dialogID={props.dialogID}
-                    textID={props.textID}
-                    />
-                </LinkOverlay>  
+                    
+                    <Profile
+                        DAOName={props.DAOName}
+                        DAODescription={props.DAODescription}
+                        inviterAvatarURL={props.inviterAvatarURL}
+                        DAOLogoURL={props.DAOLogoURL}
+                        title={props.title}
+                        color={props.color}
+                        titleColor={props.titleColor}
+                        priceText={props.priceText}
+                        cardID={props.cardID}
+                        circleID={props.circleID}
+                        dialogID={props.dialogID}
+                        textID={props.textID}
+                        quote={props.quote}
+                        inviterName={props.inviterName}
+                        inviterRole={props.inviterRole}
+                        />
+                    
               </Box>
             </LinkBox>
 

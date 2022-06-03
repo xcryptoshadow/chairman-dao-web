@@ -51,11 +51,13 @@ const Friends = () => {
   let contextData = searchParams.get('state');
 
   //TODO: retrieve Inviter and DAO Information from Moralis DB
-  var DAOLogoURL = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fgifer.com%2Fen%2FJGhR&psig=AOvVaw2pKA7cMy8Grs4Yw-C2PQ9S&ust=1654310828935000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCOiz_JyikPgCFQAAAAAdAAAAABAN';
+  var DAOLogoURL = 'https://lh3.googleusercontent.com/zFjkeNZ5C3hxcHKT2s3mSehd_WjcXHVI6_BdP9OZKTaVcSunx4Ub-WHQrAXmYbYuAIzjtvvPIxISxN-O1TeoEZy-jrkg93DA4BZwjA=w600';
   var DAOName = 'Chad DAO';
   var inviterName = 'APsycho#3455';
-  var inviterAvatarURL = 'https://lh3.googleusercontent.com/zFjkeNZ5C3hxcHKT2s3mSehd_WjcXHVI6_BdP9OZKTaVcSunx4Ub-WHQrAXmYbYuAIzjtvvPIxISxN-O1TeoEZy-jrkg93DA4BZwjA=w600';
-
+  var inviterRole = 'Chad in Chief';
+  var inviterAvatarURL = 'https://media3.giphy.com/media/DLm2IJPuLnMTS/200.gif?cid=82a1493bsnu4nnft3c7zin9nisok7z70dnjn2hwaq4tj3l84&rid=200.gif&ct=g';
+  const loremStr = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae elit eleifend sem congue aliquam eu vel libero. Maecenas justo ex, aliquet at feugiat eget, aliquam quis felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec feugiat id nulla vitae venenatis. Ut cursus lorem vitae lacus semper, ut porttitor nunc pulvinar. Aliquam erat volutpat. Aliquam erat volutpat.';
+  const quote = 'Are you a Chad or a Chud? Choose Now!';
 
   //decode state variable from oauth
   let buff = Buffer.from(contextData, 'base64');  
@@ -110,16 +112,23 @@ const Friends = () => {
         var inviteeAvatarURL = 
           `https://cdn.discordapp.com/avatars/${discordResponse.id}/${discordResponse.avatar}.png`;
 
+        //THIS IS THE FINAL DATA OBJECT THAT GETS PASSED TO THE UX
         var renderObj = {
           inviteeAvatarURL: inviteeAvatarURL,
           inviteeName: discordResponse.username,
           DAOName: DAOName,
           DAOGuildID: stateObj.guildID,
           DAOLogoURL: DAOLogoURL,
+          DAODescription: loremStr,
           inviteGenerator: stateObj.inviteGenerator,
           inviterName: inviterName,
-          inviterAvatarURL: inviterAvatarURL
-
+          inviterRole: inviterRole,
+          inviterAvatarURL: inviterAvatarURL,
+          title: 'Claim Invite',
+          color: 'blue.500',
+          titleColor: 'blue.600',
+          priceText: `$0.00`,
+          quote: quote
 
         }
 
@@ -174,7 +183,7 @@ const Friends = () => {
                     <Heading
                         p={4}
                         fontWeight={600}
-                        fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+                        fontSize={{ base: '2xl', sm: '3xl', md: '3xl' }}
                         lineHeight={'110%'}>
                         Hi {data.userObj.inviteeName} 👋 
                     </Heading>
@@ -183,7 +192,7 @@ const Friends = () => {
                     <Heading
                         p={4}
                         fontWeight={600}
-                        fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+                        fontSize={{ base: 'lg', sm: 'lg', md: 'lg' }}
                         lineHeight={'110%'}>
                         {data.userObj.inviterName} has invited you to join {' '}
                     </Heading>
@@ -191,7 +200,7 @@ const Friends = () => {
                   <Stack direction={'row'}>
                     <Heading
                         fontWeight={600}
-                        fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+                        fontSize={{ base: '2xl', sm: '3xl', md: '3xl' }}
                         lineHeight={'110%'}
                     >
                         <Text as={'span'} color={'red.800'}>
@@ -199,15 +208,25 @@ const Friends = () => {
                         </Text>
                     </Heading>
                     </Stack>
-                    <SimpleGrid 
-                      minChildWidth='296px' 
-                      spacing='40px'
-                      width="95%"
+                    <Stack
+                      direction={'row'} 
                       align="center"
                       justify="center"
                     >
-                      
-                    </SimpleGrid>
+                      <Usercard 
+                        DAOName={data.userObj.DAOName}
+                        inviterName={data.userObj.inviterName}
+                        inviterRole={data.userObj.inviterRole}
+                        quote={data.userObj.quote}
+                        inviterAvatarURL={data.userObj.inviterAvatarURL}
+                        DAOLogoURL={data.userObj.DAOLogoURL}
+                        DAODescription={data.userObj.DAODescription}
+                        title={data.userObj.title}
+                        color={data.userObj.color}
+                        titleColor={data.userObj.titleColor}
+                        priceText={data.userObj.priceText}
+                      />
+                    </Stack>
                    </VStack> 
                   }
                   

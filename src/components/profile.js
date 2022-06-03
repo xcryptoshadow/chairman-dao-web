@@ -2,7 +2,8 @@
 
 import React from "react";
 // Chakra imports
-import { Flex, Image, Text, useColorModeValue, Box, Circle, Center } from "@chakra-ui/react";
+import { Flex, Image, Text, useColorModeValue, Box, Circle, Stack, Button,
+  Center, chakra } from "@chakra-ui/react";
 
 
 function Profile(props) {
@@ -14,7 +15,10 @@ function Profile(props) {
   let secondaryText = useColorModeValue("gray.400", "gray.400");
 
   
-
+function onClick(buyURL){
+    alert("Navigate to wallet integration page");
+    
+}
 
   return (
     <Center py={12}>
@@ -45,7 +49,7 @@ function Profile(props) {
               pos: 'absolute',
               top: 5,
               left: 0,
-              backgroundImage: `url(${props.backgroundURL})`,
+              backgroundImage: `url(${props.DAOLogoURL})`,
               filter: 'blur(15px)',
               zIndex: -1,
             }}
@@ -57,10 +61,10 @@ function Profile(props) {
             
             <Image
               rounded={'lg'}
-              height={230}
-              width={282}
+              height={240}
+              width={294}
               objectFit={'cover'}
-              src={props.backgroundURL}
+              src={props.DAOLogoURL}
             />
 
         </Box>
@@ -71,7 +75,7 @@ function Profile(props) {
 
 
         <Image
-          src={props.avatarURL}
+          src={props.inviterAvatarURL}
           border='5px solid red'
           mx='auto'
           borderColor={boxBg}
@@ -81,61 +85,93 @@ function Profile(props) {
           borderRadius='50%'
           zIndex='100'
         />
-        <Text
-          fontWeight='600'
-          id={props.textID}
-          color={mainText}
-          textAlign='center'
-          fontSize='xl'>
-          {props.username}
+        
+
+        <Flex
+        direction={'column'}
+        textAlign={'left'}
+        justifyContent={'space-between'}
+        p={2}
+        >
+        <Text as='i'
+        fontSize={{ base: 'sm', md: 'sm' }}
+        color={useColorModeValue('red.800', 'red.800')}
+        fontFamily={'Inter'}
+        textAlign={'center'}
+        maxW={'3xl'}>
+          {`"${props.quote}"`}
         </Text>
+          
+          <Text textAlign={'center'} fontSize={'xs'} fontWeight={600}>{props.inviterName}</Text>
+          <Text textAlign={'center'} fontSize={'xs'} color={useColorModeValue('gray.400', 'gray.400')}>
+            {props.inviterRole}
+          </Text>
+     
+        </Flex>
+
         <Text
           id={props.dialogID}
-          color={secondaryText}
+          color={props.titleColor}
           textAlign='center'
           fontSize='sm'
           fontWeight='500'
+          p={4}
           >
-          Click to Invite
+          This is your {props.DAOName} NFT Airdrop Invitation
         </Text>
-      </Flex>
-      <Flex justify='space-between' w='100%' px='36px'>
-        <Flex flexDirection='column'>
-          <Text
-            fontWeight='600'
-            color={mainText}
-            fontSize='xl'
-            textAlign='center'>
-            17
-          </Text>
-          <Text color={secondaryText} fontWeight='500'>
-            Posts
-          </Text>
-        </Flex>
-        <Flex flexDirection='column'>
-          <Text
-            fontWeight='600'
-            color={mainText}
-            fontSize='xl'
-            textAlign='center'>
-            9.7k
-          </Text>
-          <Text color={secondaryText} fontWeight='500'>
-            Followers
-          </Text>
-        </Flex>
-        <Flex flexDirection='column'>
-          <Text
-            fontWeight='600'
-            fontSize='xl'
-            color={mainText}
-            textAlign='center'>
-            274
-          </Text>
-          <Text color={secondaryText} fontWeight='500'>
-            Following
-          </Text>
-        </Flex>
+
+            <Stack>    
+              <Text
+                  color={'gray.500'} fontSize={'sm'} 
+              >
+
+                  {props.DAODescription}
+
+              </Text>
+            </Stack>
+
+            
+              <Center>
+              <Text
+                  color={'red.600'} 
+                  fontSize={'2xl'} 
+                  fontWeight={1200}
+                  textTransform={'uppercase'} 
+              >
+                  {props.priceText}
+              </Text>
+              </Center>
+              
+            
+          
+          
+                <Button
+                    /* flex={1} */
+                    px={4}
+                    py={4}
+                    fontSize={'lg'}
+                    rounded={'full'}
+                    bg={props.color}
+                    color={'white'}
+                    boxShadow={
+                    '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                    }
+                    _hover={{
+                    bg: props.titleColor,
+                    }}
+                    _focus={{
+                    bg: props.titleColor,
+                    }}
+                    onClick={() => {
+                        //Implement purchase modal and logic here.
+
+                        onClick(props.buyURL);
+                    
+                    }
+                    }
+                >
+                {props.title}
+            </Button>
       </Flex>
     </Flex>
 
