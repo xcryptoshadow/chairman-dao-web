@@ -32,7 +32,8 @@ const DiscordLogin = (props) => {
     //encode state payload through oauth redirect
     const state = {
         guildID: props.guildID,
-        inviteGenerator: props.inviteGeneratorID
+        inviteGenerator: props.inviteGeneratorID,
+        action: props.action
     }
     const stateURL = `&state=${Buffer.from(JSON.stringify(state)).toString('base64')}`
     const finalURL = `${discordOAuthURL}${stateURL}`;

@@ -79,6 +79,7 @@ const Login = () => {
                     <DiscordLogin 
                         inviteGeneratorID={inviteGeneratorID}
                         guildID={guildID}
+                        action={'inviteUsersToDAO'}
                     />
                 </Stack>
             </VStack>
