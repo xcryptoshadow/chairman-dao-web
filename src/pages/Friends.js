@@ -22,6 +22,10 @@ import {
   CircularProgress,
   Stack,
   Center,
+  Wrap,
+  WrapItem,
+  Avatar,
+  Heading,
   PinInputDescendantsProvider,
   
 } from '@chakra-ui/react';
@@ -45,6 +49,12 @@ const Friends = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   let codeObj = searchParams.get("code");
   let contextData = searchParams.get('state');
+
+  //TODO: retrieve Inviter and DAO Information from Moralis DB
+  var DAOLogoURL = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fgifer.com%2Fen%2FJGhR&psig=AOvVaw2pKA7cMy8Grs4Yw-C2PQ9S&ust=1654310828935000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCOiz_JyikPgCFQAAAAAdAAAAABAN';
+  var DAOName = 'Chad DAO';
+  var inviterName = 'APsycho#3455';
+  var inviterAvatarURL = 'https://lh3.googleusercontent.com/zFjkeNZ5C3hxcHKT2s3mSehd_WjcXHVI6_BdP9OZKTaVcSunx4Ub-WHQrAXmYbYuAIzjtvvPIxISxN-O1TeoEZy-jrkg93DA4BZwjA=w600';
 
 
   //decode state variable from oauth
@@ -96,8 +106,25 @@ const Friends = () => {
         var discordResponse = responseObj.data;
         console.log(discordResponse);
 
+        //parse response data appropriately
+        var inviteeAvatarURL = 
+          `https://cdn.discordapp.com/avatars/${discordResponse.id}/${discordResponse.avatar}.png`;
+
+        var renderObj = {
+          inviteeAvatarURL: inviteeAvatarURL,
+          inviteeName: discordResponse.username,
+          DAOName: DAOName,
+          DAOGuildID: stateObj.guildID,
+          DAOLogoURL: DAOLogoURL,
+          inviteGenerator: stateObj.inviteGenerator,
+          inviterName: inviterName,
+          inviterAvatarURL: inviterAvatarURL
+
+
+        }
+
         //draw page
-        setData({loading: false, userObj:discordResponse});
+        setData({loading: false, userObj:renderObj});
 
       }
 
@@ -131,8 +158,47 @@ const Friends = () => {
                 </Box>
 
 
-                  {data.loading ? <Stack direction={'row'}><FetchInterstitial /></Stack>: 
-                  
+                  {data.loading ? <Stack direction={'row'}><FetchInterstitial /></Stack>:
+
+                  <VStack>
+                    <Center>
+                      <Wrap>
+                        <WrapItem>
+                        <Avatar size='xl' 
+                          name={data.userObj.inviteeName} 
+                          src={data.userObj.inviteeAvatarURL} />{' '}
+                        </WrapItem>
+                      </Wrap>
+                    </Center>
+                    <Stack direction={'row'}>
+                    <Heading
+                        p={4}
+                        fontWeight={600}
+                        fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+                        lineHeight={'110%'}>
+                        Hi {data.userObj.inviteeName} 👋 
+                    </Heading>
+                  </Stack>
+                  <Stack direction={'row'}>
+                    <Heading
+                        p={4}
+                        fontWeight={600}
+                        fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+                        lineHeight={'110%'}>
+                        {data.userObj.inviterName} has invited you to join {' '}
+                    </Heading>
+                  </Stack>
+                  <Stack direction={'row'}>
+                    <Heading
+                        fontWeight={600}
+                        fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+                        lineHeight={'110%'}
+                    >
+                        <Text as={'span'} color={'red.800'}>
+                            {data.userObj.DAOName}
+                        </Text>
+                    </Heading>
+                    </Stack>
                     <SimpleGrid 
                       minChildWidth='296px' 
                       spacing='40px'
@@ -140,9 +206,9 @@ const Friends = () => {
                       align="center"
                       justify="center"
                     >
-                      {JSON.stringify(stateObj)}
-                      {JSON.stringify(data.userObj)}
+                      
                     </SimpleGrid>
+                   </VStack> 
                   }
                   
                 
