@@ -23,7 +23,7 @@ import {
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { findAllByDisplayValue } from '@testing-library/react';
-import DiscordLogin from '../components/discordLogin';
+
 
 const GenerateInviteLogin = () => {
 

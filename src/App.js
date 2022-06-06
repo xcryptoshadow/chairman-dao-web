@@ -33,6 +33,8 @@ import CreateDao from './pages/CreateDao';
 import Listing from './pages/Listing';
 import ClaimInviteLogin from './pages/ClaimInviteLogin';
 import Friends from './pages/Friends';
+import GenerateInviteLogin from './pages/GenerateInviteLogin';
+import Generate from './pages/Generate';
 
 // components
 import Header from './components/Header';
@@ -86,7 +88,9 @@ function App() {
           <Route path="/listing" element={<Listing />} />
           <Route path="/create_dao" element={<CreateDao />} />
           <Route path="/claim_invite" element={<ClaimInviteLogin />} />
+          <Route path="/create_invite" element={<GenerateInviteLogin />} />
           <Route path="/friends" element={<Friends />} />
+          <Route path="/generate" element={<Generate />} />
         </Routes>
       </BrowserRouter>
 

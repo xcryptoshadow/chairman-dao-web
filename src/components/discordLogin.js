@@ -27,7 +27,6 @@ function onClick(URL){
 const DiscordLogin = (props) => {
 
     //generate OAuth link w/ appropriate permissions
-    const discordOAuthURL = 'https://discord.com/api/oauth2/authorize?client_id=961849988667834420&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Ffriends&response_type=code&scope=identify%20email%20connections%20guilds%20guilds.join%20gdm.join%20guilds.members.read';
 
     //encode state payload through oauth redirect
     const state = {
@@ -36,7 +35,7 @@ const DiscordLogin = (props) => {
         action: props.action
     }
     const stateURL = `&state=${Buffer.from(JSON.stringify(state)).toString('base64')}`
-    const finalURL = `${discordOAuthURL}${stateURL}`;
+    const finalURL = `${props.redirectURL}${stateURL}`;
 
     return(
         <Button borderRadius="full" 

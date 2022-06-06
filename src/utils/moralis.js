@@ -35,6 +35,14 @@ function translateBlockchainToID(blockchainName){
 
 }
 
+function getAppID(){
+    return credentials[0].moralisAppID;
+}
+
+function getServerURL(){
+    return credentials[0].moralisServerURL;
+}
+
 function getServerCredentials(chainId){
     
     var credObj = {};
@@ -54,5 +62,7 @@ module.exports = {
     POLYGON_CHAIN_ID,
     ETHEREUM_CHAIN_ID,
     translateBlockchainToID,
-    getServerCredentials
+    getServerCredentials,
+    getAppID,
+    getServerURL
 }
