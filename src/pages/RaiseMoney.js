@@ -8,6 +8,7 @@ import {
   ChakraProvider,
   Box,
   Text,
+  useColorModeValue,
   Center,
   Link,
   VStack,
@@ -38,7 +39,11 @@ import {
   ModalCloseButton,
   FormControl,
   FormLabel,
-  useDisclosure
+  useDisclosure,
+  Editable,
+  EditablePreview,
+  EditableInput,
+  EditableTextarea,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
@@ -143,6 +148,65 @@ const RaiseMoney = () => {
                   </Text>
                 </Box>
 
+              <Box
+                role={'group'}
+                p={6}
+                maxW={'650px'}
+                w={'full'}
+                bg={useColorModeValue('white', 'gray.800')}
+                boxShadow={'2xl'}
+                rounded={'lg'}
+                pos={'relative'}
+                zIndex={1}>
+                  
+                  <Text
+                    color={'gray.500'} fontSize={'xl'} textTransform={'uppercase'} 
+                    >
+                      I want to raise 
+                  </Text>
+                  <Editable
+                      color={'green.500'} 
+                      fontSize={'2xl'}
+                      fontFamily={'body'}
+                      fontWeight="semibold"
+                      as="h4" 
+                      textTransform={'uppercase'} 
+                      defaultValue={'$1000000'}>
+                      <EditablePreview />
+                      <EditableInput />
+                  </Editable>
+                  
+                  <Text color={'gray.500'} fontSize={'xl'} textTransform={'uppercase'} >
+                    at a 
+                    <Editable
+                      color={'blue.500'} 
+                      fontSize={'2xl'}
+                      fontFamily={'body'}
+                      fontWeight="semibold"
+                      as="h4" 
+                      textTransform={'uppercase'} 
+                      defaultValue={'$10M'}>
+                      <EditablePreview />
+                      <EditableInput />
+                    </Editable> 
+                    market capitalization
+                  </Text>
+
+              </Box>
+
+              <SimpleGrid
+                columns={2} 
+                minChildWidth='286px' 
+                spacing={3}
+                width="60%"
+                align="center"
+                justify="center"
+              >
+                  
+                {outputArr}
+
+              </SimpleGrid>
+
               <Box>
                   <Button id="publishRaise"
                     borderRadius="full" 
@@ -159,19 +223,6 @@ const RaiseMoney = () => {
                     Publish these NFTs to blockchain
                   </Button>
               </Box>
-
-              <SimpleGrid
-                columns={2} 
-                minChildWidth='286px' 
-                spacing={3}
-                width="60%"
-                align="center"
-                justify="center"
-              >
-                  
-                {outputArr}
-
-              </SimpleGrid>
 
             </VStack>
               

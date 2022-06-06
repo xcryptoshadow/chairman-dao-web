@@ -120,7 +120,7 @@ function onClick(buyURL){
           This is your {props.DAOName} NFT Airdrop Invitation
         </Text>
 
-            <Stack>    
+            <Stack mb={4}>    
               <Text
                   color={'gray.500'} fontSize={'sm'} 
               >
@@ -129,21 +129,6 @@ function onClick(buyURL){
 
               </Text>
             </Stack>
-
-            
-              <Center>
-              <Text
-                  color={'red.600'} 
-                  fontSize={'2xl'} 
-                  fontWeight={1200}
-                  textTransform={'uppercase'} 
-              >
-                  {props.priceText}
-              </Text>
-              </Center>
-              
-            
-          
           
                 <Button
                     /* flex={1} */

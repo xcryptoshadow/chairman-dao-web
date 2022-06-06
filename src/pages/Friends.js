@@ -4,6 +4,7 @@ import AppContext from '../components/appContext';
 import { useSearchParams } from "react-router-dom";
 import axios from 'axios';
 import { Buffer } from "buffer";
+import {retrieveDiscordOAuthIdentity} from '../utils/discord';
 
 
 
@@ -34,8 +35,6 @@ import Usercard from '../components/usercard';
 import FetchInterstitial from '../components/fetchInterstitial';
 import { findAllByDisplayValue } from '@testing-library/react';
 
-const discordClientID = '961849988667834420';
-const discordClientSecret = 'o4FgeH_ju7weYINVQNu9M2BGL8nCeX3p';
 const discordRedirectURI = 'http://localhost:3000/friends';
 
 var bearerToken = '';
@@ -47,7 +46,7 @@ const Friends = () => {
 
   //acquire GET URL Payload from OAuth Redirect
   const [searchParams, setSearchParams] = useSearchParams();
-  let codeObj = searchParams.get("code");
+  let singleUseCode = searchParams.get("code");
   let contextData = searchParams.get('state');
 
   //TODO: retrieve Inviter and DAO Information from Moralis DB
@@ -65,47 +64,14 @@ const Friends = () => {
   var stateObj = JSON.parse(text);
 
   console.log(`state variable is ${JSON.stringify(stateObj)}`);
-
-  var tokenType = 'Bearer';
-
-  var retStr = `Code: ${codeObj}`;
   
   
   useEffect(() => {
 
       async function fetchData(){
         //exchange OAuth Code for Short TTL access token
-        var tokenURL = 'https://discord.com/api/oauth2/token';
-
-        var payload = new URLSearchParams();
-        payload.append("client_id", discordClientID);
-        payload.append("client_secret", discordClientSecret);
-        payload.append("grant_type", 'authorization_code');
-        payload.append("code", codeObj);
-        payload.append('redirect_uri', discordRedirectURI);
- 
-        var tokenOptions = {
-          headers:{
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
-        }
-
-        //assign OAuth Token
-        const tokenResponse = await axios.post(tokenURL, payload, tokenOptions);
-        bearerToken = tokenResponse.data.access_token;
- 
-        //now that we have an OAuth Token, get User Graph Info
-        var userURL = 'https://discord.com/api/users/@me';
-        var reqOptions = {
-          headers:{
-            'authorization': `Bearer ${bearerToken}`
-          }
-        }
-
-        const responseObj = await axios.get(userURL, reqOptions);
-
-        //assign response data
-        var discordResponse = responseObj.data;
+        var discordResponse = 
+          await retrieveDiscordOAuthIdentity(singleUseCode, discordRedirectURI);
         console.log(discordResponse);
 
         //parse response data appropriately
@@ -200,7 +166,7 @@ const Friends = () => {
                   <Stack direction={'row'}>
                     <Heading
                         fontWeight={600}
-                        fontSize={{ base: '2xl', sm: '3xl', md: '3xl' }}
+                        fontSize={{ base: 'lg', sm: 'lg', md: 'lg' }}
                         lineHeight={'110%'}
                     >
                         <Text as={'span'} color={'red.800'}>

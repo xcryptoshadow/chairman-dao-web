@@ -17,6 +17,7 @@
     "discord.js": "^13.7.0",
     "formik": "^2.2.9",
     "framer-motion": "^6.3.3",
+    "moralis": "^1.8.0",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.1.0",
     "react-dom": "^18.1.0",

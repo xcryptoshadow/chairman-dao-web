@@ -31,7 +31,7 @@ import MemberPaid from './pages/MemberPaid';
 import InvestMoney from './pages/investMoney';
 import CreateDao from './pages/CreateDao';
 import Listing from './pages/Listing';
-import Login from './pages/Login';
+import ClaimInviteLogin from './pages/ClaimInviteLogin';
 import Friends from './pages/Friends';
 
 // components
@@ -85,7 +85,7 @@ function App() {
           <Route path="/member_paid" element={<MemberPaid />} />
           <Route path="/listing" element={<Listing />} />
           <Route path="/create_dao" element={<CreateDao />} />
-          <Route path="/auth" element={<Login />} />
+          <Route path="/claim_invite" element={<ClaimInviteLogin />} />
           <Route path="/friends" element={<Friends />} />
         </Routes>
       </BrowserRouter>
