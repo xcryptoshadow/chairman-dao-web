@@ -18,6 +18,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
+import { MoralisProvider } from 'react-moralis';
 
 // pages
 import Home from './pages/Home';
@@ -40,7 +41,8 @@ import Generate from './pages/Generate';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-
+//utilities
+import MoralisConfig from './utils/moralis';
 
 function App() {
 
@@ -70,7 +72,10 @@ function App() {
   return (
     <AppContext.Provider value={userSettings}>
 
-    
+    <MoralisProvider 
+      appId={MoralisConfig.getAppID}
+      serverUrl={MoralisConfig.getServerURL}
+      >
 
     <ChakraProvider theme={theme}>
       <Header />
@@ -96,7 +101,7 @@ function App() {
 
       <Footer />
     </ChakraProvider>
-
+    </MoralisProvider>
 
     </AppContext.Provider>
   );
