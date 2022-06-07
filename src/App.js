@@ -73,10 +73,9 @@ function App() {
     <AppContext.Provider value={userSettings}>
 
     <MoralisProvider 
-      appId={MoralisConfig.getAppID}
-      serverUrl={MoralisConfig.getServerURL}
+      appId={MoralisConfig.getAppID()}
+      serverUrl={MoralisConfig.getServerURL()}
       >
-
     <ChakraProvider theme={theme}>
       <Header />
 

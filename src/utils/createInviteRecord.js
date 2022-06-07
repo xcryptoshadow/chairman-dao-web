@@ -68,7 +68,41 @@ const fetchInviteRecord = async(inviteID) => {
     );
 }
 
+const getDAORoles = async(discordID) => {
+    const creds = ConfigFactory.getServerCredentials(ConfigFactory.MASTER_DB_ID);
+    var serverUrl = creds.moralisServerURL;
+    var appId = creds.moralisAppID;
+    var masterKey = creds.moralisMasterKey;
+
+    await Moralis.start({ serverUrl, appId, masterKey });
+
+    //query DB for all DAOs user is a member of
+
+    var testData = [
+        {
+            guildID: 213902,
+            DAOName: 'Chad DAO',
+            memberAccess: 'Member',
+            canInvite: true,
+            DAODescription: `The place for all the world's Chads.  Join now`,
+            DAOLogoURL: 'https://c.tenor.com/qOI3iBvktYcAAAAd/giga-chad.gif'
+        },
+        {
+            guildID: 98454,
+            DAOName: 'Poke DAO',
+            memberAccess: 'Member',
+            canInvite: true,
+            DAODescription: `Raising money to buy all ultra rare Pokemon Cards in the world`,
+            DAOLogoURL: 'https://c.tenor.com/KKdd0koqb0YAAAAd/pikachu-pokemon.gif'
+        }
+    ];
+
+    //return result
+    return testData;
+}
+
 module.exports = {
     createInviteRecord, 
-    fetchInviteRecord
+    fetchInviteRecord,
+    getDAORoles
 }

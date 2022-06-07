@@ -2,6 +2,7 @@ import { ColorModeScript } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './App';
+import {MoralisProvider} from 'react-moralis'
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
@@ -12,7 +13,7 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
   <StrictMode>
-    <ColorModeScript />
+    <ColorModeScript />    
     <App />
   </StrictMode>
 );
