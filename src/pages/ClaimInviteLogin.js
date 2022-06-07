@@ -56,8 +56,12 @@ const ClaimInviteLogin = () => {
             const inviteDataObj = await DatastoreFactory.fetchInviteRecord(inviteID);
 
             //draw pagekdjs
-            console.log(JSON.stringify(inviteDataObj));
-            setData({loading: false, result:inviteDataObj});
+            const renderObj = {
+                inviteID: inviteID,
+                inviteData: inviteDataObj
+            }
+            console.log(JSON.stringify(renderObj));
+            setData({loading: false, result:renderObj});
         }
 
         try{
@@ -89,7 +93,7 @@ const ClaimInviteLogin = () => {
                 fontWeight={600}
                 fontSize={{ base: 'xl', sm: 'xl', md: 'xl' }}
                 lineHeight={'110%'}>
-                {data.result.inviterName} has invited you to join: {' '}
+                {data.result.inviteData.inviterName} has invited you to join: {' '}
             </Heading>
             <Heading
                 fontWeight={600}
@@ -97,7 +101,7 @@ const ClaimInviteLogin = () => {
                 lineHeight={'110%'}
             >
                 <Text as={'span'} color={'red.800'}>
-                    {data.result.DAOName} 
+                    {data.result.inviteData.DAOName} 
                 </Text>
             </Heading>
             
@@ -106,12 +110,13 @@ const ClaimInviteLogin = () => {
                 <Stack>
                     <InviteCard 
                         redirectURL={discordOAuthURL}
-                        inviterName={data.result.inviterName}
-                        inviterAvatarURL={data.result.inviterAvatarURL}
-                        inviterRole={data.result.inviterRole}
-                        inviteGeneratorID={data.result.inviterDiscordID}
-                        quote={data.result.inviterMessage}
-                        guildID={data.result.guildID}
+                        inviteID={data.result.inviteID}
+                        inviterName={data.result.inviteData.inviterName}
+                        inviterAvatarURL={data.result.inviteData.inviterAvatarURL}
+                        inviterRole={data.result.inviteData.inviterRole}
+                        inviteGeneratorID={data.result.inviteData.inviterDiscordID}
+                        quote={data.result.inviteData.inviterMessage}
+                        guildID={data.result.inviteData.guildID}
                         action={'inviteUsersToDAO'}
                     />
                 </Stack>
