@@ -41,8 +41,8 @@ function App() {
     <ThirdwebProvider desiredChainId={ChainId.Rinkeby}>
       <ChakraProvider theme={theme}>
         <MoralisProvider
-          serverUrl="https://jvvsie0bvlbh.usemoralis.com:2053/server"
-          appId="QmJ4dj0JW01SHmtNAbrV6FlXO1KjW3XSkXJbgtQp"
+          serverUrl={process.env.MORALIS_SERVER_URL}
+          appId={process.env.MORALIS_APP_ID}
         >
           <Header />
 
