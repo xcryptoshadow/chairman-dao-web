@@ -154,12 +154,6 @@ const Home = () => {
                 <Text style={{ fontWeight: '500', fontSize: 18 }}>
                   Looks like you're new here
                 </Text>
-                <Text style={{ fontWeight: '500', fontSize: 18 }}>
-                  MORALIS_SERVER_URL: {process.env.REACT_APP_MORALIS_SERVER_URL}
-                </Text>
-                <Text style={{ fontWeight: '500', fontSize: 18 }}>
-                  MORALIS_APP_ID: {process.env.REACT_APP_MORALIS_APP_ID}
-                </Text>
               </Box>
 
               <Box align="center" justify="center" mb={8}>
