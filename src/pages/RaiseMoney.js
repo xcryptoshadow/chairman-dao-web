@@ -165,39 +165,59 @@ const RaiseMoney = () => {
     navigate(`/listing/${guildID}`);
   };
 
-  const handleNftDataChange = (value, keyChanged) => {
+  const handleNftDataChange = async (value, keyChanged) => {
     if (keyChanged === 'money') {
       let oldMoney = parseFloat(money);
       let newMoney = parseFloat(value);
 
       setMoney(value);
 
-      let goldMoneyChange =
-        ((newMoney - oldMoney) * 0.25) / goldData.quantityMinted;
+      let newNftTotalPrice = parseFloat(newMoney) / 0.25;
+      let oldNftTotalPrice = parseFloat(oldMoney) / 0.25;
+      let newQuantityMultiplier = parseFloat(
+        newNftTotalPrice / oldNftTotalPrice
+      );
+
       let newGoldData = goldData;
-      newGoldData['price'] =
-        parseFloat(goldData.price) + parseFloat(goldMoneyChange);
-      setGoldData(newGoldData);
+      let newGoldQuantity = parseInt(
+        Math.round(
+          parseFloat(newGoldData['quantityMinted']) * newQuantityMultiplier
+        )
+      );
+      newGoldData['quantityMinted'] = newGoldQuantity;
 
-      let silverMoneyChange =
-        ((newMoney - oldMoney) * 0.25) / silverData.quantityMinted;
       let newSilverData = silverData;
-      newSilverData['price'] =
-        parseFloat(silverData.price) + parseFloat(silverMoneyChange);
-      setSilverData(newSilverData);
+      let newSilverQuantity = parseInt(
+        Math.round(
+          parseFloat(newSilverData['quantityMinted']) * newQuantityMultiplier
+        )
+      );
+      newSilverData['quantityMinted'] = newSilverQuantity;
 
-      let bronzeMoneyChange =
-        ((newMoney - oldMoney) * 0.25) / bronzeData.quantityMinted;
       let newBronzeData = bronzeData;
-      newBronzeData['price'] =
-        parseFloat(bronzeData.price) + parseFloat(bronzeMoneyChange);
-      setBronzeData(newBronzeData);
+      let newBronzeQuantity = parseInt(
+        Math.round(
+          parseFloat(newBronzeData['quantityMinted']) * newQuantityMultiplier
+        )
+      );
+      newBronzeData['quantityMinted'] = newBronzeQuantity;
 
-      let sapphireMoneyChange =
-        ((newMoney - oldMoney) * 0.25) / sapphireData.quantityMinted;
       let newSapphireData = sapphireData;
-      newSapphireData['price'] =
-        parseFloat(sapphireData.price) + parseFloat(sapphireMoneyChange);
+      let newSapphireQuantity = parseInt(
+        Math.round(
+          parseFloat(newSapphireData['quantityMinted']) * newQuantityMultiplier
+        )
+      );
+      newSapphireData['quantityMinted'] = newSapphireQuantity;
+
+      console.log('newGoldQuantity', newGoldQuantity);
+      console.log('newSilverQuantity', newSilverQuantity);
+      console.log('newBronzeQuantity', newBronzeQuantity);
+      console.log('newSapphireQuantity', newSapphireQuantity);
+
+      setGoldData(newGoldData);
+      setSilverData(newSilverData);
+      setBronzeData(newBronzeData);
       setSapphireData(newSapphireData);
     }
   };
