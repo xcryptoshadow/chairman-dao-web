@@ -24,10 +24,14 @@ import {
   Heading,
   Select,
   PinInputDescendantsProvider,
+  useClipboard,
+  Flex,
+  Input,
+  Editable, EditableInput, EditablePreview
   
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import Usercard from '../components/usercard';
+import GenerateInviteForm from '../components/generateInviteForm';
 import FetchInterstitial from '../components/fetchInterstitial';
 import { findAllByDisplayValue } from '@testing-library/react';
 //import { useMoralis } from 'react-moralis';
@@ -44,8 +48,7 @@ const Generate = () => {
 
     //create data state object to retrieve Discord API Information
     const [data, setData] = useState({loading: true, userObj:{}});
-
-
+    
     //acquire GET URL Payload from OAuth Redirect
     const [searchParams, setSearchParams] = useSearchParams();
     let singleUseCode = searchParams.get("code");
@@ -72,6 +75,7 @@ const Generate = () => {
 
           var selectOptions=[];
           for(var i = 0; i < DAOs.length; i++){
+            //TODO: implement role related invite capabilities
             selectOptions.push(
               <option value={DAOs[i].guildID}>
                 {DAOs[i].DAOName}
@@ -122,13 +126,32 @@ const Generate = () => {
                 lineHeight={'110%'}>
                 Generate Invite Link
             </Heading>
-            
+        
+           
+
         {data.loading ? <Stack direction={'row'}><FetchInterstitial /></Stack>:
           <Fragment>
-              <Text>{JSON.stringify(data.userObj)}</Text>
-              <Select id="DAOSelect" placeholder="Select DAO">
-                {data.userObj.selectOptions}
-              </Select>
+
+              <Flex m={4}>
+                <Select id="DAOSelect" placeholder="Choose DAO">
+                  {data.userObj.selectOptions}
+                </Select>
+              </Flex>
+              <GenerateInviteForm
+                id="DAOInviteForm" 
+                selectOptions={data.userObj.selectOptions}
+                inviterAvatarURL={data.userObj.inviterAvatarURL}
+                inviterName={data.userObj.inviterName}
+                inviterID={data.userObj.inviterID}
+                DAOName={data.userObj.DAOs[0].DAOName}
+                DAOGuildID={data.userObj.DAOs[0].guildID}
+                DAOLogoURL={data.userObj.DAOs[0].DAOLogoURL}
+                inviterRole={'DAO Creator'}
+                quote={data.userObj.DAOs[0].DAODescription}
+                
+
+              />
+                 
           </Fragment>
             
         }      

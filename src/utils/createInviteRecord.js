@@ -2,11 +2,11 @@
 const Moralis = require("moralis/node");
 const ConfigFactory = require('./moralis');
 
-const INVITEBASEURI = 'http://localhost:3000/invite/';
+const INVITEBASEURI = 'http://localhost:3000/claim_invite';
 
 /* Create new user and insert record into the DB */
-const createInviteRecord = async (guildID,
-        inviterName, inviterAvatarURL, inviterDiscordID, messageTxt, roleTxt) => {
+const createInviteRecord = async (guildID, DAOName,
+        inviterName, inviterAvatarURL, inviterDiscordID, messageTxt, roleTxt, DAOLogoURL) => {
 
     //TODO - assert that arguments exist
     const creds = ConfigFactory.getServerCredentials(ConfigFactory.MASTER_DB_ID);
@@ -16,32 +16,25 @@ const createInviteRecord = async (guildID,
 
     await Moralis.start({ serverUrl, appId, masterKey });
 
-    const InviteRecord = Moralis.Object.extend("InviteRecord");
+    const InviteRecord = Moralis.Object.extend("InviteRecording");
     const newInvite = new InviteRecord();
-
+    console.log(`Guild ID is ${guildID}`);
     newInvite.set("guildID", guildID);
+    newInvite.set("DAOName", DAOName);
     newInvite.set("inviterName", inviterName);
     newInvite.set("inviterAvatarURL", inviterAvatarURL);
     newInvite.set("inviterDiscordID", inviterDiscordID);
     newInvite.set("messageTxt", messageTxt);
     newInvite.set("roleTxt", roleTxt);
+    newInvite.set("DAOLogoURL", DAOLogoURL);
 
-    newInvite.save().then(
-        (newInvite) => {
-            var inviteID = newInvite.id;
-            console.log(
-                `Created new invite record with id ${newInvite.id}`);
+    console.log(`Object Guild ID is ${newInvite.get('guildID')}`);
 
-            var inviteLink = `${INVITEBASEURI}${inviteID}`;
-            
-            return inviteLink;
-        },
-        (error) => {
-            console.err(`Failed to save invite ${error.message}`);
-            return error;
-        }
+    var inviteObj = await newInvite.save();
+    console.log(`Created new invite record with id ${inviteObj.id}`);
+    var inviteLink = `${INVITEBASEURI}?inviteID=${inviteObj.id}`;
 
-    );
+    return inviteLink;
 };
 
 const fetchInviteRecord = async(inviteID) => {
@@ -54,10 +47,28 @@ const fetchInviteRecord = async(inviteID) => {
 
     await Moralis.start({ serverUrl, appId, masterKey });
 
-    const InviteRecord = Moralis.Object.extend("InviteRecord");
+    const InviteRecord = Moralis.Object.extend("InviteRecording");
     const query = new Moralis.Query(InviteRecord);
+    var inviteObj = await query.get(inviteID);
+
+    var inviteData = {
+        guildID: inviteObj.get("guildID"),
+        DAOName: inviteObj.get("DAOName"),
+        inviterName: inviteObj.get("inviterName"),
+        inviterAvatarURL: inviteObj.get("inviterAvatarURL"),
+        inviterDiscordID: inviteObj.get("inviterDiscordID"),
+        inviterMessage: inviteObj.get("messageTxt"),
+        inviterRole: inviteObj.get("roleTxt"),
+        DAOLogoURL: inviteObj.get('DAOLogoURL')
+    }
+
+    return inviteData;
+
+    /*
     query.get(inviteID).then(
         (inviteObj) => {
+            console.log("got result - returning object");
+            console.log(JSON.stringify(inviteObj));
             return inviteObj;
         },
         (error) => {
@@ -65,7 +76,7 @@ const fetchInviteRecord = async(inviteID) => {
                 `Record retrieval failed with error ${error.message}`);
         }
     
-    );
+    );*/
 }
 
 const getDAORoles = async(discordID) => {

@@ -91,7 +91,7 @@ function App() {
           <Route path="/member_paid" element={<MemberPaid />} />
           <Route path="/listing" element={<Listing />} />
           <Route path="/create_dao" element={<CreateDao />} />
-          <Route path="/claim_invite" element={<ClaimInviteLogin />} />
+          <Route path="/claim_invite/" element={<ClaimInviteLogin />} />
           <Route path="/create_invite" element={<GenerateInviteLogin />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/generate" element={<Generate />} />

@@ -18,13 +18,20 @@ import {
   Button,
   Center,
   Flex,
-  Image
+  Image,
+  Input,
+  useClipboard,
+  Select
 } from '@chakra-ui/react';
 
-import DiscordLogin from './discordLogin';
+import DatastoreFactory from '../utils/createInviteRecord';
 
-function createInvite(){
-    alert("creating invite");
+async function createInvite(dObj){
+
+    const link = await DatastoreFactory.createInviteRecord(dObj.guildID,
+      dObj.DAOName, dObj.inviterName, dObj.inviterAvatarURL, dObj.inviterDiscordID, 
+      dObj.quote, dObj.inviterRole, dObj.DAOLogoURL);
+    alert(link);
 }
 
 function GenerateInviteForm(props){
@@ -34,9 +41,28 @@ function GenerateInviteForm(props){
     let mainText = useColorModeValue("gray.800", "white");
     let secondaryText = useColorModeValue("gray.400", "gray.400");
 
+    const [URLValue, setURLValue] = useState('Generate Link to Invite');
+    const { hasCopied, onCopy } = useClipboard(URLValue);
+    
+    const DAOObject = {
+      guildID: props.DAOGuildID,
+      DAOName: props.DAOName,
+      inviterName: props.inviterName,
+      inviterAvatarURL: props.inviterAvatarURL,
+      inviterDiscordID: props.inviterID,
+      inviterRole: props.inviterRole,
+      DAOLogoURL: props.DAOLogoURL,
+      quote: props.quote
+
+    }
+    console.log(`DAOObject is ${JSON.stringify(DAOObject)}`);
+
+    //TODO: fix state scope bug
+    const [DAOInviteObj, setDAOInviteObj] = useState({data:DAOObject});
 
     return (
         <Center py={12}>
+        
         <Flex
     
           role={'group'}
@@ -51,6 +77,9 @@ function GenerateInviteForm(props){
           alignItems='center'
           direction='column'>
           
+
+          
+
           <Box
                 rounded={'lg'}
                 mt={-12}
@@ -123,17 +152,6 @@ function GenerateInviteForm(props){
               </Text>
          
             </Flex>
-    
-            <Text
-              color={'red.500'}
-              textAlign='center'
-              fontSize='sm'
-              fontWeight='500'
-              p={4}
-              >
-              Login w/ Discord to receive your {props.DAOName} NFT Airdrop Invitation
-            </Text>
-    
                 <Stack>    
                   <Text
                       color={'gray.500'} fontSize={'sm'} 
@@ -145,19 +163,22 @@ function GenerateInviteForm(props){
                 </Stack>          
                   
           </Flex>
+          
+          
+
           <Button
                 /* flex={1} */
                 px={4}
                 py={4}
                 fontSize={'lg'}
                 rounded={'full'}
-                bg={props.color}
+                bg={'red.500'}
                 color={'white'}
                 boxShadow={
                 '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
                 }
                 _hover={{
-                bg: 'red.500',
+                bg: 'red.600',
                 }}
                 _focus={{
                 bg: 'red.600',
@@ -165,13 +186,23 @@ function GenerateInviteForm(props){
                 onClick={() => {
                     //Implement purchase modal and logic here.
 
-                    createInvite();
+                    createInvite(DAOObject);
                     
                   }
                 }
                 >
-                Buy {props.title} NFT
+                Generate {props.DAOName} Invite
             </Button>
+
+            <Flex m={4}  width={294}>
+              <Input id="GeneratedURLText" 
+                width={254}
+                value={URLValue} isReadOnly
+                placeholder='Generate Invite Link' />
+              <Button onClick={onCopy} ml={2}>
+                {hasCopied ? 'Copied' : 'Copy'}
+              </Button>
+            </Flex>
 
         </Flex>
     
