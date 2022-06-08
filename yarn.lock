@@ -3296,6 +3296,14 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
+"@xstate/react@^3.0.0":
+  "integrity" "sha512-KHSCfwtb8gZ7QH2luihvmKYI+0lcdHQOmGNRUxUEs4zVgaJCyd8csCEmwPsudpliLdUmyxX2pzUBojFkINpotw=="
+  "resolved" "https://registry.npmjs.org/@xstate/react/-/react-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "use-isomorphic-layout-effect" "^1.0.0"
+    "use-sync-external-store" "^1.0.0"
+
 "@xtuc/ieee754@^1.2.0":
   "integrity" "sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA=="
   "resolved" "https://registry.npmjs.org/@xtuc/ieee754/-/ieee754-1.2.0.tgz"
@@ -12732,6 +12740,11 @@
   "resolved" "https://registry.npmjs.org/use-immer/-/use-immer-0.6.0.tgz"
   "version" "0.6.0"
 
+"use-isomorphic-layout-effect@^1.0.0":
+  "integrity" "sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA=="
+  "resolved" "https://registry.npmjs.org/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.1.2.tgz"
+  "version" "1.1.2"
+
 "use-sidecar@^1.0.5", "use-sidecar@^1.1.2":
   "integrity" "sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw=="
   "resolved" "https://registry.npmjs.org/use-sidecar/-/use-sidecar-1.1.2.tgz"
@@ -12739,6 +12752,11 @@
   dependencies:
     "detect-node-es" "^1.1.0"
     "tslib" "^2.0.0"
+
+"use-sync-external-store@^1.0.0":
+  "integrity" "sha512-SEnieB2FPKEVne66NpXPd1Np4R1lTNKfjuy3XdIoPQKYBAFdzbzSZlSn1KJZUiihQLQC5Znot4SBz1EOTBwQAQ=="
+  "resolved" "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.1.0.tgz"
+  "version" "1.1.0"
 
 "use@^3.1.0":
   "integrity" "sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ=="
@@ -13335,6 +13353,11 @@
   "integrity" "sha1-Z/4HXFwk/vOfnWX197f+dRcZaPw="
   "resolved" "https://registry.npmjs.org/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz"
   "version" "1.8.0"
+
+"xstate@^4.31.0", "xstate@^4.32.1":
+  "integrity" "sha512-QYUd+3GkXZ8i6qdixnOn28bL3EvA++LONYL/EMWwKlFSh/hiLndJ8YTnz77FDs+JUXcwU7NZJg7qoezoRHc4GQ=="
+  "resolved" "https://registry.npmjs.org/xstate/-/xstate-4.32.1.tgz"
+  "version" "4.32.1"
 
 "xtend@^4.0.0", "xtend@~4.0.1":
   "integrity" "sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ=="

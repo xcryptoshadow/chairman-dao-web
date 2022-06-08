@@ -6,6 +6,8 @@ import axios from 'axios';
 import { Buffer } from "buffer";
 import {retrieveDiscordOAuthIdentity} from '../utils/discord';
 
+import { useMachine } from '@xstate/react';
+import { createMachine } from 'xstate';
 
 // chakra ui
 import {
@@ -43,6 +45,20 @@ import DatastoreFactory from '../utils/createInviteRecord';
 const discordRedirectURI = 'http://localhost:3000/generate';
 
 var bearerToken = '';
+
+
+const toggleMachine = createMachine({
+  id: 'toggle',
+  initial: 'inactive',
+  states: {
+    inactive: {
+      on: { TOGGLE: 'active' }
+    },
+    active: {
+      on: { TOGGLE: 'inactive' }
+    }
+  }
+});
 
 const Generate = () => {
 
@@ -133,7 +149,15 @@ const Generate = () => {
           <Fragment>
 
               <Flex m={4}>
-                <Select id="DAOSelect" placeholder="Choose DAO">
+                <Select 
+                  id="DAOSelect" 
+                  placeholder="Choose DAO"
+                  onChange={() => {
+                      
+                      alert("can't implement this event until DAO Creation Moralis DB works");
+                    }
+                  }
+                >
                   {data.userObj.selectOptions}
                 </Select>
               </Flex>

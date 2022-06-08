@@ -19,6 +19,8 @@ import {
   Avatar,
   Center,
   PinInputDescendantsProvider,
+  Flex,
+  useColorModeValue
   
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
@@ -42,14 +44,21 @@ const GenerateInviteLogin = () => {
         p={4}
         m={2}
         >
-            <VStack width="100%" p={4} space={4}>
-                <Stack>
-                    <DiscordLogin 
-                        redirectURL={discordOAuthURL}
-                        action={'generateInvite'}
-                    />
-                </Stack>
-            </VStack>
+            <Flex
+            role={'group'}
+            p={6}
+            maxW={'360px'}
+            w={'full'}
+            rounded={'lg'}
+            pos={'relative'}
+            zIndex={1}
+            alignItems='center'
+            direction='column'>
+                <DiscordLogin 
+                    redirectURL={discordOAuthURL}
+                    action={'generateInvite'}
+                />
+            </Flex>
         </Box>
     </Fragment>
 

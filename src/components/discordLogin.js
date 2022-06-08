@@ -32,6 +32,7 @@ const DiscordLogin = (props) => {
     const state = {
         guildID: props.guildID,
         inviteGenerator: props.inviteGeneratorID,
+        inviteID: props.inviteID,
         action: props.action
     }
     const stateURL = `&state=${Buffer.from(JSON.stringify(state)).toString('base64')}`

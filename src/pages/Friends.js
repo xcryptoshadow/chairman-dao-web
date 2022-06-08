@@ -35,6 +35,8 @@ import Usercard from '../components/usercard';
 import FetchInterstitial from '../components/fetchInterstitial';
 import { findAllByDisplayValue } from '@testing-library/react';
 
+import DatastoreFactory from '../utils/createInviteRecord';
+
 const discordRedirectURI = 'http://localhost:3000/friends';
 
 var bearerToken = '';
@@ -78,23 +80,26 @@ const Friends = () => {
         var inviteeAvatarURL = 
           `https://cdn.discordapp.com/avatars/${discordResponse.id}/${discordResponse.avatar}.png`;
 
+
+        var inviteData = await DatastoreFactory.fetchInviteRecord(stateObj.inviteID);
+
         //THIS IS THE FINAL DATA OBJECT THAT GETS PASSED TO THE UX
         var renderObj = {
           inviteeAvatarURL: inviteeAvatarURL,
           inviteeName: discordResponse.username,
-          DAOName: DAOName,
-          DAOGuildID: stateObj.guildID,
-          DAOLogoURL: DAOLogoURL,
+          DAOName: inviteData.DAOName,
+          DAOGuildID: inviteData.guildID,
+          DAOLogoURL: inviteData.DAOLogoURL,
           DAODescription: loremStr,
-          inviteGenerator: stateObj.inviteGenerator,
-          inviterName: inviterName,
-          inviterRole: inviterRole,
-          inviterAvatarURL: inviterAvatarURL,
+          inviteGenerator: inviteData.inviterDiscordID,
+          inviterName: inviteData.inviterName,
+          inviterRole: inviteData.inviterRole,
+          inviterAvatarURL: inviteData.inviterAvatarURL,
           title: 'Claim Invite',
           color: 'blue.500',
           titleColor: 'blue.600',
           priceText: `$0.00`,
-          quote: quote
+          quote: inviteData.inviterMessage
 
         }
 

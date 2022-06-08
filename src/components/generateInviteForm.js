@@ -32,6 +32,18 @@ async function createInvite(dObj){
       dObj.DAOName, dObj.inviterName, dObj.inviterAvatarURL, dObj.inviterDiscordID, 
       dObj.quote, dObj.inviterRole, dObj.DAOLogoURL);
     alert(link);
+
+    return link;
+}
+
+async function handleGenerateLink(DAOObject, setURLValue){
+
+  var link = await createInvite(DAOObject);
+  document.getElementById("GeneratedURLText")
+    .setAttribute("placeholder", link);
+
+  setURLValue(link);
+
 }
 
 function GenerateInviteForm(props){
@@ -41,7 +53,7 @@ function GenerateInviteForm(props){
     let mainText = useColorModeValue("gray.800", "white");
     let secondaryText = useColorModeValue("gray.400", "gray.400");
 
-    const [URLValue, setURLValue] = useState('Generate Link to Invite');
+    const [URLValue, setURLValue] = useState('Generated Link will appear here');
     const { hasCopied, onCopy } = useClipboard(URLValue);
     
     const DAOObject = {
@@ -183,11 +195,9 @@ function GenerateInviteForm(props){
                 _focus={{
                 bg: 'red.600',
                 }}
-                onClick={() => {
+                onClick={() =>  {
                     //Implement purchase modal and logic here.
-
-                    createInvite(DAOObject);
-                    
+                    handleGenerateLink(DAOObject, setURLValue);  
                   }
                 }
                 >
@@ -198,7 +208,7 @@ function GenerateInviteForm(props){
               <Input id="GeneratedURLText" 
                 width={254}
                 value={URLValue} isReadOnly
-                placeholder='Generate Invite Link' />
+                placeholder='Generated Link will appear here' />
               <Button onClick={onCopy} ml={2}>
                 {hasCopied ? 'Copied' : 'Copy'}
               </Button>

@@ -142,6 +142,7 @@ function InviteCard(props){
                   <DiscordLogin 
                         redirectURL={props.redirectURL}
                         inviteGeneratorID={props.inviteGeneratorID}
+                        inviteID={props.inviteID}
                         guildID={props.guildID}
                         action={'inviteUsersToDAO'}
                  />
