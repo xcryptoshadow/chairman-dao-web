@@ -21,32 +21,38 @@ import {
   Image,
   Input,
   useClipboard,
-  Select
+  Select,
+  ToastProvider,
+  useToast
 } from '@chakra-ui/react';
 
 import DatastoreFactory from '../utils/createInviteRecord';
 
-async function createInvite(dObj){
 
-    const link = await DatastoreFactory.createInviteRecord(dObj.guildID,
-      dObj.DAOName, dObj.inviterName, dObj.inviterAvatarURL, dObj.inviterDiscordID, 
-      dObj.quote, dObj.inviterRole, dObj.DAOLogoURL);
-    alert(link);
+async function handleGenerateLink(dObj, setURLValue, toast){
 
-    return link;
-}
+  const link = await DatastoreFactory.createInviteRecord(dObj.guildID,
+    dObj.DAOName, dObj.inviterName, dObj.inviterAvatarURL, dObj.inviterDiscordID, 
+    dObj.quote, dObj.inviterRole, dObj.DAOLogoURL);
 
-async function handleGenerateLink(DAOObject, setURLValue){
-
-  var link = await createInvite(DAOObject);
   document.getElementById("GeneratedURLText")
     .setAttribute("placeholder", link);
 
   setURLValue(link);
 
+  toast({
+    title: 'Invite Link Created',
+    description: "We've created your invite link! Copy and paste it to your friends!",
+    status: 'success',
+    duration: 9000,
+    isClosable: true,
+  });
+
 }
 
 function GenerateInviteForm(props){
+
+    const toast = useToast();
 
     const inviteIconURL = 'https://cdn.iconscout.com/icon/free/png-256/invite-a-friend-1817222-1538092.png';
     let boxBg = useColorModeValue("white !important", "#111c44 !important");
@@ -180,7 +186,8 @@ function GenerateInviteForm(props){
 
           <Button
                 /* flex={1} */
-                px={4}
+                marginTop={4}
+                px={8}
                 py={4}
                 fontSize={'lg'}
                 rounded={'full'}
@@ -197,14 +204,14 @@ function GenerateInviteForm(props){
                 }}
                 onClick={() =>  {
                     //Implement purchase modal and logic here.
-                    handleGenerateLink(DAOObject, setURLValue);  
+                    handleGenerateLink(DAOObject, setURLValue, toast);  
                   }
                 }
                 >
                 Generate {props.DAOName} Invite
             </Button>
 
-            <Flex m={4}  width={294}>
+            <Flex marginTop={16}  width={294}>
               <Input id="GeneratedURLText" 
                 width={254}
                 value={URLValue} isReadOnly
