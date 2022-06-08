@@ -214,6 +214,7 @@ function GenerateInviteForm(props){
             <Flex marginTop={16}  width={294}>
               <Input id="GeneratedURLText" 
                 width={254}
+                fontSize={'xs'}
                 value={URLValue} isReadOnly
                 placeholder='Generated Link will appear here' />
               <Button onClick={onCopy} ml={2}>
