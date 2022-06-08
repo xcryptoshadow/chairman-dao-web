@@ -85,13 +85,9 @@ const NFTListing = props => {
 
   const handleBuy = async () => {
     setLoading(true);
-    const response = await marketplace.buyoutListing(
-      parseInt(props.tokenID),
-      1
-    );
-    console.log('RESPONSE: ', response);
+    window.open(props.buyURL);
     setLoading(false);
-    console.log('buyout');
+    return null;
   };
 
   return (
@@ -241,7 +237,6 @@ const NFTListing = props => {
 
                 handleBuy();
               }}
-              disabled={address ? false : true}
             >
               <span>Buy {props.title}</span>
             </Button>

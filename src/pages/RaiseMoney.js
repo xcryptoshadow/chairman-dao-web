@@ -45,6 +45,7 @@ import {
   Editable,
   EditablePreview,
   EditableTextarea,
+  Progress,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
@@ -157,8 +158,8 @@ const RaiseMoney = () => {
 
     //submit
     setLoading(true);
-    const response = await axios.post(
-      `http://localhost:3000/v1/dao/mintNftCollections/?payload=${payload}`
+    await axios.post(
+      `http://localhost:3001/v1/dao/mintNftCollections/?payload=${payload}`
     );
     setLoading(false);
 

@@ -49,7 +49,6 @@ import {
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
 import NFTListing from '../components/NFTListing';
-import ConnectMetamaskButton from '../components/ConnectMetamaskButton';
 
 const MODALTITLE = 'ModalTitle';
 const URLINPUTID = 'URLInput';
@@ -79,7 +78,7 @@ const Listing = () => {
     const fetchData = async () => {
       setLoading(true);
       const response = await axios.post(
-        'http://localhost:3000/v1/dao/getNftContracts?guildID=952747397426065418'
+        'http://localhost:3001/v1/dao/getNftContracts?guildID=952747397426065418'
       );
       setLoading(false);
       console.log(response.data);
@@ -177,10 +176,6 @@ const Listing = () => {
                 </Text>
               </Box>
 
-              <Box mb={4}>
-                <ConnectMetamaskButton />
-              </Box>
-
               <SimpleGrid
                 columns={2}
                 minChildWidth="286px"
@@ -245,38 +240,6 @@ const Listing = () => {
                   marketplaceAddress={sapphireNft.marketplaceAddress}
                   tokenID={sapphireNft.tokenID}
                 />
-                {/* <div>
-              <Iframe
-                url="https://gateway.ipfscdn.io/ipfs/QmfJu3spsSJot6givCK2VjwEgVHymc5RCXHqfG1W5WZyFX/marketplace.html?contract=0xdDe0c46426D663e474Fb688D6dd239f9dC81b672&chainId=4&listingId=0"
-                height="600px"
-                style="max-width:100%;"
-                frameborder="0"
-              />
-            </div>
-            <div>
-              <Iframe
-                url="https://gateway.ipfscdn.io/ipfs/QmfJu3spsSJot6givCK2VjwEgVHymc5RCXHqfG1W5WZyFX/marketplace.html?contract=0xdDe0c46426D663e474Fb688D6dd239f9dC81b672&chainId=4&listingId=1"
-                height="600px"
-                style="max-width:100%;"
-                frameborder="0"
-              />
-            </div>
-            <div>
-              <Iframe
-                url="https://gateway.ipfscdn.io/ipfs/QmfJu3spsSJot6givCK2VjwEgVHymc5RCXHqfG1W5WZyFX/marketplace.html?contract=0xdDe0c46426D663e474Fb688D6dd239f9dC81b672&chainId=4&listingId=2"
-                height="600px"
-                style="max-width:100%;"
-                frameborder="0"
-              />
-            </div>
-            <div>
-              <Iframe
-                url="https://gateway.ipfscdn.io/ipfs/QmfJu3spsSJot6givCK2VjwEgVHymc5RCXHqfG1W5WZyFX/marketplace.html?contract=0xdDe0c46426D663e474Fb688D6dd239f9dC81b672&chainId=4&listingId=3"
-                height="600px"
-                style="max-width:100%;"
-                frameborder="0"
-              />
-            </div> */}
               </SimpleGrid>
             </VStack>
           </Fragment>
