@@ -1,11 +1,11 @@
 /* import moralis */
-const Moralis = require('moralis/node');
+import Moralis from 'moralis/dist/moralis.min.js';
 const ConfigFactory = require('./moralis');
 
 const INVITEBASEURI = 'http://localhost:3000/claim_invite';
 
 /* Create new user and insert record into the DB */
-const createInviteRecord = async (
+export const createInviteRecord = async (
   guildID,
   DAOName,
   inviterName,
@@ -44,7 +44,7 @@ const createInviteRecord = async (
   return inviteLink;
 };
 
-const fetchInviteRecord = async inviteID => {
+export const fetchInviteRecord = async inviteID => {
   //TODO - assert that arguments exist
   const creds = ConfigFactory.getServerCredentials(ConfigFactory.MASTER_DB_ID);
   var serverUrl = creds.moralisServerURL;
@@ -85,7 +85,7 @@ const fetchInviteRecord = async inviteID => {
     );*/
 };
 
-const getDAORoles = async discordID => {
+export const getDAORoles = async discordID => {
   const creds = ConfigFactory.getServerCredentials(ConfigFactory.MASTER_DB_ID);
   var serverUrl = creds.moralisServerURL;
   var appId = creds.moralisAppID;
@@ -118,8 +118,8 @@ const getDAORoles = async discordID => {
   return testData;
 };
 
-module.exports = {
-  createInviteRecord,
-  fetchInviteRecord,
-  getDAORoles,
-};
+// module.exports = {
+//   createInviteRecord,
+//   //   fetchInviteRecord,
+//   //   getDAORoles,
+// };

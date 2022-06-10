@@ -40,7 +40,7 @@ import { findAllByDisplayValue } from '@testing-library/react';
 //import { useMoralis } from 'react-moralis';
 
 /* TODO: WHY DOES THIS LIBRARY FAIL?!? */
-import DatastoreFactory from '../utils/createInviteRecord';
+import { getDAORoles } from '../utils/createInviteRecord';
 
 const discordRedirectURI = 'http://localhost:3000/generate';
 
@@ -83,7 +83,7 @@ const Generate = () => {
       var inviteeAvatarURL = `https://cdn.discordapp.com/avatars/${discordResponse.id}/${discordResponse.avatar}.png`;
 
       //retrieve moralis DB records for this user
-      const DAOs = await DatastoreFactory.getDAORoles(discordResponse.id);
+      const DAOs = await getDAORoles(discordResponse.id);
 
       var selectOptions = [];
       for (var i = 0; i < DAOs.length; i++) {

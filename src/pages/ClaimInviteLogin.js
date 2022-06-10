@@ -25,7 +25,7 @@ import { ChevronRightIcon } from '@chakra-ui/icons';
 import { findAllByDisplayValue } from '@testing-library/react';
 import InviteCard from '../components/inviteCard';
 import FetchInterstitial from '../components/fetchInterstitial';
-import DatastoreFactory from '../utils/createInviteRecord';
+import { fetchInviteRecord } from '../utils/createInviteRecord';
 
 const ClaimInviteLogin = () => {
   //create data state object to retrieve Discord API Information
@@ -51,7 +51,7 @@ const ClaimInviteLogin = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const inviteDataObj = await DatastoreFactory.fetchInviteRecord(inviteID);
+      const inviteDataObj = await fetchInviteRecord(inviteID);
 
       //draw pagekdjs
       const renderObj = {

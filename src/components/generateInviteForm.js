@@ -26,10 +26,10 @@ import {
   useToast,
 } from '@chakra-ui/react';
 
-import DatastoreFactory from '../utils/createInviteRecord';
+import { createInviteRecord } from '../utils/createInviteRecord';
 
 async function handleGenerateLink(dObj, setURLValue, toast) {
-  const link = await DatastoreFactory.createInviteRecord(
+  const link = await createInviteRecord(
     dObj.guildID,
     dObj.DAOName,
     dObj.inviterName,

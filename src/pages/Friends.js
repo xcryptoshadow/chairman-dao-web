@@ -28,7 +28,7 @@ import Usercard from '../components/usercard';
 import FetchInterstitial from '../components/fetchInterstitial';
 import { findAllByDisplayValue } from '@testing-library/react';
 
-import DatastoreFactory from '../utils/createInviteRecord';
+import { fetchInviteRecord } from '../utils/createInviteRecord';
 
 const discordRedirectURI = 'http://localhost:3000/friends';
 
@@ -74,9 +74,7 @@ const Friends = () => {
       //parse response data appropriately
       var inviteeAvatarURL = `https://cdn.discordapp.com/avatars/${discordResponse.id}/${discordResponse.avatar}.png`;
 
-      var inviteData = await DatastoreFactory.fetchInviteRecord(
-        stateObj.inviteID
-      );
+      var inviteData = await fetchInviteRecord(stateObj.inviteID);
 
       //THIS IS THE FINAL DATA OBJECT THAT GETS PASSED TO THE UX
       var renderObj = {
