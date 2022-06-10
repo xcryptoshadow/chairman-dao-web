@@ -157,7 +157,7 @@ const Home = () => {
               </Box>
 
               <Box align="center" justify="center" mb={8}>
-                <Box style={{ marginBottom: 60 }}>
+                <Box style={{ marginBottom: 20 }}>
                   <Button
                     size="lg"
                     width="300px"
@@ -170,6 +170,21 @@ const Home = () => {
                     }}
                   >
                     <Text fontWeight="700">CREATE A DAO</Text>
+                  </Button>
+                </Box>
+                <Box style={{ marginBottom: 60 }}>
+                  <Button
+                    size="lg"
+                    width="300px"
+                    color="#A8151A"
+                    bg="white"
+                    borderRadius="50px"
+                    rightIcon={<ChevronRightIcon w={8} h={8} ml={6} />}
+                    onClick={() => {
+                      navigate('/wallet');
+                    }}
+                  >
+                    <Text fontWeight="700">Wallet</Text>
                   </Button>
                 </Box>
               </Box>
