@@ -1,6 +1,12 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import AppContext from '../components/appContext';
+import Iframe from 'react-iframe';
+
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+import jwtEncode from 'jwt-encode';
 
 // chakra ui
 import {
@@ -38,6 +44,7 @@ import {
   FormControl,
   FormLabel,
   useDisclosure,
+  Spinner,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
@@ -58,31 +65,47 @@ const buyURL =
   'https://opensea.io/assets/ethereum/0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270/311000172';
 
 const Listing = () => {
-  const DAOName = 'Chad DAO';
+  let { guildID } = useParams();
+  const [daoName, setDaoName] = useState('');
+  const [goldNft, setGoldNft] = useState({});
+  const [silverNft, setSilverNft] = useState({});
+  const [bronzeNft, setBronzeNft] = useState({});
+  const [sapphireNft, setSapphireNft] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    // declare the data fetching function
+    const fetchData = async () => {
+      setLoading(true);
+      const response = await axios.post(
+        'http://localhost:3001/v1/dao/getNftContracts?guildID=952747397426065418'
+      );
+      setLoading(false);
+      console.log(response.data);
+
+      setDaoName('Aviserver_DAO');
+      setGoldNft(response.data.goldResponse);
+      setSilverNft(response.data.silverResponse);
+      setBronzeNft(response.data.bronzeResponse);
+      setSapphireNft(response.data.sapphireResponse);
+    };
+
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
+  }, []);
 
   const testData = [
     {
-      imgURL: 'https://i.gifer.com/87ke.gif',
-      tier: 'Sapphire',
-      title: 'Melon Tier',
-      price: '36.00',
-      quantityMinted: '3000',
-      quantityRemaining: '2539',
-      color: 'blue.500',
-      titleColor: 'blue.600',
-      description: loremStr,
-      buyURL: buyURL,
-    },
-    {
-      imgURL:
-        'https://bestanimations.com/media/diamonds/300032029lips-jewerly-animated-gif.gif',
-      tier: 'Bronze',
-      title: 'Teeth Tier',
-      price: '100.00',
-      quantityMinted: '1000',
-      quantityRemaining: '539',
-      color: 'orange.600',
-      titleColor: 'orange.700',
+      imgURL: 'https://data.whicdn.com/images/132813216/original.gif',
+      tier: 'Gold',
+      title: 'Gatsby Tier',
+      price: '10,000.00',
+      quantityMinted: '10',
+      quantityRemaining: '4',
+      color: 'yellow.500',
+      titleColor: 'yellow.700',
       description: loremStr,
       buyURL: buyURL,
     },
@@ -100,14 +123,15 @@ const Listing = () => {
       buyURL: buyURL,
     },
     {
-      imgURL: 'https://data.whicdn.com/images/132813216/original.gif',
-      tier: 'Gold',
-      title: 'Gatsby Tier',
-      price: '10,000.00',
-      quantityMinted: '10',
-      quantityRemaining: '4',
-      color: 'yellow.500',
-      titleColor: 'yellow.700',
+      imgURL:
+        'https://bestanimations.com/media/diamonds/300032029lips-jewerly-animated-gif.gif',
+      tier: 'Bronze',
+      title: 'Teeth Tier',
+      price: '100.00',
+      quantityMinted: '1000',
+      quantityRemaining: '539',
+      color: 'orange.600',
+      titleColor: 'orange.700',
       description: loremStr,
       buyURL: buyURL,
     },
@@ -116,26 +140,7 @@ const Listing = () => {
   var outputArr = [];
   var tiersToSubmit = [];
 
-  for (var i = 0; i < testData.length; i++) {
-    outputArr.push(
-      <NFTListing
-        imgURL={testData[i].imgURL}
-        tier={testData[i].tier}
-        title={testData[i].title}
-        price={testData[i].price}
-        quantityMinted={testData[i].quantityMinted}
-        quantityRemaining={testData[i].quantityRemaining}
-        color={testData[i].color}
-        titleColor={testData[i].titleColor}
-        description={testData[i].description}
-        buyURL={testData[i].buyURL}
-      />
-    );
-
-    tiersToSubmit.push(testData[i].tier);
-  }
-
-  var titleStr = `Purchase ${DAOName} NFTs`;
+  var titleStr = `Purchase ${daoName} NFTs`;
 
   return (
     <Fragment>
@@ -148,24 +153,97 @@ const Listing = () => {
         p={4}
         m={2}
       >
-        <VStack width="100%" space={4}>
-          <Box mb={4}>
-            <Text fontSize="2xl" style={{ fontWeight: '700' }}>
-              {titleStr}
-            </Text>
-          </Box>
+        {loading ? (
+          <Fragment>
+            <Flex
+              flexDirection="column"
+              justifyContent={'center'}
+              alignItems={'center'}
+              minH="59.5vh"
+            >
+              <Box>
+                <Spinner size="xl" />
+              </Box>
+              <Box>Loading...</Box>
+            </Flex>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <VStack width="100%" space={4}>
+              <Box mb={4}>
+                <Text fontSize="2xl" style={{ fontWeight: '700' }}>
+                  {titleStr}
+                </Text>
+              </Box>
 
-          <SimpleGrid
-            columns={2}
-            minChildWidth="286px"
-            spacing={3}
-            width="60%"
-            align="center"
-            justify="center"
-          >
-            {outputArr}
-          </SimpleGrid>
-        </VStack>
+              <SimpleGrid
+                columns={2}
+                minChildWidth="286px"
+                spacing={3}
+                width="60%"
+                align="center"
+                justify="center"
+              >
+                <NFTListing
+                  imgURL={goldNft.imageUrl}
+                  tier={'Gold'}
+                  title={goldNft.name}
+                  price={goldNft.price}
+                  quantityMinted={goldNft.supply}
+                  quantityRemaining={goldNft.supply}
+                  color={testData[0].color}
+                  titleColor={testData[0].titleColor}
+                  description={goldNft.description}
+                  buyURL={`https://testnets.opensea.io/assets/rinkeby/${goldNft.contractAddress}/${goldNft.tokenID}`}
+                  marketplaceAddress={goldNft.marketplaceAddress}
+                  tokenID={goldNft.tokenID}
+                />
+                <NFTListing
+                  imgURL={silverNft.imageUrl}
+                  tier={'Silver'}
+                  title={silverNft.name}
+                  price={silverNft.price}
+                  quantityMinted={silverNft.supply}
+                  quantityRemaining={silverNft.supply}
+                  color={testData[1].color}
+                  titleColor={testData[1].titleColor}
+                  description={silverNft.description}
+                  buyURL={`https://testnets.opensea.io/assets/rinkeby/${silverNft.contractAddress}/${silverNft.tokenID}`}
+                  marketplaceAddress={silverNft.marketplaceAddress}
+                  tokenID={silverNft.tokenID}
+                />
+                <NFTListing
+                  imgURL={bronzeNft.imageUrl}
+                  tier={'Bronze'}
+                  title={bronzeNft.name}
+                  price={bronzeNft.price}
+                  quantityMinted={bronzeNft.supply}
+                  quantityRemaining={bronzeNft.supply}
+                  color={testData[2].color}
+                  titleColor={testData[2].titleColor}
+                  description={bronzeNft.description}
+                  buyURL={`https://testnets.opensea.io/assets/rinkeby/${bronzeNft.contractAddress}/${bronzeNft.tokenID}`}
+                  marketplaceAddress={bronzeNft.marketplaceAddress}
+                  tokenID={bronzeNft.tokenID}
+                />
+                <NFTListing
+                  imgURL={sapphireNft.imageUrl}
+                  tier={'Bronze'}
+                  title={sapphireNft.name}
+                  price={sapphireNft.price}
+                  quantityMinted={sapphireNft.supply}
+                  quantityRemaining={sapphireNft.supply}
+                  color={'blue.200'}
+                  titleColor={'blue.500'}
+                  description={sapphireNft.description}
+                  buyURL={`https://testnets.opensea.io/assets/rinkeby/${sapphireNft.contractAddress}/${sapphireNft.tokenID}`}
+                  marketplaceAddress={sapphireNft.marketplaceAddress}
+                  tokenID={sapphireNft.tokenID}
+                />
+              </SimpleGrid>
+            </VStack>
+          </Fragment>
+        )}
       </Box>
     </Fragment>
   );

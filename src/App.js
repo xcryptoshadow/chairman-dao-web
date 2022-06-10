@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { MoralisProvider } from 'react-moralis';
+import {} from '@thirdweb-dev/react';
 import AppContext from './components/appContext';
 import { ModalProvider } from './components/modalContext';
 
@@ -18,7 +20,6 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { MoralisProvider } from 'react-moralis';
 
 // pages
 import Home from './pages/Home';
