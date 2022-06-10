@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MoralisProvider } from 'react-moralis';
-import {} from '@thirdweb-dev/react';
+import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
 import AppContext from './components/appContext';
 import { ModalProvider } from './components/modalContext';
 
