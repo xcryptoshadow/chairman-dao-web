@@ -1,6 +1,9 @@
 import { useAddress, useDisconnect, useMetamask } from '@thirdweb-dev/react';
 
-const ConnectMetamaskButtonComponent = () => {
+// chakra ui
+import { Button } from '@chakra-ui/react';
+
+const ConnectMetamaskButton = () => {
   const connectWithMetamask = useMetamask();
   const address = useAddress();
   return (
@@ -8,10 +11,10 @@ const ConnectMetamaskButtonComponent = () => {
       {address ? (
         <h4>Connected as {address}</h4>
       ) : (
-        <button onClick={connectWithMetamask}>Connect Metamask Wallet</button>
+        <Button onClick={connectWithMetamask}>Connect Metamask Wallet</Button>
       )}
     </div>
   );
 };
 
-export default ConnectMetamaskButtonComponent;
+export default ConnectMetamaskButton;
