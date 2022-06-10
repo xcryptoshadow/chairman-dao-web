@@ -31,14 +31,30 @@ import InvestMoney from './pages/InvestMoney';
 import CreateDao from './pages/CreateDao';
 import FormDao from './pages/FormDao';
 import Listing from './pages/Listing';
+import Wallet from './pages/Wallet';
 
 // components
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+const connectors = [
+  'metamask',
+  'walletConnect',
+  'walletLink',
+  {
+    name: 'magic',
+    options: {
+      apiKey: 'pk_live_DF7B653BC268D10F',
+    },
+  },
+];
+
 function App() {
   return (
-    <ThirdwebProvider desiredChainId={ChainId.Rinkeby}>
+    <ThirdwebProvider
+      walletConnectors={connectors}
+      desiredChainId={ChainId.Rinkeby}
+    >
       <ChakraProvider theme={theme}>
         <MoralisProvider
           serverUrl={process.env.REACT_APP_MORALIS_SERVER_URL}
@@ -59,6 +75,7 @@ function App() {
               <Route path="/invest_money" element={<InvestMoney />} />
               <Route path="/listing/:payload" element={<Listing />} />
               <Route path="/create_dao/:payload" element={<FormDao />} />
+              <Route path="/wallet" element={<Wallet />} />
             </Routes>
           </BrowserRouter>
 

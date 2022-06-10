@@ -4,6 +4,7 @@ import AppContext from '../components/appContext';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import jwtEncode from 'jwt-encode';
+import { useMoralisSubscription } from 'react-moralis';
 
 // chakra ui
 import {
@@ -45,6 +46,8 @@ import {
   Editable,
   EditablePreview,
   EditableTextarea,
+  Progress,
+  Heading,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
@@ -65,6 +68,14 @@ const RaiseMoney = () => {
 
   const [money, setMoney] = useState('1000000');
   const [percent, setPercent] = useState('10');
+
+  const [subEnabled, setSubEnabled] = useState(false);
+
+  const [progressData, setProgressData] = useState({
+    step: 0,
+    progress: 0,
+    message: 'Starting NFT creation',
+  });
 
   const [loading, setLoading] = useState(false);
   const [goldData, setGoldData] = useState({
@@ -108,6 +119,32 @@ const RaiseMoney = () => {
     quantityMinted: 10000,
     color: 'blue.200',
     titleColor: 'blue.500',
+  });
+
+  useMoralisSubscription('nftProgress', q => q, [], {
+    onCreate: data => {
+      if (guildID == data.attributes.guildID) {
+        const progressEntry = {
+          guildID: data.attributes.guildID,
+          step: data.attributes.step,
+          progress: data.attributes.progress,
+          message: data.attributes.message,
+        };
+        setProgressData(progressEntry);
+      }
+    },
+    onUpdate: data => {
+      if (guildID == data.attributes.guildID) {
+        const progressEntry = {
+          guildID: data.attributes.guildID,
+          step: data.attributes.step,
+          progress: data.attributes.progress,
+          message: data.attributes.message,
+        };
+        setProgressData(progressEntry);
+      }
+    },
+    enabled: subEnabled,
   });
 
   const myContext = useContext(AppContext);
@@ -157,47 +194,69 @@ const RaiseMoney = () => {
 
     //submit
     setLoading(true);
-    const response = await axios.post(
-      `http://localhost:3000/v1/dao/mintNftCollections/?payload=${payload}`
+    setSubEnabled(true);
+    await axios.post(
+      `http://localhost:3001/v1/dao/mintNftCollections/?payload=${payload}`
     );
+    setSubEnabled(false);
     setLoading(false);
 
     navigate(`/listing/${guildID}`);
   };
 
-  const handleNftDataChange = (value, keyChanged) => {
+  const handleNftDataChange = async (value, keyChanged) => {
     if (keyChanged === 'money') {
       let oldMoney = parseFloat(money);
       let newMoney = parseFloat(value);
 
       setMoney(value);
 
-      let goldMoneyChange =
-        ((newMoney - oldMoney) * 0.25) / goldData.quantityMinted;
+      let newNftTotalPrice = parseFloat(newMoney) / 0.25;
+      let oldNftTotalPrice = parseFloat(oldMoney) / 0.25;
+      let newQuantityMultiplier = parseFloat(
+        newNftTotalPrice / oldNftTotalPrice
+      );
+
       let newGoldData = goldData;
-      newGoldData['price'] =
-        parseFloat(goldData.price) + parseFloat(goldMoneyChange);
-      setGoldData(newGoldData);
+      let newGoldQuantity = parseInt(
+        Math.round(
+          parseFloat(newGoldData['quantityMinted']) * newQuantityMultiplier
+        )
+      );
+      newGoldData['quantityMinted'] = newGoldQuantity;
 
-      let silverMoneyChange =
-        ((newMoney - oldMoney) * 0.25) / silverData.quantityMinted;
       let newSilverData = silverData;
-      newSilverData['price'] =
-        parseFloat(silverData.price) + parseFloat(silverMoneyChange);
-      setSilverData(newSilverData);
+      let newSilverQuantity = parseInt(
+        Math.round(
+          parseFloat(newSilverData['quantityMinted']) * newQuantityMultiplier
+        )
+      );
+      newSilverData['quantityMinted'] = newSilverQuantity;
 
-      let bronzeMoneyChange =
-        ((newMoney - oldMoney) * 0.25) / bronzeData.quantityMinted;
       let newBronzeData = bronzeData;
-      newBronzeData['price'] =
-        parseFloat(bronzeData.price) + parseFloat(bronzeMoneyChange);
-      setBronzeData(newBronzeData);
+      let newBronzeQuantity = parseInt(
+        Math.round(
+          parseFloat(newBronzeData['quantityMinted']) * newQuantityMultiplier
+        )
+      );
+      newBronzeData['quantityMinted'] = newBronzeQuantity;
 
-      let sapphireMoneyChange =
-        ((newMoney - oldMoney) * 0.25) / sapphireData.quantityMinted;
       let newSapphireData = sapphireData;
-      newSapphireData['price'] =
-        parseFloat(sapphireData.price) + parseFloat(sapphireMoneyChange);
+      let newSapphireQuantity = parseInt(
+        Math.round(
+          parseFloat(newSapphireData['quantityMinted']) * newQuantityMultiplier
+        )
+      );
+      newSapphireData['quantityMinted'] = newSapphireQuantity;
+
+      console.log('newGoldQuantity', newGoldQuantity);
+      console.log('newSilverQuantity', newSilverQuantity);
+      console.log('newBronzeQuantity', newBronzeQuantity);
+      console.log('newSapphireQuantity', newSapphireQuantity);
+
+      setGoldData(newGoldData);
+      setSilverData(newSilverData);
+      setBronzeData(newBronzeData);
       setSapphireData(newSapphireData);
     }
   };
@@ -222,9 +281,20 @@ const RaiseMoney = () => {
               />
             </Box>
             <Box>
-              <Spinner size="xl" />
+              <Box mb={4}>
+                <Heading>Step {progressData.step}/5:</Heading>
+                <Heading as="h4" size="xs">
+                  {progressData.message}
+                </Heading>
+              </Box>
+              <Progress
+                minW={'400px'}
+                hasStripe
+                value={progressData.progress}
+                isAnimated
+                colorScheme={progressData.progress == 100 ? 'green' : 'blue'}
+              />
             </Box>
-            <Box>Creating your NFTs...</Box>
           </Flex>
         </Fragment>
       ) : (

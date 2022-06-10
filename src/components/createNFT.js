@@ -258,7 +258,7 @@ const CreateNFT = props => {
               <EditableTextarea />
             </Editable>
             <Stack direction={'row'} align={'center'}>
-              <Editable
+              {/* <Editable
                 color={'red.600'}
                 fontSize={'xl'}
                 fontWeight={1200}
@@ -268,14 +268,24 @@ const CreateNFT = props => {
               >
                 <EditablePreview />
                 <EditableInput />
-              </Editable>
+              </Editable> */}
+              <Box
+                color={'red.600'}
+                fontSize={'xl'}
+                fontWeight={1200}
+                textTransform={'uppercase'}
+              >
+                $ {props.nftData.price}
+              </Box>
+              <Box>X</Box>
               <Editable
                 color={'gray.600'}
-                defaultValue={props.nftData.quantityMinted}
+                value={props.nftData.quantityMinted}
                 onChange={nextValue =>
                   handleNftDataChange(nextValue, 'quantityMinted')
                 }
               >
+                {console.log(props.nftData.quantityMinted)}
                 <EditablePreview />
                 <EditableInput />
               </Editable>
