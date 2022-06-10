@@ -4,6 +4,7 @@ import AppContext from '../components/appContext';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import jwtEncode from 'jwt-encode';
+import { useMoralisSubscription } from 'react-moralis';
 
 // chakra ui
 import {
@@ -46,6 +47,7 @@ import {
   EditablePreview,
   EditableTextarea,
   Progress,
+  Heading,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
@@ -66,6 +68,14 @@ const RaiseMoney = () => {
 
   const [money, setMoney] = useState('1000000');
   const [percent, setPercent] = useState('10');
+
+  const [subEnabled, setSubEnabled] = useState(false);
+
+  const [progressData, setProgressData] = useState({
+    step: 0,
+    progress: 0,
+    message: 'Starting NFT creation',
+  });
 
   const [loading, setLoading] = useState(false);
   const [goldData, setGoldData] = useState({
@@ -109,6 +119,32 @@ const RaiseMoney = () => {
     quantityMinted: 10000,
     color: 'blue.200',
     titleColor: 'blue.500',
+  });
+
+  useMoralisSubscription('nftProgress', q => q, [], {
+    onCreate: data => {
+      if (guildID == data.attributes.guildID) {
+        const progressEntry = {
+          guildID: data.attributes.guildID,
+          step: data.attributes.step,
+          progress: data.attributes.progress,
+          message: data.attributes.message,
+        };
+        setProgressData(progressEntry);
+      }
+    },
+    onUpdate: data => {
+      if (guildID == data.attributes.guildID) {
+        const progressEntry = {
+          guildID: data.attributes.guildID,
+          step: data.attributes.step,
+          progress: data.attributes.progress,
+          message: data.attributes.message,
+        };
+        setProgressData(progressEntry);
+      }
+    },
+    enabled: subEnabled,
   });
 
   const myContext = useContext(AppContext);
@@ -158,9 +194,11 @@ const RaiseMoney = () => {
 
     //submit
     setLoading(true);
+    setSubEnabled(true);
     await axios.post(
       `http://localhost:3001/v1/dao/mintNftCollections/?payload=${payload}`
     );
+    setSubEnabled(false);
     setLoading(false);
 
     navigate(`/listing/${guildID}`);
@@ -243,9 +281,20 @@ const RaiseMoney = () => {
               />
             </Box>
             <Box>
-              <Spinner size="xl" />
+              <Box mb={4}>
+                <Heading>Step {progressData.step}/5:</Heading>
+                <Heading as="h4" size="xs">
+                  {progressData.message}
+                </Heading>
+              </Box>
+              <Progress
+                minW={'400px'}
+                hasStripe
+                value={progressData.progress}
+                isAnimated
+                colorScheme={progressData.progress == 100 ? 'green' : 'blue'}
+              />
             </Box>
-            <Box>Creating your NFTs...</Box>
           </Flex>
         </Fragment>
       ) : (
