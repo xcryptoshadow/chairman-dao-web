@@ -1,5 +1,5 @@
 // @src/theme/components/appContext.js
-import React, {useState} from "react";
+import React, { useState } from 'react';
 
 const AppContext = React.createContext();
 

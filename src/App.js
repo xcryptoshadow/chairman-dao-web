@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AppContext from './components/appContext';
@@ -15,7 +15,7 @@ import {
   Grid,
   theme,
   Button,
-  useDisclosure
+  useDisclosure,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { MoralisProvider } from 'react-moralis';
@@ -29,7 +29,7 @@ import RaiseMoney from './pages/RaiseMoney';
 import Settings from './pages/Settings';
 import MemberInvited from './pages/MemberInvited';
 import MemberPaid from './pages/MemberPaid';
-import InvestMoney from './pages/investMoney';
+import InvestMoney from './pages/InvestMoney';
 import CreateDao from './pages/CreateDao';
 import Listing from './pages/Listing';
 import ClaimInviteLogin from './pages/ClaimInviteLogin';
@@ -45,69 +45,59 @@ import Footer from './components/Footer';
 import MoralisConfig from './utils/moralis';
 
 function App() {
-
-
-
   //define all global state variables here
   const [usersToInvite, setUsersToInvite] = useState([]);
   const [NFTURL, setNFTUrl] = useState('');
   const [tierToChange, setTierToChange] = useState(-1);
 
-  const updateUsersToInvite = (inviteArr) => {
+  const updateUsersToInvite = inviteArr => {
     setUsersToInvite(inviteArr);
   };
 
   /* Global state variables - DO NOT REMOVE */
   const userSettings = {
-    usersToInvite:[],
+    usersToInvite: [],
     updateUsersToInvite,
     NFTUrl: '',
     setNFTUrl,
     tierToChange: -1,
-    setTierToChange
+    setTierToChange,
   };
   /* END Global Variables */
 
-
   return (
     <AppContext.Provider value={userSettings}>
-
-    <MoralisProvider 
-      appId={MoralisConfig.getAppID()}
-      serverUrl={MoralisConfig.getServerURL()}
+      <MoralisProvider
+        appId={MoralisConfig.getAppID()}
+        serverUrl={MoralisConfig.getServerURL()}
       >
-    <ChakraProvider theme={theme}>
-      <Header />
+        <ChakraProvider theme={theme}>
+          <Header />
 
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/invite" element={<InviteMember />} />
-          <Route path="/pay_member" element={<PayMember />} />
-          <Route path="/raise" element={<RaiseMoney />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/member_invited" element={<MemberInvited />} />
-          <Route path="/member_paid" element={<MemberPaid />} />
-          <Route path="/listing" element={<Listing />} />
-          <Route path="/create_dao" element={<CreateDao />} />
-          <Route path="/claim_invite/" element={<ClaimInviteLogin />} />
-          <Route path="/create_invite" element={<GenerateInviteLogin />} />
-          <Route path="/friends" element={<Friends />} />
-          <Route path="/generate" element={<Generate />} />
-        </Routes>
-      </BrowserRouter>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/invite" element={<InviteMember />} />
+              <Route path="/pay_member" element={<PayMember />} />
+              <Route path="/raise" element={<RaiseMoney />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/member_invited" element={<MemberInvited />} />
+              <Route path="/member_paid" element={<MemberPaid />} />
+              <Route path="/listing" element={<Listing />} />
+              <Route path="/create_dao" element={<CreateDao />} />
+              <Route path="/claim_invite/" element={<ClaimInviteLogin />} />
+              <Route path="/create_invite" element={<GenerateInviteLogin />} />
+              <Route path="/friends" element={<Friends />} />
+              <Route path="/generate" element={<Generate />} />
+            </Routes>
+          </BrowserRouter>
 
-      <Footer />
-    </ChakraProvider>
-    </MoralisProvider>
-
+          <Footer />
+        </ChakraProvider>
+      </MoralisProvider>
     </AppContext.Provider>
   );
-
-
-
-  
 }
 
 export default App;
