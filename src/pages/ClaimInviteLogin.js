@@ -52,6 +52,7 @@ const ClaimInviteLogin = () => {
   useEffect(() => {
     async function fetchData() {
       const inviteDataObj = await fetchInviteRecord(inviteID);
+      console.log('===>', inviteDataObj);
 
       //draw pagekdjs
       const renderObj = {

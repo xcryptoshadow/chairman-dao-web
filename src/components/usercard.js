@@ -14,6 +14,9 @@ import {
   useColorModeValue,
   useControllableProp,
   useControllableState,
+  Text,
+  Stack,
+  Button,
 } from '@chakra-ui/react';
 
 import Profile from './profile';
@@ -120,17 +123,24 @@ function Usercard(props) {
   return (
     <LinkBox w={{ base: '326px', md: '356px' }}>
       <Box id={props.cardID}>
-        <LinkOverlay onClick={() => clicked(props, myContext)}>
-          <Profile
-            username={props.username}
-            avatarURL={props.avatarURL}
-            backgroundURL={props.backgroundURL}
-            cardID={props.cardID}
-            circleID={props.circleID}
-            dialogID={props.dialogID}
-            textID={props.textID}
-          />
-        </LinkOverlay>
+        <Profile
+          DAOName={props.DAOName}
+          DAODescription={props.DAODescription}
+          inviterAvatarURL={props.inviterAvatarURL}
+          DAOLogoURL={props.DAOLogoURL}
+          title={props.title}
+          color={props.color}
+          titleColor={props.titleColor}
+          priceText={props.priceText}
+          cardID={props.cardID}
+          circleID={props.circleID}
+          dialogID={props.dialogID}
+          textID={props.textID}
+          quote={props.quote}
+          inviterName={props.inviterName}
+          inviterRole={props.inviterRole}
+          DAOGuildID={props.DAOGuildID}
+        />
       </Box>
     </LinkBox>
   );

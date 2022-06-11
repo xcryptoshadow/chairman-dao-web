@@ -83,8 +83,8 @@ const RaiseMoney = () => {
     tier: 'Gold',
     title: `${daoName} Gold NFTs`,
     description: `Edit Gold Tier Perks Here ✏`,
-    price: 25000,
-    quantityMinted: 10,
+    price: 250000,
+    quantityMinted: 1,
     color: 'yellow.300',
     titleColor: 'yellow.500',
   });
@@ -94,8 +94,8 @@ const RaiseMoney = () => {
     tier: 'Silver',
     title: `${daoName} Silver NFTs`,
     description: `Edit Silver Tier Perks Here ✏`,
-    price: 2500,
-    quantityMinted: 100,
+    price: 125000,
+    quantityMinted: 2,
     color: 'gray.300',
     titleColor: 'gray.600',
   });
@@ -105,8 +105,8 @@ const RaiseMoney = () => {
     tier: 'Bronze',
     title: `${daoName} Bronze NFT Name`,
     description: `Edit Bronze Tier Perks Here ✏`,
-    price: 250,
-    quantityMinted: 1000,
+    price: 50000,
+    quantityMinted: 5,
     color: 'orange.600',
     titleColor: 'orange.600',
   });
@@ -115,8 +115,8 @@ const RaiseMoney = () => {
     tier: 'Sapphire',
     title: `${daoName} Sapphire NFT Name`,
     description: `Edit Sapphire Tier Perks Here ✏`,
-    price: 25,
-    quantityMinted: 10000,
+    price: 25000,
+    quantityMinted: 10,
     color: 'blue.200',
     titleColor: 'blue.500',
   });
@@ -282,7 +282,7 @@ const RaiseMoney = () => {
             </Box>
             <Box>
               <Box mb={4}>
-                <Heading>Step {progressData.step}/5:</Heading>
+                <Heading>Step {progressData.step}/4:</Heading>
                 <Heading as="h4" size="xs">
                   {progressData.message}
                 </Heading>

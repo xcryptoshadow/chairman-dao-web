@@ -97,7 +97,7 @@ const FormDao = () => {
       // localhost:3000/v1/dao/createDao/?payload=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI0NjEzNzEyMjg2NjIzOTg5ODYiLCJndWlsZElEIjoiOTUyNzQ3Mzk3NDI2MDY1NDE4IiwiY2hhbm5lbElEIjoiOTUyNzQ3Mzk3NDI2MDY1NDIxIiwiZGFvTmFtZSI6IkF2aSdzIHNlcnZlciBEQU8iLCJ0b2tlblN5bWJvbCI6ImFyayIsImNyZWF0b3JBbGxvY2F0aW9uIjoiMTAifQ.VCj_YuMA0kpeg9D0R6cJZOln6NgYDATvtKYKC7K1Xbw
 
       const response = await axios.post(
-        `http://localhost:3000/v1/dao/createDaoPending/?payload=${payload}`
+        `http://localhost:3001/v1/dao/createDaoPending/?payload=${payload}`
       );
 
       setHasSubmitted(true);

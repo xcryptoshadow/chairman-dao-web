@@ -185,6 +185,7 @@ const Friends = () => {
                   color={data.userObj.color}
                   titleColor={data.userObj.titleColor}
                   priceText={data.userObj.priceText}
+                  DAOGuildID={data.userObj.DAOGuildID}
                 />
               </Stack>
             </VStack>

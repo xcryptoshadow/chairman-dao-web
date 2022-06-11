@@ -39,6 +39,7 @@ async function handleGenerateLink(dObj, setURLValue, toast) {
     dObj.inviterRole,
     dObj.DAOLogoURL
   );
+  console.log('===>', link);
 
   document.getElementById('GeneratedURLText').setAttribute('placeholder', link);
 

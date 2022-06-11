@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useAddress, useEditionDrop } from '@thirdweb-dev/react';
 
@@ -21,6 +22,7 @@ import {
 } from '@chakra-ui/react';
 
 const InviteCardComponent = props => {
+  let navigate = useNavigate();
   const address = useAddress();
   const [loading, setLoading] = useState(false);
   const [invited, setInvited] = useState(false);
@@ -60,6 +62,8 @@ const InviteCardComponent = props => {
     setInvited(true);
 
     setLoading(false);
+
+    return navigate('/wallet');
   };
   return (
     <Fragment>

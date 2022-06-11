@@ -94,28 +94,33 @@ export const getDAORoles = async discordID => {
   await Moralis.start({ serverUrl, appId, masterKey });
 
   //query DB for all DAOs user is a member of
+  console.log('DISCORD ID: ', discordID);
 
-  var testData = [
-    {
-      guildID: 213902,
-      DAOName: 'Chad DAO',
+  const CompletedDao = Moralis.Object.extend('completedDao');
+  const query = new Moralis.Query(CompletedDao);
+  query.equalTo('userID', discordID);
+  const results = await query.find();
+
+  console.log('RESULTS ++++> ', results);
+
+  var daoData = [];
+
+  for (let i = 0; i < results.length; i++) {
+    const object = results[i];
+    const daoDetails = {
+      id: object.id,
+      guildID: object.attributes.guildID,
+      DAOName: object.attributes.daoName,
       memberAccess: 'Member',
       canInvite: true,
-      DAODescription: `The place for all the world's Chads.  Join now`,
-      DAOLogoURL: 'https://c.tenor.com/qOI3iBvktYcAAAAd/giga-chad.gif',
-    },
-    {
-      guildID: 98454,
-      DAOName: 'Poke DAO',
-      memberAccess: 'Member',
-      canInvite: true,
-      DAODescription: `Raising money to buy all ultra rare Pokemon Cards in the world`,
-      DAOLogoURL: 'https://c.tenor.com/KKdd0koqb0YAAAAd/pikachu-pokemon.gif',
-    },
-  ];
+      DAODescription: `Degens of the world....Unite!`,
+      DAOLogoURL: 'https://images2.alphacoders.com/227/thumb-1920-227450.png',
+    };
+    daoData.push(daoDetails);
+  }
 
   //return result
-  return testData;
+  return daoData;
 };
 
 // module.exports = {

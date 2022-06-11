@@ -62,6 +62,10 @@ const toggleMachine = createMachine({
 const Generate = () => {
   //create data state object to retrieve Discord API Information
   const [data, setData] = useState({ loading: true, userObj: {} });
+  const [selectedDAO, setSelectedDAO] = useState({
+    daoNum: -1,
+    guildID: '',
+  });
 
   //acquire GET URL Payload from OAuth Redirect
   const [searchParams, setSearchParams] = useSearchParams();
@@ -84,6 +88,12 @@ const Generate = () => {
 
       //retrieve moralis DB records for this user
       const DAOs = await getDAORoles(discordResponse.id);
+      setSelectedDAO({
+        daoNum: 0,
+        guildID: DAOs[0].guildID,
+      });
+
+      console.log('===>', DAOs);
 
       var selectOptions = [];
       for (var i = 0; i < DAOs.length; i++) {
@@ -143,11 +153,8 @@ const Generate = () => {
             <Flex m={4}>
               <Select
                 id="DAOSelect"
-                placeholder="Choose DAO"
-                onChange={() => {
-                  alert(
-                    "can't implement this event until DAO Creation Moralis DB works"
-                  );
+                onChange={value => {
+                  console.log('VALUE ===> ', value);
                 }}
               >
                 {data.userObj.selectOptions}
@@ -159,11 +166,11 @@ const Generate = () => {
               inviterAvatarURL={data.userObj.inviterAvatarURL}
               inviterName={data.userObj.inviterName}
               inviterID={data.userObj.inviterID}
-              DAOName={data.userObj.DAOs[0].DAOName}
-              DAOGuildID={data.userObj.DAOs[0].guildID}
-              DAOLogoURL={data.userObj.DAOs[0].DAOLogoURL}
+              DAOName={data.userObj.DAOs[selectedDAO.daoNum].DAOName}
+              DAOGuildID={data.userObj.DAOs[selectedDAO.daoNum].guildID}
+              DAOLogoURL={data.userObj.DAOs[selectedDAO.daoNum].DAOLogoURL}
               inviterRole={'DAO Creator'}
-              quote={data.userObj.DAOs[0].DAODescription}
+              quote={data.userObj.DAOs[selectedDAO.daoNum].DAODescription}
             />
           </Fragment>
         )}

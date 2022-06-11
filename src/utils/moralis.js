@@ -12,9 +12,14 @@ const credentials = [
     chainName: 'All Chains',
     currency: 'All',
 
-    moralisAppID: 'HpgolVRoKhDdBJtS1w7qQ0f2CgkEiKqxngctprAm', // using failover DB
-    moralisServerURL: 'https://r5qptsoiebbs.usemoralis.com:2053/server',
-    moralisMasterKey: 'oOMsHYu7daHsyb1m5VjVnmI13JEM1Z5OMAfIeh2R',
+    // jahans
+    // moralisAppID: 'HpgolVRoKhDdBJtS1w7qQ0f2CgkEiKqxngctprAm', // using failover DB
+    // moralisServerURL: 'https://r5qptsoiebbs.usemoralis.com:2053/server',
+    // moralisMasterKey: 'oOMsHYu7daHsyb1m5VjVnmI13JEM1Z5OMAfIeh2R',
+
+    moralisAppID: 'QmJ4dj0JW01SHmtNAbrV6FlXO1KjW3XSkXJbgtQp', // using failover DB
+    moralisServerURL: 'https://jvvsie0bvlbh.usemoralis.com:2053/server',
+    moralisMasterKey: 'JeB19gYmWz7cBpAUhL6YWw6GHeMYZFCWEOLEeXyw',
   },
 ];
 

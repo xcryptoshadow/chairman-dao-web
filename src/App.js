@@ -98,7 +98,7 @@ function App() {
                   <Route path=":payload" element={<Wallet />} />
                 </Route>
 
-                <Route path="/claim_invite/" element={<ClaimInviteLogin />} />
+                <Route path="/claim_invite" element={<ClaimInviteLogin />} />
                 <Route
                   path="/create_invite"
                   element={<GenerateInviteLogin />}
