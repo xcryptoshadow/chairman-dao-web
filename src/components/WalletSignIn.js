@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 
 // components
 import ConnectMetamaskButton from './ConnectMetamaskButton';
+import ConnectMagicButton from './ConnectMagicButton';
 
 // chakra ui
 import {
@@ -37,11 +38,12 @@ const WalletSignIn = () => {
             <Image
               borderRadius="20px"
               src="https://i.guim.co.uk/img/media/bc39fec3e5dabffc0d80406656ec2feb6a0ebec5/34_16_1115_669/master/1115.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=7700f10f0750d6bd0284f07b63b11b2b"
-              alt="Dan Abramov"
+              alt="Happy_Reds"
             />
           </Box>
           <Box>
             <ConnectMetamaskButton />
+            {/* <ConnectMagicButton /> */}
           </Box>
         </Container>
       </Box>

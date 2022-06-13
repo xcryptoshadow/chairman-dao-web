@@ -48,7 +48,18 @@ import Footer from './components/Footer';
 import MoralisConfig from './utils/moralis';
 
 function App() {
-  const connectors = ['walletConnect'];
+  // const connectors = {
+  //   name: 'magic',
+  //   options: {
+  //     apiKey: 'pk_live_DF7B653BC268D10F',
+  //     rpcUrls: {
+  //       [ChainId.Rinkeby]:
+  //         'https://eth-rinkeby.alchemyapi.io/v2/3X3bHcX9RyZRPuYU-n3Cb7JgoqBeR5Ah',
+  //     },
+  //   },
+  // };
+
+  const connectors = ['metamask', 'walletConnect', 'walletLink'];
 
   //define all global state variables here
   const [usersToInvite, setUsersToInvite] = useState([]);
@@ -72,7 +83,10 @@ function App() {
 
   return (
     <AppContext.Provider value={userSettings}>
-      <ThirdwebProvider desiredChainId={ChainId.Rinkeby}>
+      <ThirdwebProvider
+        walletConnectors={connectors}
+        desiredChainId={ChainId.Rinkeby}
+      >
         <ChakraProvider theme={theme}>
           <MoralisProvider
             serverUrl={process.env.REACT_APP_MORALIS_SERVER_URL}
@@ -93,6 +107,7 @@ function App() {
                 <Route path="/invest_money" element={<InvestMoney />} />
                 <Route path="/listing/:payload" element={<Listing />} />
                 <Route path="/create_dao/:payload" element={<FormDao />} />
+                <Route path="/wallet_demo" element={<CreateDao />} />
                 <Route path="/wallet">
                   <Route index element={<Wallet />} />
                   <Route path=":payload" element={<Wallet />} />
