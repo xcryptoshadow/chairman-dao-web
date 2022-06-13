@@ -29,11 +29,12 @@ function Profile(props) {
 
   async function handleClick(buyURL) {
     const response = await axios.post(
-      `http://localhost:3001/v1/dao/getCompletedDAO?guildID=${props.DAOGuildID}`
+      process.env.REACT_APP_SERVER_URL +
+        `/getCompletedDAO?guildID=${props.DAOGuildID}`
     );
     const daoObject = response.data.response;
 
-    const secret = 'secret';
+    const secret = process.env.REACT_APP_JWT_SECRET;
     const data = {
       guildID: props.DAOGuildID,
       daoName: props.DAOName,

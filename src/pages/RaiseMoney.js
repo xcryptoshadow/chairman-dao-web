@@ -152,7 +152,7 @@ const RaiseMoney = () => {
   const onSubmit = async () => {
     //collect form data
 
-    const secret = 'secret';
+    const secret = process.env.REACT_APP_JWT_SECRET;
     const data = {
       daoName: daoName,
       guildID: guildID,
@@ -196,7 +196,8 @@ const RaiseMoney = () => {
     setLoading(true);
     setSubEnabled(true);
     await axios.post(
-      `http://localhost:3001/v1/dao/mintNftCollections/?payload=${payload}`
+      process.env.REACT_APP_SERVER_URL +
+        `/mintNftCollections/?payload=${payload}`
     );
     setSubEnabled(false);
     setLoading(false);

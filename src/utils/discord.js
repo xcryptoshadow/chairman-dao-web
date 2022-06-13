@@ -1,8 +1,8 @@
 //@discord.js discord OAuth utility functions
 import axios from 'axios';
 
-const discordClientID = '961849988667834420';
-const discordClientSecret = 'o4FgeH_ju7weYINVQNu9M2BGL8nCeX3p';
+const discordClientID = process.env.REACT_APP_DISCORD_CLIENT_ID;
+const discordClientSecret = process.env.REACT_APP_DISCORD_CLIENT_SECRET;
 
 //must be called once Discord OAuth has returned a single-use code
 //to be converted into an access_token (post DisordLogin)

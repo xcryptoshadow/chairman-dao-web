@@ -42,7 +42,7 @@ import { findAllByDisplayValue } from '@testing-library/react';
 /* TODO: WHY DOES THIS LIBRARY FAIL?!? */
 import { getDAORoles } from '../utils/createInviteRecord';
 
-const discordRedirectURI = 'http://localhost:3000/generate';
+const discordRedirectURI = process.env.REACT_APP_WEB_URL + '/generate';
 
 var bearerToken = '';
 

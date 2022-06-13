@@ -30,7 +30,7 @@ import { findAllByDisplayValue } from '@testing-library/react';
 
 import { fetchInviteRecord } from '../utils/createInviteRecord';
 
-const discordRedirectURI = 'http://localhost:3000/friends';
+const discordRedirectURI = process.env.REACT_APP_WEB_URL + '/friends';
 
 var bearerToken = '';
 

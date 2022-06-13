@@ -78,7 +78,8 @@ const Listing = () => {
     const fetchData = async () => {
       setLoading(true);
       const response = await axios.post(
-        'http://localhost:3001/v1/dao/getNftContracts?guildID=952747397426065418'
+        process.env.REACT_APP_SERVER_URL +
+          '/getNftContracts?guildID=952747397426065418'
       );
       setLoading(false);
       console.log(response.data);

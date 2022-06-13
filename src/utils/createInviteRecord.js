@@ -2,7 +2,7 @@
 import Moralis from 'moralis/dist/moralis.min.js';
 const ConfigFactory = require('./moralis');
 
-const INVITEBASEURI = 'http://localhost:3000/claim_invite';
+const INVITEBASEURI = process.env.REACT_APP_WEB_URL + '/claim_invite';
 
 /* Create new user and insert record into the DB */
 export const createInviteRecord = async (
