@@ -51,7 +51,7 @@ function App() {
   // const connectors = {
   //   name: 'magic',
   //   options: {
-  //     apiKey: 'pk_live_DF7B653BC268D10F',
+  //     apiKey: process.env.REACT_APP_MAGIC_API_KEY,
   //     rpcUrls: {
   //       [ChainId.Rinkeby]:
   //         'https://eth-rinkeby.alchemyapi.io/v2/3X3bHcX9RyZRPuYU-n3Cb7JgoqBeR5Ah',
