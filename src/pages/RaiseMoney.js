@@ -197,7 +197,7 @@ const RaiseMoney = () => {
     setSubEnabled(true);
     await axios.post(
       process.env.REACT_APP_SERVER_URL +
-        `/mintNftCollections/?payload=${payload}`
+        `/v1/raiseMoney/mintNftCollections/?payload=${payload}`
     );
     setSubEnabled(false);
     setLoading(false);

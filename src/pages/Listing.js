@@ -77,9 +77,9 @@ const Listing = () => {
     // declare the data fetching function
     const fetchData = async () => {
       setLoading(true);
-      const response = await axios.post(
+      const response = await axios.get(
         process.env.REACT_APP_SERVER_URL +
-          '/getNftContracts?guildID=952747397426065418'
+          '/v1/raiseMoney/getNftContracts?guildID=952747397426065418'
       );
       setLoading(false);
       console.log(response.data);

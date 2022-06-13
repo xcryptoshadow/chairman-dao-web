@@ -28,9 +28,9 @@ function Profile(props) {
   let secondaryText = useColorModeValue('gray.400', 'gray.400');
 
   async function handleClick(buyURL) {
-    const response = await axios.post(
+    const response = await axios.get(
       process.env.REACT_APP_SERVER_URL +
-        `/getCompletedDAO?guildID=${props.DAOGuildID}`
+        `/v1/inviteMembers/getCompletedDAO?guildID=${props.DAOGuildID}`
     );
     const daoObject = response.data.response;
 

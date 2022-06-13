@@ -96,7 +96,7 @@ const FormDao = () => {
 
       const response = await axios.post(
         process.env.REACT_APP_SERVER_URL +
-          `/createDaoPending/?payload=${payload}`
+          `/v1/createDao/createDaoPending/?payload=${payload}`
       );
 
       setHasSubmitted(true);
